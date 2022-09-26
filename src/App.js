@@ -1,6 +1,8 @@
 import React from "react";
 import logo from "./logo.svg";
 import { Counter } from "./features/counter/Counter";
+import CountdownTimer from "./components/CountdownTimer/CountdownTimer";
+import dateTimeAfterThreeDays from "./components/CountdownTimer/TimerConfig";
 import "./App.css";
 
 function App() {
@@ -9,6 +11,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
+        <CountdownTimer targetDate={dateTimeAfterThreeDays} />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
