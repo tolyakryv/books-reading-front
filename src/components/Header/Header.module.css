@@ -1,0 +1,143 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 320px;
+  height: 60px;
+  margin: 0 auto;
+  padding: 0 20px 0 22px;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .header {
+    width: 768px;
+    padding: 0 32px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .header {
+    width: 1280px;
+    padding: 0 16px;
+  }
+}
+
+.logoAfterLogin {
+  font-family: "Abril Fatface";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 27px;
+  color: #242a37;
+}
+
+@media (min-width: 768px) {
+  .logoAfterLogin{
+    margin-right: auto;
+  }
+}
+
+.logoBeforeLogin {
+  margin-right: 73px;
+  font-family: "Abril Fatface";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 27px;
+  color: #242a37;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .logoBeforeLogin {
+    margin-right: 258px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .logoBeforeLogin {
+    margin-right: 530px;
+  }
+}
+
+.iconLibrary {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .iconLibrary {
+    margin-right: 21px;
+  }
+}
+
+.iconHome {
+  display: flex;
+  align-items: center;
+  height: 33px;
+  padding-right: 14px;
+  margin-right: 14px;
+  border-right: 1px solid #e0e5eb;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .iconHome {
+    margin-right: 8px;
+  }
+}
+
+@media (min-width: 1280px) {
+    .iconHome {
+        padding-right: 12px;
+    }
+  }
+
+.avatar {
+  margin-right: 14px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #242a37;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .avatar {
+    margin-right: 20px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .avatar {
+    margin-right: 21px;
+  }
+}
+
+.userName {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 38px;
+  color: #242a37;
+  margin-right: auto;
+}
+@media (min-width: 1280px) {
+  .userName {
+    line-height: 17px;
+  }
+}
+
+.logout {
+  border: none;
+  background-color: white;
+  color: #242a37;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 17px;
+  border-bottom: 1px solid #242a37;
+  padding: 0;
+}
