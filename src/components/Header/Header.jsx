@@ -4,20 +4,7 @@ import iconHome from "../../img/icon home.svg";
 import iconLibrary from "../../img/icon library.svg";
 import style from "./Header.module.css";
 // import { useDispatch, useSelector } from "react-redux";
-import { useMediaQuery } from "react-responsive";
-
-const Desktop = ({ children }) => {
-  const isDesktop = useMediaQuery({ minWidth: 1280 });
-  return isDesktop ? children : null;
-};
-const Tablet = ({ children }) => {
-  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
-  return isTablet ? children : null;
-};
-const Mobile = ({ children }) => {
-  const isMobile = useMediaQuery({ maxWidth: 767 });
-  return isMobile ? children : null;
-};
+import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
 
 export const Header = () => {
   //   const dispatch = useDispatch();
