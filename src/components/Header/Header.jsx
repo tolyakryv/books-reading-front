@@ -3,11 +3,10 @@ import { HandySvg } from "handy-svg";
 import iconHome from "../../img/icon home.svg";
 import iconLibrary from "../../img/icon library.svg";
 import style from "./Header.module.css";
-// import { useDispatch, useSelector } from "react-redux";
+import { LogoutModal } from "../LogoutModal/LogoutModal";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
 
 export const Header = () => {
-  //   const dispatch = useDispatch();
   //   Те що повинно бути у стейті редакса
   //   const userName = useSelector((state) => state.booksReading.userName);
   //   const isLogin = useSelector((state) => state.booksReading.isLogin);
@@ -17,8 +16,7 @@ export const Header = () => {
   const userName = "Володимир Зеленський";
 
   const handleLogout = () => {
-    // потрібно добавити апі та налаштувати редакс
-    // dispatch();
+    
   };
 
   const getFirstLetterOfName = (userName) => {
