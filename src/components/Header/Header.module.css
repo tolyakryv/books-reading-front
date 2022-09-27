@@ -1,0 +1,65 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height: 60px;
+    margin: 0 auto;
+    padding: 0 20px 0 22px;
+  }
+  
+  .logoAfterLogin{
+    font-family: "Abril Fatface";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+    color: #242a37;
+  }
+  
+  .logoBeforeLogin {
+    margin-right: 73px;
+    font-family: "Abril Fatface";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+    color: #242a37;
+  }
+  
+  .iconLibrary {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+  
+  .iconHome {
+    display: flex;
+    align-items: center;
+    height: 33px;
+    padding-right: 14px;
+    margin-right: 14px;
+    border-right: 1px solid #e0e5eb;
+  }
+  .avatar {
+    margin-right: 14px;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #242a37;
+  }
+  
+  .logout {
+    border: none;
+    background-color: white;
+    color: #242a37;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 17px;
+    text-decoration-line: underline;
+  }
+  
