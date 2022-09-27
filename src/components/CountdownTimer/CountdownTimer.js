@@ -1,36 +1,27 @@
-import React from "react";
 import { useCountdown } from "../../hooks/useCountdown";
 import DateTimeDisplay from "./DateTimeDisplay";
-// import style from "./CountdownTimer.module.css";
-
-const ExpiredNotice = () => {
-  return (
-    <div className="expired-notice">
-      <span>Expired!!!</span>
-      <p>Please select a future date and time.</p>
-    </div>
-  );
-};
+import styles from "./CountdownTimer.module.css";
 
 const ShowCounter = ({ days, hours, minutes, seconds }) => {
   return (
-    <div className="show-counter">
-      <DateTimeDisplay value={days} type={"Days"} isDanger={days <= 3} />
-      <p>:</p>
-      <DateTimeDisplay value={hours} type={"Hours"} isDanger={false} />
-      <p>:</p>
-      <DateTimeDisplay value={minutes} type={"Mins"} isDanger={false} />
-      <p>:</p>
-      <DateTimeDisplay value={seconds} type={"Seconds"} isDanger={false} />
+    <div className={styles.showCounter}>
+      <DateTimeDisplay value={days} type={"ДН"} isDanger={days <= 3} />
+      <span>:</span>
+      <DateTimeDisplay value={hours} type={"ГОД"} isDanger={false} />
+      <span>:</span>
+      <DateTimeDisplay value={minutes} type={"ХВ"} isDanger={false} />
+      <span>:</span>
+      <DateTimeDisplay value={seconds} type={"СЕК"} isDanger={false} />
     </div>
   );
 };
 
 const CountdownTimer = ({ targetDate }) => {
   const [days, hours, minutes, seconds] = useCountdown(targetDate);
-
+  // console.log(new Date(targetDate).getTime());
+  // console.log(new Date().getTime());
   if (days + hours + minutes + seconds <= 0) {
-    return <ExpiredNotice />;
+    console.log("countdown is over");
   } else {
     return (
       <ShowCounter
