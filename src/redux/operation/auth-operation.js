@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-axios.defaults.baseURL = "https://book-reading-08.herokuapp.com/";
+axios.defaults.baseURL = "https://book-reading-08.herokuapp.com";
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -11,7 +11,7 @@ const token = {
 };
 const register = createAsyncThunk("auth/register", async (userRegInfo) => {
   try {
-    const { data } = await axios.post("/api/register", userRegInfo);
+    const { data } = await axios.post("/api/auth/register", userRegInfo);
     token.set(data.token);
     return data;
   } catch (error) {
@@ -20,7 +20,7 @@ const register = createAsyncThunk("auth/register", async (userRegInfo) => {
 });
 const logIn = createAsyncThunk("auth/login", async (userInfo) => {
   try {
-    const { data } = await axios.post("/users/login", userInfo);
+    const { data } = await axios.post("/api/auth/login", userInfo);
     token.set(data.token);
     return data;
   } catch (error) {
@@ -29,7 +29,7 @@ const logIn = createAsyncThunk("auth/login", async (userInfo) => {
 });
 const logOut = createAsyncThunk("auth/logout", async () => {
   try {
-    await axios.post("/users/logout");
+    await axios.get("/api/auth/logout");
     token.unset();
   } catch (error) {
     console.error();

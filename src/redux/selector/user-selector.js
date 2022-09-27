@@ -1,3 +1,4 @@
-const getUserName = (state) => state.user.userName;
-const getIsLogin = (state) => state.isLogin;
-export const userSelector = { getUserName, getIsLogin };
+const getUserName = (state) => state.auth.user.name;
+const getIsLogin = (state) => state.auth.isLogin;
+const getBook = (state) => state.auth.book;
+export const userSelector = { getUserName, getIsLogin, getBook };

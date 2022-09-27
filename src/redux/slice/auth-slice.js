@@ -4,7 +4,6 @@ const initialState = {
   user: { name: null, email: null },
   token: null,
   isLogin: false,
-  books: { avtor: null },
 };
 const authSlice = createSlice({
   name: "auth",

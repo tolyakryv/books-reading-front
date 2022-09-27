@@ -12,6 +12,8 @@ import {
 import logger from "redux-logger";
 import storage from "redux-persist/lib/storage";
 import authReducer from "./slice/auth-slice";
+import { bookAPI } from "../services/booksAPI";
+// import bookReducer from "../redux/slice/book-slice"
 
 const authPersistConfig = {
   key: "auth",
@@ -22,6 +24,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    [bookAPI.reducerPath]: bookAPI.reducer,
   },
   devTools: process.env.NODE_ENV === "development",
   middleware: (getDefaultMiddleware) => [
