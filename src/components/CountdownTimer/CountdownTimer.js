@@ -1,4 +1,4 @@
-import { useCountdown } from "../../hooks/useCountdown";
+import useCountdown from "../../hooks/useCountdown";
 import ShowCounter from "./ShowCounter";
 
 const CountdownTimer = ({ startDateTime, endDateTime }) => {

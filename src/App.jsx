@@ -2,8 +2,8 @@ import React from "react";
 import LibraryPage from "./pages/Library/LibraryPage";
 import CountdownTimer from "./components/CountdownTimer/CountdownTimer";
 
-const startDateTime = new Date().getTime();
-const endDateTime = new Date("2022-09-28T19:39:30").getTime();
+const startDateTime = new Date("2022-09-28T19:39:30").getTime();
+const endDateTime = new Date("2022-09-28T19:40:30").getTime();
 
 function App() {
   return (
