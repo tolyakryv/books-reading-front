@@ -5,18 +5,20 @@ import iconLibrary from "../../img/icon library.svg";
 import style from "./Header.module.css";
 import { LogoutModal } from "../LogoutModal/LogoutModal";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
+import { useState } from "react";
 
 export const Header = () => {
   //   Те що повинно бути у стейті редакса
   //   const userName = useSelector((state) => state.booksReading.userName);
   //   const isLogin = useSelector((state) => state.booksReading.isLogin);
+  const [IsLogoutModal, setIsLogoutModal] = useState(false);
 
   // Для прикладу роботи логіки
   const isLogin = true;
   const userName = "Володимир Зеленський";
 
-  const handleLogout = () => {
-    
+  const closeLogoutModal = () => {
+    setIsLogoutModal(false);
   };
 
   const getFirstLetterOfName = (userName) => {
@@ -40,7 +42,7 @@ export const Header = () => {
               <button
                 className={style.logout}
                 type="button"
-                onClick={handleLogout}
+                onClick={() => setIsLogoutModal(true)}
               >
                 Вихід
               </button>
@@ -48,7 +50,6 @@ export const Header = () => {
           ) : (
             <p className={style.logoAfterLogin}>BR</p>
           )}
-          <Outlet />
         </div>
       </Mobile>
       <Tablet>
@@ -67,7 +68,7 @@ export const Header = () => {
               <button
                 className={style.logout}
                 type="button"
-                onClick={handleLogout}
+                onClick={() => setIsLogoutModal(true)}
               >
                 Вихід
               </button>
@@ -75,7 +76,6 @@ export const Header = () => {
           ) : (
             <p className={style.logoAfterLogin}>BR</p>
           )}
-          <Outlet />
         </div>
       </Tablet>
       <Desktop>
@@ -94,7 +94,7 @@ export const Header = () => {
               <button
                 className={style.logout}
                 type="button"
-                onClick={handleLogout}
+                onClick={() => setIsLogoutModal(true)}
               >
                 Вихід
               </button>
@@ -102,9 +102,10 @@ export const Header = () => {
           ) : (
             <p className={style.logoAfterLogin}>BR</p>
           )}
-          <Outlet />
         </div>
       </Desktop>
+      {IsLogoutModal && <LogoutModal closeLogoutModal={closeLogoutModal} />}
+      <Outlet />
     </>
   );
 };
