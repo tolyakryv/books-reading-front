@@ -3,8 +3,8 @@ import transformMSTime from "../components/Timer/transformMSTime";
 
 const ONE_SECOND = 1000;
 
-const useCountdown = (startDateTime, endDateTime) => {
-  const timeLeft = endDateTime - startDateTime;
+const useCountdown = (startTime, endTime) => {
+  const timeLeft = endTime - startTime;
   const [countdown, setCountdown] = useState(timeLeft);
   const [isCounting] = useState(true);
   useEffect(() => {

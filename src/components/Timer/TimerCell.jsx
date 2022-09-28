@@ -1,4 +1,4 @@
-const DateTimeItem = ({ value, type }) => {
+const TimerCell = ({ value, type }) => {
   return (
     <div>
       <span>{value}</span>
@@ -7,4 +7,4 @@ const DateTimeItem = ({ value, type }) => {
   );
 };
 
-export default DateTimeItem;
+export default TimerCell;

@@ -1,11 +1,8 @@
 import useCountdown from "../../hooks/useCountdown";
 import ShowCounter from "./ShowCounter";
 
-const CountdownToEndYear = ({ startDateTime, endDateTime }) => {
-  const [days, hours, minutes, seconds] = useCountdown(
-    startDateTime,
-    endDateTime
-  );
+const CountdownToEndYear = ({ startTime, endTime }) => {
+  const [days, hours, minutes, seconds] = useCountdown(startTime, endTime);
   if (days + hours + minutes + seconds <= 0) {
     console.log("countdown is over");
     return (
