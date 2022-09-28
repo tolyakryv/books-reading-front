@@ -1,14 +1,15 @@
 import React from "react";
 import LibraryPage from "./pages/Library/LibraryPage";
 import CountdownTimer from "./components/CountdownTimer/CountdownTimer";
-// import dateTimeAfterThreeDays from "./components/CountdownTimer/TimerConfig";
-const startDateTime = "2022-09-28T13:22:30";
-// const startDateTime = "1664360550000";
+
+const startDateTime = new Date().getTime();
+const endDateTime = new Date("2022-09-28T19:39:30").getTime();
+
 function App() {
   return (
     <>
       <LibraryPage></LibraryPage>
-      <CountdownTimer startDateTime={startDateTime} />
+      <CountdownTimer startDateTime={startDateTime} endDateTime={endDateTime} />
     </>
   );
 }

@@ -1,35 +1,26 @@
 import { useEffect, useState } from "react";
 import getPadTime from "../helpers/getPadTime";
 
-const useCountdown = (startDateTime) => {
-  const countDownDate = new Date(startDateTime).getTime();
-
-  const [countDown, setCountDown] = useState(
-    countDownDate - new Date().getTime()
-  );
-
+const useCountdown = (startDateTime, endDateTime) => {
+  const deltaTime = endDateTime - startDateTime;
+  const [countdown, setCountdown] = useState(deltaTime);
   useEffect(() => {
     const interval = setInterval(() => {
-      setCountDown(countDownDate - new Date().getTime());
+      setCountdown(countdown - 1000);
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [countDownDate]);
+  }, [countdown]);
+  // console.log(countdown);
 
-  return getReturnValues(countDown);
+  return transformMSTime(countdown);
 };
 
-const getReturnValues = (countDown) => {
-  // calculate time left
-  const days = Math.floor(countDown / (1000 * 60 * 60 * 24));
-  const hours = getPadTime(
-    Math.floor((countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-  );
-  const minutes = getPadTime(
-    Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60))
-  );
-  const seconds = getPadTime(Math.floor((countDown % (1000 * 60)) / 1000));
-
+const transformMSTime = (countdown) => {
+  const days = Math.floor(countdown / (1000 * 60 * 60 * 24));
+  const hours = getPadTime(new Date(countdown).getHours());
+  const minutes = getPadTime(new Date(countdown).getMinutes());
+  const seconds = getPadTime(new Date(countdown).getSeconds());
   return [days, hours, minutes, seconds];
 };
 
