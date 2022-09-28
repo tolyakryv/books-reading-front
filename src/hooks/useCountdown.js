@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import transformMSTime from "../helpers/transformMSTime";
+import transformMSTime from "../components/Timer/transformMSTime";
 
 const ONE_SECOND = 1000;
 
