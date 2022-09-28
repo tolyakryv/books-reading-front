@@ -5,12 +5,13 @@ import { useCallback, useState } from "react";
 
  
 function DateRangeInput() {
-    const [dateValue, setDateValue] = useState("");
+    const [dateValue, setDateValue] = useState([]);
     const handleChange = useCallback(setDateValue, []);
     const formatDate = useCallback((date) => date.toDateString(), []);
     const parseDate = useCallback((str) => new Date(str), []);   
 
-    console.log(dateValue)
+ 
+   console.log(dateValue)
    
     return (
         <DateRangeInput2
