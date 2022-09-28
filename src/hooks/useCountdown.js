@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import getPadTime from "../helpers/getPadTime";
 
-const useCountdown = (targetDate) => {
-  const countDownDate = new Date(targetDate).getTime();
+const useCountdown = (startDateTime) => {
+  const countDownDate = new Date(startDateTime).getTime();
 
   const [countDown, setCountDown] = useState(
     countDownDate - new Date().getTime()
