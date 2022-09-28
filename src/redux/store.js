@@ -13,7 +13,6 @@ import logger from "redux-logger";
 import storage from "redux-persist/lib/storage";
 import authReducer from "./slice/auth-slice";
 import { bookAPI } from "../services/booksAPI";
-// import bookReducer from "../redux/slice/book-slice"
 
 const authPersistConfig = {
   key: "auth",
@@ -26,14 +25,14 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     [bookAPI.reducerPath]: bookAPI.reducer,
   },
-  devTools: process.env.NODE_ENV === "development",
+  // devTools: process.env.NODE_ENV === "development",
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-
+    bookAPI.middleware,
     logger,
   ],
 });
