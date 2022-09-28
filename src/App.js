@@ -1,11 +1,14 @@
 import React from "react";
-import LibraryPage from "./pages/Library/LibraryPage";
+
+import { Routes, Route } from "react-router-dom";
+// import { Header } from "./components/Header/Header.jsx";
+import { LibraryPage } from "./pages/Library/LibraryPage";
 
 function App() {
   return (
-    <>
-      <LibraryPage></LibraryPage>
-    </>
+    <Routes>
+      <Route path="/" element={<LibraryPage />} />
+    </Routes>
   );
 }
 

@@ -25,7 +25,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     [bookAPI.reducerPath]: bookAPI.reducer,
   },
-  // devTools: process.env.NODE_ENV === "development",
+  devTools: process.env.NODE_ENV === "development",
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware({
       serializableCheck: {
