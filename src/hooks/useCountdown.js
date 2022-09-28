@@ -1,16 +1,22 @@
 import { useEffect, useState } from "react";
 import transformMSTime from "../helpers/transformMSTime";
 
+const ONE_SECOND = 1000;
+
 const useCountdown = (startDateTime, endDateTime) => {
   const timeLeft = endDateTime - startDateTime;
   const [countdown, setCountdown] = useState(timeLeft);
+  const [isCounting] = useState(true);
   useEffect(() => {
     const interval = setInterval(() => {
-      setCountdown(countdown - 1000);
+      isCounting &&
+        setCountdown((countdown) =>
+          countdown >= 1 ? countdown - ONE_SECOND : 0
+        );
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [countdown]);
+  }, [countdown, isCounting]);
   return transformMSTime(countdown);
 };
 
