@@ -1,12 +1,16 @@
 import React from 'react';
-import './App.css';
-import { Chart } from './components/Chart/Chart';
+
+import { Routes, Route } from 'react-router-dom';
+// import { Header } from "./components/Header/Header.jsx";
+import { LibraryPage } from './pages/Library/LibraryPage';
 
 function App() {
   return (
-    <div className="App">
-      <Chart />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<LibraryPage />} />
+      </Routes>
+    </>
   );
 }
 
