@@ -1,5 +1,3 @@
-import { Header } from "../../components/Header/Header.jsx";
-const LibraryPage = () => {
-  return <Header></Header>;
+export const LibraryPage = () => {
+  return <></>;
 };
-export default LibraryPage;
