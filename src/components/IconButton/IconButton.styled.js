@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+const duration = "250ms";
+const cubic = "cubic-bezier(0.4, 0, 0.2, 1)";
+
 export const ButtonStyled = styled.button`
   display: flex;
   align-items: center;
@@ -16,15 +19,17 @@ export const ButtonStyled = styled.button`
 
   font-weight: 700;
   font-size: 16px;
-  line-height: 1;
+  line-height: 2.38;
   color: #707375;
 
   border: none;
-  background: #f5f7fa;
+  background-color: #f5f7fa;
   box-shadow: 0px 2px 2px rgba(9, 30, 63, 0.15);
 
-  & svg {
-    width: 20px;
-    height: 20px;
+  &:hover,
+  &:focus {
+    background-color: #edeff2;
   }
+
+  transition: background-color ${duration} ${cubic};
 `;
