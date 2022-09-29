@@ -14,7 +14,7 @@ export const Header = () => {
   const [IsLogoutModal, setIsLogoutModal] = useState(false);
 
   // Для прикладу роботи логіки
-  const isLogin = true;
+  const isLogin = false;
   const userName = "Володимир Зеленський";
 
   const closeLogoutModal = () => {

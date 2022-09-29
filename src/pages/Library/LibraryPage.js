@@ -1,11 +1,12 @@
-import { Header } from "../../components/Header/Header.jsx";
+import { LibraryModalOnFirstUse } from "../../components/LibraryModalOnFirstUse/LibraryModalOnFirstUse.jsx";
 import { FormAddBook } from "../../components/FormAddBook/FormAddBook.jsx";
 
 export const LibraryPage = () => {
   return (
     <>
-      <Header />
       <FormAddBook />
+
+      <LibraryModalOnFirstUse />
     </>
   );
 };
