@@ -1,5 +1,5 @@
-import TimerCell from "./TimerCell";
-import styles from "./CountdownTimer.module.css";
+import TimerCell from "../TimerCell/TimerCell";
+import styles from "./ShowCounter.module.css";
 
 const ShowCounter = ({ days, hours, minutes, seconds }) => {
   return (
