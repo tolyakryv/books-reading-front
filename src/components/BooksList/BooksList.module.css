@@ -1,0 +1,103 @@
+.container {
+  padding: 20px 20px 128px 20px;
+  margin: 0 auto;
+  width: 320px;
+}
+
+.title {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 23px;
+  color: #242a37;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.item {
+  display: flex;
+  width: 280px;
+  padding: 20px 20px 28px 20px;
+  background: #ffffff;
+  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+  margin: 0 auto;
+}
+
+.bookName {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #242a37;
+  margin: 0;
+  margin-bottom: 12px;
+}
+
+.icon {
+  margin-right: 12px;
+}
+
+.description {
+  display: flex;
+  margin: 0;
+}
+
+.description:not(:last-child) {
+  margin-bottom: 14px;
+  max-width: 240px;
+}
+
+.key {
+  width: 81px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #898f9f;
+}
+
+.property {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #242a37;
+  margin: 0;
+  height: auto;
+  width: auto;
+}
+
+.buttonMore {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translate(-50%) scale(1);
+}
+
+.buttonTraining {
+  display: block;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  color: #ffffff;
+  width: 171px;
+  height: 42px;
+  background: #ff6b08;
+  border: none;
+  margin: 0 auto;
+  padding: 0;
+}

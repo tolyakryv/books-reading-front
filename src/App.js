@@ -11,14 +11,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Header />}>
-        <Route
-          index
-          element={
-            <PrivateRoute navigateTo="/login">
-              <LibraryPage />
-            </PrivateRoute>
-          }
-        />
+        <Route index element={<LibraryPage />} />
         <Route
           path="login"
           element={
