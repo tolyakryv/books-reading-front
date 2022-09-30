@@ -10,3 +10,14 @@
   line-height: 17px;
   color: #898f9f;
 }
+@media (min-width: 768px) {
+  .countdownContainer {
+    width: 290px;
+    margin-right: 32px;
+  }
+}
+@media (min-width: 1280px) {
+  .countdownContainer {
+    margin-right: 74px;
+  }
+}
