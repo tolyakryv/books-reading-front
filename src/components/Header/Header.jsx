@@ -3,22 +3,22 @@ import { HandySvg } from "handy-svg";
 import iconHome from "../../img/icon home.svg";
 import iconLibrary from "../../img/icon library.svg";
 import style from "./Header.module.css";
-// import { useDispatch, useSelector } from "react-redux";
+import { LogoutModal } from "../LogoutModal/LogoutModal";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
+import { useState } from "react";
 
 export const Header = () => {
-  //   const dispatch = useDispatch();
   //   Те що повинно бути у стейті редакса
   //   const userName = useSelector((state) => state.booksReading.userName);
   //   const isLogin = useSelector((state) => state.booksReading.isLogin);
+  const [IsLogoutModal, setIsLogoutModal] = useState(false);
 
   // Для прикладу роботи логіки
-  const isLogin = true;
+  const isLogin = false;
   const userName = "Володимир Зеленський";
 
-  const handleLogout = () => {
-    // потрібно добавити апі та налаштувати редакс
-    // dispatch();
+  const closeLogoutModal = () => {
+    setIsLogoutModal(false);
   };
 
   const getFirstLetterOfName = (userName) => {
@@ -42,7 +42,7 @@ export const Header = () => {
               <button
                 className={style.logout}
                 type="button"
-                onClick={handleLogout}
+                onClick={() => setIsLogoutModal(true)}
               >
                 Вихід
               </button>
@@ -50,7 +50,6 @@ export const Header = () => {
           ) : (
             <p className={style.logoAfterLogin}>BR</p>
           )}
-          <Outlet />
         </div>
       </Mobile>
       <Tablet>
@@ -69,7 +68,7 @@ export const Header = () => {
               <button
                 className={style.logout}
                 type="button"
-                onClick={handleLogout}
+                onClick={() => setIsLogoutModal(true)}
               >
                 Вихід
               </button>
@@ -77,7 +76,6 @@ export const Header = () => {
           ) : (
             <p className={style.logoAfterLogin}>BR</p>
           )}
-          <Outlet />
         </div>
       </Tablet>
       <Desktop>
@@ -96,7 +94,7 @@ export const Header = () => {
               <button
                 className={style.logout}
                 type="button"
-                onClick={handleLogout}
+                onClick={() => setIsLogoutModal(true)}
               >
                 Вихід
               </button>
@@ -104,9 +102,10 @@ export const Header = () => {
           ) : (
             <p className={style.logoAfterLogin}>BR</p>
           )}
-          <Outlet />
         </div>
       </Desktop>
+      {IsLogoutModal && <LogoutModal closeLogoutModal={closeLogoutModal} />}
+      <Outlet />
     </>
   );
 };

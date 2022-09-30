@@ -59,7 +59,8 @@ export const ButtonStyled = styled.button`
           color: ${accentTextColor};
           background-color: ${accentColor};
           &:hover,
-          &:focus {
+          &:focus,
+          &:disabled {
             background-color: ${accentColorHover};
           }
         `;
