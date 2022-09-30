@@ -1,5 +1,9 @@
-import { Header } from "../../components/Header/Header.jsx";
-const LibraryPage = () => {
-  return <Header></Header>;
+import { LibraryModalOnFirstUse } from "../../components/LibraryModalOnFirstUse/LibraryModalOnFirstUse.jsx";
+
+export const LibraryPage = () => {
+  return (
+    <>
+      <LibraryModalOnFirstUse />
+    </>
+  );
 };
-export default LibraryPage;
