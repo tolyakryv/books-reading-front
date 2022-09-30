@@ -6,14 +6,15 @@ import style from "./Header.module.css";
 import { LogoutModal } from "../LogoutModal/LogoutModal";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { userSelector } from "../../redux/selector/user-selector";
 
 export const Header = () => {
-  //   Те що повинно бути у стейті редакса
-  //   const userName = useSelector((state) => state.booksReading.userName);
-  //   const isLogin = useSelector((state) => state.booksReading.isLogin);
+  // const userName = useSelector(userSelector.getUserName);
+  // const isLogin = useSelector(userSelector.getIsLogin);
   const [IsLogoutModal, setIsLogoutModal] = useState(false);
 
-  // Для прикладу роботи логіки
+  // // Для прикладу роботи логіки
   const isLogin = true;
   const userName = "Володимир Зеленський";
 
@@ -32,7 +33,7 @@ export const Header = () => {
           {isLogin ? (
             <>
               <p className={style.logoBeforeLogin}>BR</p>
-              <Link to="/library" className={style.iconLibrary}>
+              <Link to="/" className={style.iconLibrary}>
                 <HandySvg src={iconLibrary} width="22" height="17" />
               </Link>
               <Link to="/training" className={style.iconHome}>

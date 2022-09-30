@@ -2,10 +2,12 @@ import iconLibrary from "../../img/icon library.svg";
 import iconButton from "../../img/more.svg";
 import { HandySvg } from "handy-svg";
 import style from "./BooksList.module.css";
+import { useNavigate } from "react-router-dom";
 // import { useGetAllBookQuery } from "../../services/booksAPI";
 
 export const BooksList = () => {
   //   const { data = [] } = useGetAllBookQuery();
+  const navigate = useNavigate();
 
   const books = [
     {
@@ -53,7 +55,7 @@ export const BooksList = () => {
   ];
 
   const handleMyTraining = () => {
-    console.log("ghbdt");
+    navigate("/training");
   };
 
   return (
@@ -85,7 +87,11 @@ export const BooksList = () => {
           );
         })}
       </ul>
-      <button type="button" className={style.buttonTraining}>
+      <button
+        type="button"
+        className={style.buttonTraining}
+        onClick={handleMyTraining}
+      >
         Моє тренування
       </button>
       <HandySvg
@@ -93,7 +99,6 @@ export const BooksList = () => {
         src={iconButton}
         width="52px"
         height="52px"
-        onClick={handleMyTraining}
       />
     </div>
   );
