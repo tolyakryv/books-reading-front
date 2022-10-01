@@ -1,10 +1,12 @@
-import { Label, Star, Input } from "./UserInfoInput.styled.js";
+import { Label, Star, Input, Error } from "./UserInfoInput.styled.js";
 
 export const UserInfoInput = ({
   type = "text",
   text = "",
   placeholder = "",
   required = false,
+  errorText = "",
+  showError = false,
   ...rest
 }) => {
   return (
@@ -14,8 +16,10 @@ export const UserInfoInput = ({
         type={type}
         placeholder={placeholder}
         required={required}
+        errorText={errorText}
         {...rest}
       />
+      {errorText && showError && <Error>{errorText}</Error>}
     </Label>
   );
 };
