@@ -132,9 +132,9 @@ export const ButtonStyled = styled(Button)`
 `;
 
 export const LinkStyled = styled(Link)`
-  margin-top: 16px;
+  display: block;
 
-  text-align: center;
+  margin: 16px auto 0;
 
   font-family: "Montserrat";
   font-weight: 500;

@@ -29,6 +29,25 @@ const EMAIL_REGEXP =
 
 const PASSWORD_REGEXP = /^[a-zA-Z0-9]{6,30}$/;
 
+const schema = Yup.object({
+  name: Yup.string(inputErrors.MISTAKE)
+    .min(3, inputErrors.MISTAKE)
+    .max(100, inputErrors.MISTAKE)
+    .required(inputErrors.REQUIRED),
+
+  email: Yup.string(inputErrors.MISTAKE)
+    .matches(EMAIL_REGEXP, inputErrors.MISTAKE)
+    .required(inputErrors.REQUIRED),
+
+  password: Yup.string(inputErrors.MISTAKE)
+    .matches(PASSWORD_REGEXP, inputErrors.MISTAKE)
+    .required(inputErrors.REQUIRED),
+
+  confirmPassword: Yup.string(inputErrors.MISTAKE)
+    .oneOf([Yup.ref("password"), null], inputErrors.MATCH)
+    .required(inputErrors.REQUIRED),
+});
+
 export const Register = () => {
   const dispatch = useDispatch();
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -44,6 +63,8 @@ export const Register = () => {
     dispatch(operation.register(data));
   };
 
+  const resetPaste = (event) => event.preventDefault();
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -51,24 +72,7 @@ export const Register = () => {
       password: "",
       confirmPassword: "",
     },
-    validationSchema: Yup.object({
-      name: Yup.string(inputErrors.MISTAKE)
-        .min(3, inputErrors.MISTAKE)
-        .max(100, inputErrors.MISTAKE)
-        .required(inputErrors.REQUIRED),
-
-      email: Yup.string(inputErrors.MISTAKE)
-        .matches(EMAIL_REGEXP, inputErrors.MISTAKE)
-        .required(inputErrors.REQUIRED),
-
-      password: Yup.string(inputErrors.MISTAKE)
-        .matches(PASSWORD_REGEXP, inputErrors.MISTAKE)
-        .required(inputErrors.REQUIRED),
-
-      confirmPassword: Yup.string(inputErrors.MISTAKE)
-        .oneOf([Yup.ref("password"), null], inputErrors.MATCH)
-        .required(inputErrors.REQUIRED),
-    }),
+    validationSchema: schema,
     onSubmit: handleSubmit,
   });
 
@@ -139,6 +143,7 @@ export const Register = () => {
                 errorText={formik.errors.confirmPassword}
                 showError={formik.touched.confirmPassword}
                 onBlur={formik.handleBlur}
+                onPaste={resetPaste}
               />
             </div>
             <ButtonStyled

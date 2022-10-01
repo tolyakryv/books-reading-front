@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = "https://book-reading-08.herokuapp.com";
+axios.defaults.baseURL = "http://localhost:5000";
 
 const token = {
   set(token) {
