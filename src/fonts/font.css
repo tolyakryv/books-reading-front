@@ -48,6 +48,7 @@
 
 @font-face {
   font-family: "Abril Fatface";
+  font-weight: 400;
   src: local("Abril Fatface"),
     url(./AbrilFatface/AbrilFatface-Regular.ttf) format("truetype");
 }
