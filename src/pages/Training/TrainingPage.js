@@ -1,6 +1,6 @@
 import Training from "../../components/Training/Training";
 
-export const LibraryPage = () => {
+export const TrainingPage = () => {
   return (
     <>
       <Training/>

@@ -34,6 +34,8 @@ function Training() {
 
   const [startDate, setStartDate] = useState() 
   const [finishDate, setEndDate] = useState()
+  const [startDate2, setStartDate2] = useState() 
+  const [finishDate2, setEndDate2] = useState()
   const [initialbooks, setInitialBooks] = useState(defaultData);
   const [selectedBook, setSelectedBook] = useState()
   const [books, setBooks] = React.useState(() => [...defaultData])
@@ -42,11 +44,15 @@ function Training() {
   }   
  
   const handleChangeStart = (e) => {
-      setStartDate(e)
+    const date = Date.parse(e)
+      setStartDate(date)
+      setStartDate2(e)
   };
 
   const handleChangeEnd = (e) => {
-      setEndDate(e)}
+  const date = Date.parse(e)
+  setEndDate(date)
+setEndDate2(e)}
 
 const sel = JSON.parse(JSON.stringify(initialbooks).replaceAll('id', 'value'))
 const sel2 = JSON.parse(JSON.stringify(sel).replaceAll('Title', 'label'))
@@ -64,7 +70,8 @@ const onClickHandle = e => {
  
 
   const newTraining ={startDate, finishDate, books}
-  console.log(books)
+  console.log(newTraining)
+ 
 
   return (
     <div className={s.training}>
@@ -73,8 +80,8 @@ const onClickHandle = e => {
       <h3 className={s.text}> Моє тренування </h3>
       </div>
       <div className={s.dateInput}>
-      <DateInputEl  placeholder={"Початок"} minDate ={new Date()} value={startDate} onChange={handleChangeStart} />
-      <DateInputEl  placeholder={"Завершення"} minDate ={new Date()} value={finishDate} onChange={handleChangeEnd} />
+      <DateInputEl  placeholder={"Початок"} minDate ={new Date()} value={startDate2} onChange={handleChangeStart} />
+      <DateInputEl  placeholder={"Завершення"} minDate ={new Date()} value={finishDate2} onChange={handleChangeEnd} />
       </div>
       <BookSelector onClickHandle = {onClickHandle} onChangeHandle={onChangeHandle} book={sel2}/>
       <BookList data={books} handleDelete={handleDelete}/>

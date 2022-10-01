@@ -1,6 +1,6 @@
 import { DateInput2 } from "@blueprintjs/datetime2";
 import { useCallback } from "react";
-import "../DateInputEl/DateInputEl.css"
+import "../DateInputEl/DateInput.css"
  
 function DateInputEl({placeholder, minDate, onChange, value}) {
    
