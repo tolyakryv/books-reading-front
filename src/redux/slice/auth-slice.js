@@ -4,7 +4,7 @@ import operation from "../operation/auth-operation";
 const initialState = {
   user: { name: null, email: null },
   token: null,
-  isLogin: false,
+  isLogin: true,
 
   isLoading: false,
   error: null,

@@ -17,8 +17,8 @@ function App() {
           element={
             <PrivateRoute navigateTo="/login">
               <LibraryPage />
-              <Training />
-              <ShowTimer />
+              {/* <Training />
+              <ShowTimer /> */}
             </PrivateRoute>
           }
         />
