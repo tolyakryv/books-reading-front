@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"),
+    url(./Montserrat/Montserrat-Black.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: local("Open Sans"),
+    url(./OpenSans/OpenSans-Medium.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Abril Fatface";
+  src: local("Abril Fatface"),
+    url(./AbrilFatface/AbrilFatface-Regular.ttf) format("truetype");
+}
