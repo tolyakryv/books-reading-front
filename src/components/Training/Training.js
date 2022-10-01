@@ -1,5 +1,4 @@
 import React from "react";
-import DateInput from "../DateInput/DateInput";
 import BookList from "../BookList/BookList";
 import BookSelector from "../BookSelector/BookSelector";
 import s from "../Training/Training.module.css"
@@ -73,9 +72,6 @@ const onClickHandle = e => {
       <div className={s.wrapper}>
       <h3 className={s.text}> Моє тренування </h3>
       </div>
-      <DateInput />
-      <BookSelector/>
-      <BookList />
       <div className={s.dateInput}>
       <DateInputEl  placeholder={"Початок"} minDate ={new Date()} value={startDate} onChange={handleChangeStart} />
       <DateInputEl  placeholder={"Завершення"} minDate ={new Date()} value={finishDate} onChange={handleChangeEnd} />
@@ -89,3 +85,4 @@ const onClickHandle = e => {
   );
 }
 
+export default Training
