@@ -1,0 +1,104 @@
+.training{
+    background-color: #F6F7FB;
+    width: 320px;
+    padding-left: 20px;
+    padding-right: 20px;     
+    margin: 0 auto;
+    
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+    .training {
+      width: 768px;
+      padding: 0 32px;
+    }
+  }
+  
+@media (min-width: 1280px) {
+    .training {
+      width: 1280px;
+      padding: 0 16px;
+    }
+  }
+
+.text{
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24.38px;
+    color: #FFFFFF;
+    text-align: center;
+    padding-top: 18px;
+    
+}
+
+.wrapper{
+    width: 280px;
+    height: 60px;
+    background-color:#B1B5C2;
+    box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+    margin-bottom: 20px;
+   
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+    .wrapper {
+      width: 704px;
+      }
+  }
+
+
+  @media (min-width: 1280px) {
+    .wrapper {
+      width: 928px;
+      
+    }
+  }
+.button{
+    width: 171px;
+    height: 42px;
+    background-color: #FF6B08;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    border: none;
+    margin-left: 74px;
+}
+@media (min-width: 768px) {
+    .button {
+      width: 200px;
+      height: 40px;
+      margin-left: 284px;
+      }
+  }
+
+.buttonText{
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+    .buttonText {
+        font-weight: 600;
+        font-size: 16px;
+      }
+  }
+
+
+  @media (min-width: 1280px) {
+    .bigwrapper {
+      width: 928px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .dateInput{
+        display: flex;
+        flex-direction: row;
+    }
+    }
+    
+   
