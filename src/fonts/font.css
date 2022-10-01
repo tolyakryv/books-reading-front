@@ -1,17 +1,54 @@
 @font-face {
   font-family: "Montserrat";
+  font-weight: 300;
   src: local("Montserrat"),
-    url(./Montserrat/Montserrat-Black.ttf) format("truetype");
+    url(./Montserrat/Montserrat-Light.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 400;
+  src: local("Montserrat"),
+    url(./Montserrat/Montserrat-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 500;
+  src: local("Montserrat"),
+    url(./Montserrat/Montserrat-Medium.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 600;
+  src: local("Montserrat"),
+    url(./Montserrat/Montserrat-SemiBold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 700;
+  src: local("Montserrat"),
+    url(./Montserrat/Montserrat-Bold.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "Open Sans";
+  font-weight: 500;
   src: local("Open Sans"),
     url(./OpenSans/OpenSans-Medium.ttf) format("truetype");
 }
 
 @font-face {
+  font-family: "Open Sans";
+  font-weight: 700;
+  src: local("Open Sans"), url(./OpenSans/OpenSans-Bold.ttf) format("truetype");
+}
+
+@font-face {
   font-family: "Abril Fatface";
+  font-weight: 400;
   src: local("Abril Fatface"),
     url(./AbrilFatface/AbrilFatface-Regular.ttf) format("truetype");
 }
