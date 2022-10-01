@@ -1,4 +1,8 @@
 import * as React from 'react'
+import IconDelete from "../../img/delete.svg";
+import Icon from "../../img/icon library.svg";
+import { HandySvg } from "handy-svg";
+import s from "../BookList/Booklist.module.css"
 
 import {
     createColumnHelper,
@@ -7,59 +11,46 @@ import {
     useReactTable,
   } from '@tanstack/react-table'
 
-const defaultData = [
-    {
-      Title: 'Book',
-      Author: 'Author',
-      Year: 2021,
-      pages: 100,
-    },
-    {
-      Title: 'Book',
-      Author: 'Author',
-      Year: 2021,
-      pages: 101,
-    },
-    {
-      Title: 'Book',
-      Author: 'Author',
-      Year: 2021,
-      pages: 102,
-    }]
 
+export default function BookList ({data, handleDelete}) {
+    
+   
     const columnHelper = createColumnHelper()
 
- const columns = [
-    columnHelper.accessor('Icon', {
-        cell: info => info.getValue(),
-     }),
-        columnHelper.accessor('Title', {
-            header: () => <span>Назва</span>,
-          cell: info => info.getValue(),
-         }),
-        columnHelper.accessor(row => row.Author, {
-          id: 'Author',
-          cell: info => <i>{info.getValue()}</i>,
-          header: () => <span>Автор</span>,
+    const columns = [
+        columnHelper.accessor('_', {
           
-        }),
-        columnHelper.accessor('Year', {
-          header: () => <span>Рік</span>,
-          cell: info => info.renderValue(),
-       
-        }),
-        columnHelper.accessor('pages', {
-          header: () => <span>Стор.</span>,
-        }),
-        columnHelper.accessor('Delete', {
-        
-            cell: info => info.getValue(),
-           }),
-      ]
+            header: () => "",
+              cell: () =><HandySvg src={Icon} className = {s.svg_1} />,
+             
+         }),
+            columnHelper.accessor('Title', {
+                header: () => <span>Назва</span>,
+              cell: info => info.getValue(),
+             }),
+            columnHelper.accessor(row => row.Author, {
+              id: 'Author',
+              cell: info => <i>{info.getValue()}</i>,
+              header: () => <span>Автор</span>,
+              
+            }),
+            columnHelper.accessor('Year', {
+              header: () => <span>Рік</span>,
+              cell: info => info.renderValue(),
+           
+            }),
+            columnHelper.accessor('pages', {
+              header: () => <span>Стор.</span>,
+            }),
+            columnHelper.accessor('Delete', {
+              header: () => "",
+              
+              cell: (info) => {
+                return <button type="button" className={s.button} onClick={() => handleDelete(info.row.original.id)}> <HandySvg src={IconDelete} className = {s.svg}/></button>
+              } }),
+    
+          ]
 
-export default function BookList () {
-    const [data, setData] = React.useState(() => [...defaultData])
-  
 
   const table = useReactTable({
     data,
@@ -68,10 +59,11 @@ export default function BookList () {
   })
   return (
     <div className="p-2">
-      <table>
+      <table className={s.table}>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
-            <tr key={headerGroup.id}>
+            <tr key={headerGroup.id}
+            className = {s.header}>
               {headerGroup.headers.map(header => (
                 <th key={header.id}>
                   {header.isPlaceholder
@@ -85,7 +77,7 @@ export default function BookList () {
             </tr>
           ))}
         </thead>
-        <tbody>
+        <tbody className={s.body}>
           {table.getRowModel().rows.map(row => (
             <tr key={row.id}>
               {row.getVisibleCells().map(cell => (
@@ -97,7 +89,6 @@ export default function BookList () {
           ))}
         </tbody>
         </table>
-      
-    </div>
+      </div>
   )
 }

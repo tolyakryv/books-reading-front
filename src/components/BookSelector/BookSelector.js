@@ -1,32 +1,22 @@
-import { useState } from 'react';
+
 import React from 'react'
 import Select from 'react-select'
+import s from "../BookSelector/BookSelector.module.css"
 
 
 
-const options = [{
-    value: "Book 1",
-    label: "Book 1",
-    
-},
-{
-    value: "Book 2",
-    label: "Book 2",
-    
-}]
 
-export default function BookSelector(){
-    const [book, setBook] = useState(options);
-    const reset = () => {
-        setBook('')
-      };
-      
+
+export default function BookSelector({placeholder = "Обрати книгу", onClickHandle, onChangeHandle, book}){
+
+
+
       return (
-        <div>
-          <Select options = {book}/>
+        <div className={s.wrapper}>
+          <Select className={s.selector} options = {book} onChange = {onChangeHandle} placeholder = {placeholder}/>
+          <button className={s.button} type = "button" onClick={onClickHandle}><span className={s.text}>Додати</span></button>
 </div>
           
    
       );
 }
-
