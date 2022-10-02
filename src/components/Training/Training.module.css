@@ -18,6 +18,9 @@
     .training {
       width: 1280px;
       padding: 0 16px;
+      display: flex;
+      flex-direction: row-reverse;
+      
     }
   }
 
@@ -101,4 +104,7 @@
     }
     }
     
-   
+    .svg_1{
+      width: 22px;
+      height: 17px;
+  }
