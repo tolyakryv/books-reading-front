@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const Label = styled.label`
+  position: relative;
   display: block;
   font-family: "Montserrat";
   font-weight: inherit;
   font-size: 14px;
-  line-height: 17px;
+  line-height: 1.21;
 
   text-align: left;
 
@@ -42,4 +43,17 @@ export const Input = styled.input`
   &::placeholder {
     color: #a6abb9;
   }
+`;
+
+export const Error = styled.p`
+  position: absolute;
+  right: 0;
+  bottom: -28px;
+
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.21;
+
+  color: red;
 `;
