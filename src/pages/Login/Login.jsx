@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { toast } from "react-toastify";
 import operation from "../../redux/operation/auth-operation.js";
 import { userSelector } from "../../redux/selector/user-selector.js";
 import { UserInfoInput } from "../../components/UserInfoInput";
 import { Quote } from "../../components/Quote";
 import { GoogleLink } from "../../components/GoogleLink";
+import { loginSchema } from "../../schemas/loginSchema.js";
 import { ReactComponent as GoogleIcon } from "../../img/google icon.svg";
 import {
   PageContainer,
@@ -18,27 +18,15 @@ import {
   LoginSection,
   QuoteContainer,
 } from "./Login.styled.js";
-import { inputErrors } from "../../helpers/errors.js";
-
-const EMAIL_REGEXP =
-  /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
-
-const PASSWORD_REGEXP = /^[a-zA-Z0-9]{6,30}$/;
-
-const schema = Yup.object({
-  email: Yup.string(inputErrors.MISTAKE)
-    .matches(EMAIL_REGEXP, inputErrors.MISTAKE)
-    .required(inputErrors.REQUIRED),
-  password: Yup.string(inputErrors.MISTAKE)
-    .matches(PASSWORD_REGEXP, inputErrors.MISTAKE)
-    .required(inputErrors.REQUIRED),
-});
+import { useGoogle } from "../../hooks/useGoogle.js";
 
 export const Login = () => {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(userSelector.getIsLoading);
   const error = useSelector(userSelector.getError);
+
+  useGoogle();
 
   useEffect(() => {
     if (error) toast.error(error.message);
@@ -53,7 +41,7 @@ export const Login = () => {
       email: "",
       password: "",
     },
-    validationSchema: schema,
+    validationSchema: loginSchema,
     onSubmit: handleSubmit,
   });
 
