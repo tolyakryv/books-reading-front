@@ -1,7 +1,11 @@
-import React from "react";
+// import { useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
+
 // import * as Yup from "yup";
+import * as booksAPI from "../../services/booksAPI";
 import s from "./FormAddBook.module.css";
+// import { userSelector } from "../../redux/selector/user-selector";
 
 // const addBookSchema = Yup.object().shape({
 //   title: Yup.string().max(50).required(),
@@ -9,17 +13,30 @@ import s from "./FormAddBook.module.css";
 //   publicDate: Yup.number().max(4).integer(),
 //   amountPages: Yup.number().max(4).integer().required(),
 // });
+// console.log(booksAPI);
 export const FormAddBook = () => {
+  const newBookTemplate = {
+    title: "",
+    author: "",
+    publicDate: 1900,
+    amountPages: 0,
+  };
+  const [addBook] = booksAPI.useAddBookMutation();
+  const handleSubmit = async (data) => {
+    if (data) {
+      localStorage.setItem("newBook", JSON.stringify([data]));
+      await addBook(data).unwrap();
+    }
+  };
   const formik = useFormik({
-    initialValues: {
-      title: "",
-      author: "",
-      publicDate: null,
-      amountPages: null,
-    },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
+    initialValues: newBookTemplate,
+    // validationSchema: Yup.object().shape({
+    //   title: Yup.string().max(50).required(),
+    //   author: Yup.string().max(50).required(),
+    //   publicDate: Yup.number().max(4).integer(),
+    //   amountPages: Yup.number().max(4).integer().required(),
+    // }),
+    onSubmit: handleSubmit,
   });
   return (
     <>
