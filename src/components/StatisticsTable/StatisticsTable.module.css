@@ -1,0 +1,110 @@
+/* .ag {
+  width: 780px;
+} */
+/* .header {
+  width: 100%;
+} */
+.section {
+  width: 320px;
+  padding: 20px;
+  background: #f6f7fb;
+}
+.container {
+  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+  padding: 20px;
+}
+.spanColor {
+  color: #898f9f;
+}
+.headerStatistic {
+  margin-top: 20px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.header {
+  margin-top: 0;
+  margin-bottom: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  position: relative;
+}
+
+.header:before {
+  content: "";
+  display: block;
+  position: absolute;
+
+  border-bottom: 1px solid #e0e5eb;
+  top: 50%;
+  left: 10px;
+  width: 74px;
+}
+.header:after {
+  content: "";
+  display: block;
+  position: absolute;
+
+  border-bottom: 1px solid #e0e5eb;
+  top: 50%;
+  right: 10px;
+  width: 74px;
+}
+
+/* .form {
+  display: flex;
+} */
+
+.test {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.inputContainer {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.ag {
+  --ag-grid-size: 3px;
+  --ag-list-item-height: 20px;
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; */
+}
+/* .test {
+  margin: 0 auto;
+} */
+.input {
+  display: block;
+  width: 110px;
+  height: 42px;
+  font-size: 14px;
+}
+
+/* .labelWrapper {
+  display: flex;
+} */
+.labelWrapper:first-child {
+  margin-right: 20px;
+}
+.label {
+  font-size: 10px;
+  color: #898f9f;
+}
+.button {
+  /* display: block; */
+  width: 240px;
+  height: 40px;
+  margin-bottom: 25px;
+  background-color: #ff6b08;
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  font-size: 16px;
+}
