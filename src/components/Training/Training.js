@@ -7,6 +7,7 @@ import { useState } from "react";
 import Icon from "../../img/icon library.svg";
 import { HandySvg } from "handy-svg";
 import Goals from "../Goals/Goals";
+import {Chart} from "../Chart/Chart";
 
 
 const defaultData = [
@@ -147,6 +148,8 @@ function Training() {
             Почати тренування
           </span>
         </button>
+
+        <Chart/>
       </div>
     </div>
   );
