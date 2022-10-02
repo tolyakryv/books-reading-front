@@ -1,6 +1,5 @@
 import * as React from 'react'
 import IconDelete from "../../img/delete.svg";
-import Icon from "../../img/icon library.svg";
 import { HandySvg } from "handy-svg";
 import s from "../BookList/Booklist.module.css"
 
@@ -12,7 +11,7 @@ import {
   } from '@tanstack/react-table'
 
 
-export default function BookList ({data, handleDelete}) {
+export default function BookList ({data, handleDelete, cellItem}) {
     
    
     const columnHelper = createColumnHelper()
@@ -21,7 +20,7 @@ export default function BookList ({data, handleDelete}) {
         columnHelper.accessor('_', {
           
             header: () => "",
-              cell: () =><HandySvg src={Icon} className = {s.svg_1} />,
+              cell: () =>cellItem,
              
          }),
             columnHelper.accessor('Title', {
@@ -78,6 +77,7 @@ export default function BookList ({data, handleDelete}) {
           ))}
         </thead>
         <tbody className={s.body}>
+          
           {table.getRowModel().rows.map(row => (
             <tr key={row.id}>
               {row.getVisibleCells().map(cell => (
@@ -86,7 +86,16 @@ export default function BookList ({data, handleDelete}) {
                 </td>
                ))}
             </tr>
+            
           ))}
+          <tr>
+            <td>{cellItem}</td>
+            <td>...</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
         </tbody>
         </table>
       </div>
