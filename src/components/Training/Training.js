@@ -7,7 +7,11 @@ import { useState } from "react";
 import Icon from "../../img/icon library.svg";
 import { HandySvg } from "handy-svg";
 import Goals from "../Goals/Goals";
-import {Chart} from "../Chart/Chart";
+import { Chart } from "../Chart/Chart";
+import TableMin from "../TableMin/TableMin";
+import * as booksAPI from "../../services/booksAPI";
+import * as trainingAPI from "../../services/trainingAPI";
+import Media from 'react-media';
 
 
 const defaultData = [
@@ -31,21 +35,18 @@ function Training() {
   // Обрані книжки для відправки на бек
   const [books, setBooks] = useState([]);
 
-  // const dispatch = useDispatch();
+  const [addTrain] = trainingAPI.useAddTrainMutation();
 
-  // useEffect (() => {
-  //   dispatch(fetchBooks());
-  // },[dispatch])
-
-  // Кнопка почати тренування
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!startDate || !finishDate || books.length < 1) {
-      return alert(`mistake`);
-    }
-    // dispatch(addTraining(newTraining));
-  };
+  // Отримати масив книг
+  const { data } = booksAPI.useGetAllBookQuery();
+  //  if (data){
+  //   if(data.result.length > 0) {setInitialBooks(data.result)}}
+  //  if (data){
+  //   setInitialBooks(data.result)
+  //  }
+  //   alert("оберіть книги з бібліотеки")
+  //  }
+  //  console.log(data.result)
 
   // Кнопка видалити
   const handleDelete = (id) => {
@@ -62,18 +63,21 @@ function Training() {
   // Обробка кінцевої дати
   const handleChangeEnd = (e) => {
     const date = Date.parse(e);
-    if(date <= startDate){
-      return alert("mistake2")
+    if (date <= startDate) {
+      return alert("mistake2");
     }
     setEndDate(date);
     setEndDate2(e);
   };
 
   // Обробка списку книг з беку для селекту
-  const sel = JSON.parse(
-    JSON.stringify(initialbooks).replaceAll("id", "value")
-  );
-  const sel2 = JSON.parse(JSON.stringify(sel).replaceAll("Title", "label"));
+  let sel2 = [];
+  if (initialbooks) {
+    const sel = JSON.parse(
+      JSON.stringify(initialbooks).replaceAll("id", "value")
+    );
+    sel2 = JSON.parse(JSON.stringify(sel).replaceAll("Title", "label"));
+  }
 
   const onChangeHandle = (e) => {
     setSelectedBook(e.value);
@@ -93,6 +97,13 @@ function Training() {
   const newTraining = { startDate, finishDate, books };
 
   console.log(newTraining);
+  // Кнопка почати тренування
+  const handleSubmit = async (startDate) => {
+    if (startDate) {
+      console.log(startDate);
+      await addTrain(startDate);
+    }
+  };
 
   // дані для компоненту Goals (моя мета прочитати)
 
@@ -102,7 +113,7 @@ function Training() {
   }
 
   var amount = 0;
-  if(books){
+  if (books) {
     amount = books.length;
   }
 
@@ -112,7 +123,12 @@ function Training() {
   ];
 
   return (
+    
     <div className={s.training}>
+      <Media queries={{
+          small: "(max-width: 767px)",
+          medium: "(min-width: 768px)" 
+        }}></Media>
       <Goals data={goalsData} />
       <div className={s.bigwrapper}>
         <div className={s.wrapper}>
@@ -137,21 +153,31 @@ function Training() {
           onChangeHandle={onChangeHandle}
           book={sel2}
         />
-        <BookList
+         <Media query="(max-width: 767px)" render={() =>
+          (
+            <TableMin
+            data={books}
+            handleDelete={handleDelete}
+            cellItem={<HandySvg src={Icon} className={s.svg_1} />}
+          />
+          )}/>
+      
+      <Media query="(min-width: 768px)" render={() =>
+          (   <BookList
           data={books}
           handleDelete={handleDelete}
           cellItem={<HandySvg src={Icon} className={s.svg_1} />}
-        />
-
+        />  )}/>
+            </div>
+       
         <button type="button" className={s.button}>
           <span className={s.buttonText} onClick={handleSubmit}>
             Почати тренування
           </span>
         </button>
-
-        <Chart/>
+        <Chart />
       </div>
-    </div>
+    
   );
 }
 
