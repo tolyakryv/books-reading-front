@@ -13,12 +13,6 @@ import * as booksAPI from "../../services/booksAPI";
 import * as trainingAPI from "../../services/trainingAPI";
 import Media from "react-media";
 
-const defaultData = [
-  { id: 1111, title: "Book 1", author: "Author", publicDate: 2021, amountPages: 100 },
-  { id: 121, title: "Book 2", author: "Author", publicDate: 2021, amountPages: 101 },
-  { id: 321, title: "Book", author: "Author", publicDate: 2021, amountPages: 102 },
-  { id: 65, title: "..." },
-];
 
 function Training() {
   // дати в мілісекундах
@@ -27,8 +21,7 @@ function Training() {
   // дати в датах для відображення в календарі
   const [startDate2, setStartDate2] = useState();
   const [finishDate2, setEndDate2] = useState();
-  // Масив книжок з беку для вибоу
-  const [initialbooks, setInitialBooks] = useState(defaultData);
+ 
   // Книжка в полі селект
   const [selectedBook, setSelectedBook] = useState();
   // Обрані книжки для відправки на бек
@@ -37,19 +30,19 @@ function Training() {
   const [addTrain] = trainingAPI.useAddTrainMutation();
 
   // Отримати масив книг
+  let backResponce = [{ id: "", title: "", author: "", publicDate: 1, amountPages: 1 }]
   const { data } = booksAPI.useGetAllBookQuery();
-  //  if (data){
-  //   if(data.result.length > 0) {setInitialBooks(data.result)}}
-  //  if (data){
-  //   setInitialBooks(data.result)
-  //  }
-  //   alert("оберіть книги з бібліотеки")
-  //  }
-  //  console.log(data.result)
+  if(data){
+   backResponce = data.result
+  
+  }
+
 
   // Кнопка видалити
   const handleDelete = (id) => {
-    setBooks(books.filter((e) => e.id !== id));
+    console.log(id)
+    setBooks(books.filter((e) => e._id !== id));
+     
   };
 
   // Обробка стартової дати
@@ -61,7 +54,7 @@ function Training() {
 
   // Обробка кінцевої дати
   const handleChangeEnd = (e) => {
-    const date = Date.parse(e);
+    const  date= Date.parse(e);
     if (date <= startDate) {
       return alert("mistake2");
     }
@@ -71,9 +64,9 @@ function Training() {
 
   // Обробка списку книг з беку для селекту
   let sel2 = [];
-  if (initialbooks) {
+  if ( backResponce) {
     const sel = JSON.parse(
-      JSON.stringify(initialbooks).replaceAll("id", "value")
+      JSON.stringify(backResponce).replaceAll("_id", "value")
     );
     sel2 = JSON.parse(JSON.stringify(sel).replaceAll("title", "label"));
   }
@@ -85,22 +78,31 @@ function Training() {
   // додавання книги в таблицю
   const onClickHandle = (e) => {
     e.preventDefault();
-    setInitialBooks(initialbooks.filter((e) => e.id !== selectedBook));
-    const selBook = initialbooks.filter((e) => e.id === selectedBook);
+    
+    const selBook = backResponce.filter((e) => e._id === selectedBook);
+
+    // backResponce = (backResponce.filter((e) => e.id !== selectedBook));
 
     setBooks([...books, ...selBook]);
   };
 
   // Обєкт для відпавки на бек
 
-  const newTraining = { startDate, finishDate, books };
+const book =[]
+
+const handleBeforeSubmit =() => {books.forEach(e => {const id = e._id;
+book.push(id)})}
+handleBeforeSubmit()
+
+
+
+  const newTraining = {startDate, finishDate, book };
 
   console.log(newTraining);
   // Кнопка почати тренування
-  const handleSubmit = async (startDate) => {
-    if (startDate) {
-      console.log(startDate);
-      await addTrain(startDate);
+  const handleSubmit = async () => {
+    if (newTraining) {
+      await addTrain(newTraining);
     }
   };
 

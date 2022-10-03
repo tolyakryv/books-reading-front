@@ -51,7 +51,7 @@ const TableMin = ({data, handleDelete, cellItem}) =>{
                     </div>
                     </div>
                     </div>
-            <div> <button className={s.button} type="button" onClick={() => handleDelete(e.id)}> <HandySvg src={IconDelete} className = {s.svg}/></button></div>
+            <div> <button className={s.button} type="button" onClick={() => handleDelete(e._id)}> <HandySvg src={IconDelete} className = {s.svg}/></button></div>
             </div>
             )}
     </div>

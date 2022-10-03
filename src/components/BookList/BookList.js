@@ -45,7 +45,7 @@ export default function BookList ({data, handleDelete, cellItem}) {
               header: () => "",
               
               cell: (info) => {
-                return <button type="button" className={s.button} onClick={() => handleDelete(info.row.original.id)}> <HandySvg src={IconDelete} className = {s.svg}/></button>
+                return <button type="button" className={s.button} onClick={() => handleDelete(info.row.original._id)}> <HandySvg src={IconDelete} className = {s.svg}/></button>
               } }),
     
           ]
