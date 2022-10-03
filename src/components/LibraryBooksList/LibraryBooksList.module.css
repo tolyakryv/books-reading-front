@@ -1,0 +1,370 @@
+.container {
+  padding: 20px 20px 128px 20px;
+  margin: 0 auto;
+  width: 320px;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .container {
+    padding: 0 32px;
+    width: 768px;
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+    padding: 0 16px;
+    width: 1280px;
+  }
+}
+
+.title {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 23px;
+  color: #242a37;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.item {
+  display: flex;
+  width: 280px;
+  padding: 20px 20px 28px 20px;
+  background: #ffffff;
+  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+  margin: 0 auto;
+}
+
+.bookName {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #242a37;
+  margin: 0;
+  margin-bottom: 12px;
+}
+
+.icon {
+  margin-right: 12px;
+}
+
+.description {
+  display: flex;
+  margin: 0;
+  align-items: center;
+}
+
+.description:not(:last-child) {
+  margin-bottom: 14px;
+  max-width: 240px;
+}
+
+.key {
+  width: 81px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #898f9f;
+}
+
+.property {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #242a37;
+  margin: 0;
+  height: auto;
+  width: auto;
+}
+
+.buttonMore {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translate(-50%) scale(1);
+}
+
+.buttonTraining {
+  display: block;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  color: #ffffff;
+  width: 171px;
+  height: 42px;
+  background: #ff6b08;
+  border: none;
+  margin: 0 auto;
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .buttonTraining {
+    width: 200px;
+    height: 40px;
+  }
+}
+
+.bookTable {
+  background-color: #898f9f;
+}
+.tableString {
+  background-color: #ffffff;
+  border: none;
+}
+.tableString:not(:last-child) {
+  padding-bottom: 10px;
+}
+
+.bookListTitle {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 23px;
+  color: #242a37;
+  margin: 0;
+  margin-bottom: 24px;
+}
+
+.bookListHeader {
+  display: flex;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #898f9f;
+}
+
+.bookTitleHeader {
+  margin-right: 276px;
+}
+
+@media (min-width: 1280px) {
+  .bookTitleHeader {
+    margin-right: 548px;
+  }
+}
+
+.bookAuthorHeader {
+  margin-right: 169px;
+}
+
+@media (min-width: 1280px) {
+  .bookAuthorHeader {
+    margin-right: 337px;
+  }
+}
+
+.bookAgeHeader {
+  margin-right: 40px;
+}
+
+@media (min-width: 1280px) {
+  .bookAgeHeader {
+    margin-right: 80px;
+  }
+}
+
+.bookItem {
+  display: flex;
+  align-items: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #242a37;
+  background: #ffffff;
+  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+  padding: 14px 23px 14px 20px;
+}
+
+.bookItem:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.bookList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 40px;
+}
+
+.bookIcon {
+  margin-right: 18px;
+}
+
+.bookTitle {
+  width: 295px;
+}
+
+@media (min-width: 1280px) {
+  .bookTitle {
+    width: 570px;
+  }
+}
+
+.alreadyReadBookTitle {
+  width: 145px;
+}
+
+@media (min-width: 1280px) {
+  .alreadyReadBookTitle {
+    width: 290px;
+  }
+}
+
+.bookAuthor {
+  width: 205px;
+}
+
+@media (min-width: 1280px) {
+  .bookAuthor {
+    width: 370px;
+  }
+}
+
+.alreadyReadBookAuthor {
+  width: 125px;
+}
+
+@media (min-width: 1280px) {
+  .alreadyReadBookAuthor {
+    width: 260px;
+  }
+}
+
+.bookPublicDate {
+  width: 70px;
+}
+
+.alreadyReadBookPublicDate {
+  width: 55px;
+}
+
+@media (min-width: 1280px) {
+  .alreadyReadBookPublicDate {
+    width: 100px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .bookPublicDate {
+    width: 110px;
+  }
+}
+
+.alreadyReadBookAmountPages {
+  width: 65px;
+}
+
+@media (min-width: 1280px) {
+  .alreadyReadBookAmountPages {
+    width: 140px;
+  }
+}
+
+.buttonSummary {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #ffffff;
+  width: 127px;
+  height: 40px;
+  background: #6d7a8d;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  border: none;
+  margin: 0 auto;
+}
+
+.buttonSummary:hover {
+  background-color: #ff6b08;
+}
+
+.alreadyReadBookButtonSummary {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  width: 80px;
+  height: 40px;
+  border: none;
+  background: #6d7a8d;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+@media (min-width: 1280px) {
+  .alreadyReadBookButtonSummary  {
+    width: 130px;
+  }
+}
+
+.alreadyReadBookRating {
+  margin-right: 32px;
+}
+
+@media (min-width: 1280px) {
+  .alreadyReadBookRating {
+    margin-right: 60px;
+  }
+}
+
+.alreadyReadTitleHeader {
+  margin-right: 124px;
+}
+
+@media (min-width: 1280px) {
+  .alreadyReadTitleHeader {
+    margin-right: 269px;
+  }
+}
+
+.alreadyReadAuthorHeader {
+  margin-right: 84px;
+}
+
+@media (min-width: 1280px) {
+  .alreadyReadAuthorHeader {
+    margin-right: 226px;
+  }
+}
+
+.alreadyReadPublicDateHeader {
+  margin-right: 36px;
+}
+
+@media (min-width: 1280px) {
+  .alreadyReadPublicDateHeader {
+    margin-right: 73px;
+  }
+}
+
+.alreadyReadAmountPagesHeader {
+  margin-right: 32px;
+}
+
+@media (min-width: 1280px) {
+  .alreadyReadAmountPagesHeader {
+    margin-right: 110px;
+  }
+}
