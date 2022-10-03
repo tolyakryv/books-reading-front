@@ -3,15 +3,12 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const trainingAPI = createApi({
   reducerPath: "train",
   baseQuery: fetchBaseQuery({
-    // baseUrl: "https://book-reading-08.herokuapp.com",
-    baseUrl: "http://localhost:5000",
-    prepareHeaders: (
-      headers
-      // { getState }
-    ) => {
-      // const token = getState().auth.token;
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzg1M2VjOWJmN2ExYmE3NmM3YWU5NCIsInNpZCI6IjYzMzlhZTFjZmRlNjkyMmMwNzA3MzZlNiIsImlhdCI6MTY2NDcyNDUwOCwiZXhwIjoxNjY0NzM1MzA4fQ.Er7YuDouAU1CEOoTTHyGfrl8buNne96L4L3VX31T-g4";
+    baseUrl: "https://book-reading-08.herokuapp.com",
+    // baseUrl: "http://localhost:5000",
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.token;
+      // const token =""
+
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
       }

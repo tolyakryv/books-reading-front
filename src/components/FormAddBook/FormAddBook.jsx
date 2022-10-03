@@ -2,18 +2,11 @@
 // import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 
-// import * as Yup from "yup";
+import * as Yup from "yup";
 import * as booksAPI from "../../services/booksAPI";
 import s from "./FormAddBook.module.css";
 // import { userSelector } from "../../redux/selector/user-selector";
 
-// const addBookSchema = Yup.object().shape({
-//   title: Yup.string().max(50).required(),
-//   author: Yup.string().max(50).required(),
-//   publicDate: Yup.number().max(4).integer(),
-//   amountPages: Yup.number().max(4).integer().required(),
-// });
-// console.log(booksAPI);
 export const FormAddBook = () => {
   const newBookTemplate = {
     title: "",
@@ -21,21 +14,28 @@ export const FormAddBook = () => {
     publicDate: 1900,
     amountPages: 0,
   };
+  const addBookSchema = Yup.object({
+    title: Yup.string().min(2).max(50).required(),
+    author: Yup.string().max(50).required(),
+    publicDate: Yup.number().min(1900).max(2021).integer().positive(),
+    amountPages: Yup.number().min(20).max(1500).integer().positive().required(),
+  });
   const [addBook] = booksAPI.useAddBookMutation();
-  const handleSubmit = async (data) => {
+  const handleSubmit = async (data, actions) => {
     if (data) {
-      localStorage.setItem("newBook", JSON.stringify([data]));
       await addBook(data).unwrap();
+      actions.resetForm();
+      const bookLocal = JSON.parse(localStorage.getItem("newBook"));
+      if (bookLocal) {
+        localStorage.setItem("newBook", JSON.stringify([...bookLocal, data]));
+      } else {
+        localStorage.setItem("newBook", JSON.stringify([data]));
+      }
     }
   };
   const formik = useFormik({
     initialValues: newBookTemplate,
-    // validationSchema: Yup.object().shape({
-    //   title: Yup.string().max(50).required(),
-    //   author: Yup.string().max(50).required(),
-    //   publicDate: Yup.number().max(4).integer(),
-    //   amountPages: Yup.number().max(4).integer().required(),
-    // }),
+    validationSchema: addBookSchema,
     onSubmit: handleSubmit,
   });
   return (
