@@ -11,14 +11,13 @@ import { Chart } from "../Chart/Chart";
 import TableMin from "../TableMin/TableMin";
 import * as booksAPI from "../../services/booksAPI";
 import * as trainingAPI from "../../services/trainingAPI";
-import Media from 'react-media';
-
+import Media from "react-media";
 
 const defaultData = [
-  { id: 1111, Title: "Book 1", Author: "Author", Year: 2021, pages: 100 },
-  { id: 121, Title: "Book 2", Author: "Author", Year: 2021, pages: 101 },
-  { id: 321, Title: "Book", Author: "Author", Year: 2021, pages: 102 },
-  { id: 65, Title: "..." },
+  { id: 1111, title: "Book 1", author: "Author", publicDate: 2021, amountPages: 100 },
+  { id: 121, title: "Book 2", author: "Author", publicDate: 2021, amountPages: 101 },
+  { id: 321, title: "Book", author: "Author", publicDate: 2021, amountPages: 102 },
+  { id: 65, title: "..." },
 ];
 
 function Training() {
@@ -76,7 +75,7 @@ function Training() {
     const sel = JSON.parse(
       JSON.stringify(initialbooks).replaceAll("id", "value")
     );
-    sel2 = JSON.parse(JSON.stringify(sel).replaceAll("Title", "label"));
+    sel2 = JSON.parse(JSON.stringify(sel).replaceAll("title", "label"));
   }
 
   const onChangeHandle = (e) => {
@@ -123,61 +122,62 @@ function Training() {
   ];
 
   return (
-    
     <div className={s.training}>
-      <Media queries={{
-          small: "(max-width: 767px)",
-          medium: "(min-width: 768px)" 
-        }}></Media>
-      <Goals data={goalsData} />
-      <div className={s.bigwrapper}>
-        <div className={s.wrapper}>
-          <h3 className={s.text}> Моє тренування </h3>
+      <div className={s.reverse}>
+        <Goals data={goalsData} />
+        <div className={s.bigwrapper}>
+          <div className={s.wrapper}>
+            <h3 className={s.text}> Моє тренування </h3>
+          </div>
+          <div className={s.dateInput}>
+            <DateInputEl
+              placeholder={"Початок"}
+              minDate={new Date()}
+              value={startDate2}
+              onChange={handleChangeStart}
+            />
+            <DateInputEl
+              placeholder={"Завершення"}
+              minDate={new Date()}
+              value={finishDate2}
+              onChange={handleChangeEnd}
+            />
+          </div>
+          <BookSelector
+            onClickHandle={onClickHandle}
+            onChangeHandle={onChangeHandle}
+            book={sel2}
+          />
+          <Media
+            query="(max-width: 767px)"
+            render={() => (
+              <TableMin
+                data={books}
+                handleDelete={handleDelete}
+                cellItem={<HandySvg src={Icon} className={s.svg_1} />}
+              />
+            )}
+          />
+          <Media
+            query="(min-width: 768px)"
+            render={() => (
+              <BookList
+                data={books}
+                handleDelete={handleDelete}
+                cellItem={<HandySvg src={Icon} className={s.svg_1} />}
+              />
+            )}
+          />
         </div>
-        <div className={s.dateInput}>
-          <DateInputEl
-            placeholder={"Початок"}
-            minDate={new Date()}
-            value={startDate2}
-            onChange={handleChangeStart}
-          />
-          <DateInputEl
-            placeholder={"Завершення"}
-            minDate={new Date()}
-            value={finishDate2}
-            onChange={handleChangeEnd}
-          />
         </div>
-        <BookSelector
-          onClickHandle={onClickHandle}
-          onChangeHandle={onChangeHandle}
-          book={sel2}
-        />
-         <Media query="(max-width: 767px)" render={() =>
-          (
-            <TableMin
-            data={books}
-            handleDelete={handleDelete}
-            cellItem={<HandySvg src={Icon} className={s.svg_1} />}
-          />
-          )}/>
-      
-      <Media query="(min-width: 768px)" render={() =>
-          (   <BookList
-          data={books}
-          handleDelete={handleDelete}
-          cellItem={<HandySvg src={Icon} className={s.svg_1} />}
-        />  )}/>
-            </div>
-       
         <button type="button" className={s.button}>
           <span className={s.buttonText} onClick={handleSubmit}>
             Почати тренування
           </span>
         </button>
         <Chart />
-      </div>
-    
+      
+    </div>
   );
 }
 
