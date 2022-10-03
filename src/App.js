@@ -6,6 +6,7 @@ import { PublicRoute } from "./components/PublicRoute/PublicRoute.jsx";
 import { LibraryPage } from "./pages/Library/LibraryPage";
 import { Login } from "./pages/Login";
 import ShowTimer from "./components/Timer/ShowTimer/ShowTimer";
+import {TrainingPage} from "./pages/Training/TrainingPage";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
           element={
             <PrivateRoute navigateTo="/login">
               <LibraryPage />
-             
+
               <ShowTimer />
             </PrivateRoute>
           }
@@ -37,6 +38,7 @@ function App() {
             </PublicRoute>
           }
         />
+        <Route path="training" element={<TrainingPage />} />
         <Route
           path="*"
           element={
