@@ -10,13 +10,9 @@ import { useSelector } from "react-redux";
 import { userSelector } from "../../redux/selector/user-selector";
 
 export const Header = () => {
-  // const userName = useSelector(userSelector.getUserName);
-  // const isLogin = useSelector(userSelector.getIsLogin);
+  const userName = useSelector(userSelector.getUserName);
+  const isLogin = useSelector(userSelector.getIsLogin);
   const [IsLogoutModal, setIsLogoutModal] = useState(false);
-
-  // // Для прикладу роботи логіки
-  const isLogin = true;
-  const userName = "Володимир Зеленський";
 
   const closeLogoutModal = () => {
     setIsLogoutModal(false);

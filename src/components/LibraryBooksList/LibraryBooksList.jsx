@@ -6,67 +6,13 @@ import style from "./LibraryBooksList.module.css";
 import { useNavigate } from "react-router-dom";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
 import { Rating } from "@mui/material";
-// import { useGetAllBookQuery } from "../../services/booksAPI";
+import { useGetAllBookQuery } from "../../services/booksAPI";
 
 export const LibraryBooksList = () => {
-  //   const { data = [] } = useGetAllBookQuery();
+  const { data = [] } = useGetAllBookQuery();
   const navigate = useNavigate();
 
-  const data = [
-    {
-      id: "dqwdqwddqw",
-      title: "Лед Моя любимая книга в детстве и универе",
-      author: "Паввелdqwdqw dqwddqwdqwdqwd ",
-      publicDate: "2006",
-      amountPages: "999dw",
-      rating: 2,
-      status: "alreadyRead",
-    },
-    {
-      id: "dqwdqwddqwdqwdqwdqwdqwd",
-      title: "Лед ",
-      publicDate: "2006",
-      amountPages: "999dw",
-      rating: 3,
-      status: "alreadyRead",
-    },
-    {
-      id: "dqwdqwddqwdqwdqw",
-      title: "Ice",
-      author: "Паввел ",
-      publicDate: "2006",
-      amountPages: "999",
-      rating: 1,
-      status: "goingToRead",
-    },
-    {
-      id: "dqwdqwddqwdqwdqwdqwdqwdqwd",
-      title: "Ice",
-      author: "Паввел ",
-      publicDate: "2006",
-      amountPages: "999",
-      rating: 1,
-      status: "goingToRead",
-    },
-    {
-      id: "dqwdqwdwdqwdwq",
-      title: "Ice",
-      author: "Паввел ",
-      publicDate: "2006",
-      amountPages: "999",
-      rating: 4,
-      status: "readingNow",
-    },
-    {
-      id: "dqwdqwdwdqwdwqdqwdqwdqwdqwdqwdqw",
-      title: "Ice",
-      author: "Паввел ",
-      publicDate: "2006",
-      amountPages: "999",
-      rating: 4,
-      status: "readingNow",
-    },
-  ];
+  console.log(data);
 
   const handleMyTraining = () => {
     navigate("/training");
@@ -76,11 +22,11 @@ export const LibraryBooksList = () => {
     <>
       <Mobile>
         <div className={style.container}>
-          {data.some((book) => book.status === "alreadyRead") && (
+          {data.result.some((book) => book.status === "alreadyRead") && (
             <>
               <h1 className={style.title}>Прочитано</h1>
               <ul className={style.list}>
-                {data.map((book) => {
+                {data.result.map((book) => {
                   return (
                     book.status === "alreadyRead" && (
                       <li key={book.id} className={style.item}>
@@ -130,11 +76,11 @@ export const LibraryBooksList = () => {
               </ul>
             </>
           )}
-          {data.some((book) => book.status === "readingNow") && (
+          {data.result.some((book) => book.status === "readingNow") && (
             <>
               <h1 className={style.title}>Читаю</h1>
               <ul className={style.list}>
-                {data.map((book) => {
+                {data.result.map((book) => {
                   return (
                     book.status === "readingNow" && (
                       <li key={book.id} className={style.item}>
@@ -171,11 +117,11 @@ export const LibraryBooksList = () => {
               </ul>
             </>
           )}
-          {data.some((book) => book.status === "goingToRead") && (
+          {data.result.some((book) => book.status === "goingToRead") && (
             <>
               <h1 className={style.title}>Маю намір прочитати</h1>
               <ul className={style.list}>
-                {data.map((book) => {
+                {data.result.map((book) => {
                   return (
                     book.status === "goingToRead" && (
                       <li key={book.id} className={style.item}>
@@ -229,7 +175,7 @@ export const LibraryBooksList = () => {
       </Mobile>
       <Tablet>
         <div className={style.container}>
-          {data.some((book) => book.status === "alreadyRead") && (
+          {data.result.some((book) => book.status === "alreadyRead") && (
             <>
               <h1 className={style.bookListTitle}>Прочитано</h1>
               <div className={style.bookListHeader}>
@@ -240,7 +186,7 @@ export const LibraryBooksList = () => {
                 <p>Рейтинг</p>
               </div>
               <ul className={style.bookList}>
-                {data.map((book) => {
+                {data.result.map((book) => {
                   return (
                     book.status === "alreadyRead" && (
                       <li key={book.id} className={style.bookItem}>
@@ -282,7 +228,7 @@ export const LibraryBooksList = () => {
               </ul>
             </>
           )}
-          {data.some((book) => book.status === "readingNow") && (
+          {data.result.some((book) => book.status === "readingNow") && (
             <>
               <h1 className={style.bookListTitle}>Читаю</h1>
               <div className={style.bookListHeader}>
@@ -292,7 +238,7 @@ export const LibraryBooksList = () => {
                 <p>Стор.</p>
               </div>
               <ul className={style.bookList}>
-                {data.map((book) => {
+                {data.result.map((book) => {
                   return (
                     book.status === "readingNow" && (
                       <li key={book.id} className={style.bookItem}>
@@ -316,7 +262,7 @@ export const LibraryBooksList = () => {
               </ul>
             </>
           )}
-          {data.some((book) => book.status === "goingToRead") && (
+          {data.result.some((book) => book.status === "goingToRead") && (
             <>
               <h1 className={style.bookListTitle}>Маю намір прочитати</h1>
               <div className={style.bookListHeader}>
@@ -326,7 +272,7 @@ export const LibraryBooksList = () => {
                 <p>Стор.</p>
               </div>
               <ul className={style.bookList}>
-                {data.map((book) => {
+                {data.result.map((book) => {
                   return (
                     book.status === "goingToRead" && (
                       <li key={book.id} className={style.bookItem}>
@@ -361,7 +307,7 @@ export const LibraryBooksList = () => {
       </Tablet>
       <Desktop>
         <div className={style.container}>
-          {data.some((book) => book.status === "alreadyRead") && (
+          {data.result.some((book) => book.status === "alreadyRead") && (
             <>
               <h1 className={style.bookListTitle}>Прочитано</h1>
               <div className={style.bookListHeader}>
@@ -372,7 +318,7 @@ export const LibraryBooksList = () => {
                 <p>Рейтинг книги</p>
               </div>
               <ul className={style.bookList}>
-                {data.map((book) => {
+                {data.result.map((book) => {
                   return (
                     book.status === "alreadyRead" && (
                       <li key={book.id} className={style.bookItem}>
@@ -414,7 +360,7 @@ export const LibraryBooksList = () => {
               </ul>
             </>
           )}
-          {data.some((book) => book.status === "readingNow") && (
+          {data.result.some((book) => book.status === "readingNow") && (
             <>
               <h1 className={style.bookListTitle}>Читаю</h1>
               <div className={style.bookListHeader}>
@@ -424,7 +370,7 @@ export const LibraryBooksList = () => {
                 <p>Стор.</p>
               </div>
               <ul className={style.bookList}>
-                {data.map((book) => {
+                {data.result.map((book) => {
                   return (
                     book.status === "readingNow" && (
                       <li key={book.id} className={style.bookItem}>
@@ -448,7 +394,7 @@ export const LibraryBooksList = () => {
               </ul>
             </>
           )}
-          {data.some((book) => book.status === "goingToRead") && (
+          {data.result.some((book) => book.status === "goingToRead") && (
             <>
               <h1 className={style.bookListTitle}>Маю намір прочитати</h1>
               <div className={style.bookListHeader}>
@@ -458,7 +404,7 @@ export const LibraryBooksList = () => {
                 <p>Стор.</p>
               </div>
               <ul className={style.bookList}>
-                {data.map((book) => {
+                {data.result.map((book) => {
                   return (
                     book.status === "goingToRead" && (
                       <li key={book.id} className={style.bookItem}>
