@@ -1,0 +1,60 @@
+.button {
+    background-color:  #F6F7FB;;
+    border: none;
+    width: 14px;
+    height: 18px;
+    
+}
+
+.svg{
+    width: 14px;
+    height: 18px;
+    
+} 
+
+.wrapper{
+    margin-top:10px;
+    display: flex;
+    flex-direction: row;
+    font-family: Montserrat;
+    font-size: 12px;
+    color: #242A37;
+    width: 280px;
+    height: 100px;
+    border-bottom: #E0E5EB 1px solid;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.bigColumn{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin-right: 20px;
+    margin-left:20px
+}
+
+.title{
+    font-family: Montserrat;
+    font-size: 12px;
+    color:#242A37;
+    height: 25px
+}
+
+.cell{
+    height: 25px;
+}
+
+.grey{
+    color: #898F9F;
+}

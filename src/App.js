@@ -8,6 +8,8 @@ import { LibraryPage } from "./pages/Library/LibraryPage";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import ShowTimer from "./components/Timer/ShowTimer/ShowTimer";
+import { TrainingPage } from "./pages/Training/TrainingPage";
+import { InfoMobile } from "./pages/InfoMobile";
 
 function App() {
   return (
@@ -24,6 +26,14 @@ function App() {
             }
           />
           <Route
+            path="info"
+            element={
+              <PublicRoute navigateTo="/">
+                <InfoMobile />
+              </PublicRoute>
+            }
+          />
+          <Route
             path="login"
             element={
               <PublicRoute navigateTo="/">
@@ -36,6 +46,14 @@ function App() {
             element={
               <PublicRoute navigateTo="/">
                 <Register />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="training"
+            element={
+              <PublicRoute navigateTo="/training">
+                <TrainingPage />
               </PublicRoute>
             }
           />

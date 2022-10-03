@@ -18,11 +18,18 @@
     .training {
       width: 1280px;
       padding: 0 16px;
-      display: flex;
-      flex-direction: row-reverse;
+      
       
     }
   }
+
+  @media (min-width: 1280px) {
+    .reverse {
+      display: flex;
+      flex-direction: row-reverse;
+      }
+  }
+
 
 .text{
     font-family: "Montserrat";

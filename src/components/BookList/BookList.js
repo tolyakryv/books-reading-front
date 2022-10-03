@@ -23,29 +23,29 @@ export default function BookList ({data, handleDelete, cellItem}) {
               cell: () =>cellItem,
              
          }),
-            columnHelper.accessor('Title', {
+            columnHelper.accessor('title', {
                 header: () => <span>Назва</span>,
               cell: info => info.getValue(),
              }),
             columnHelper.accessor(row => row.Author, {
-              id: 'Author',
+              id: 'author',
               cell: info => <i>{info.getValue()}</i>,
               header: () => <span>Автор</span>,
               
             }),
-            columnHelper.accessor('Year', {
+            columnHelper.accessor('publicDate', {
               header: () => <span>Рік</span>,
               cell: info => info.renderValue(),
            
             }),
-            columnHelper.accessor('pages', {
+            columnHelper.accessor('amountPages', {
               header: () => <span>Стор.</span>,
             }),
             columnHelper.accessor('Delete', {
               header: () => "",
               
               cell: (info) => {
-                return <button type="button" className={s.button} onClick={() => handleDelete(info.row.original.id)}> <HandySvg src={IconDelete} className = {s.svg}/></button>
+                return <button type="button" className={s.button} onClick={() => handleDelete(info.row.original._id)}> <HandySvg src={IconDelete} className = {s.svg}/></button>
               } }),
     
           ]
