@@ -13,12 +13,6 @@ import * as booksAPI from "../../services/booksAPI";
 import * as trainingAPI from "../../services/trainingAPI";
 import Media from "react-media";
 
-const defaultData = [
-  { id: 1111, title: "Book 1", author: "Author", publicDate: 2021, amountPages: 100 },
-  { id: 121, title: "Book 2", author: "Author", publicDate: 2021, amountPages: 101 },
-  { id: 321, title: "Book", author: "Author", publicDate: 2021, amountPages: 102 },
-  { id: 65, title: "..." },
-];
 
 function Training() {
   // дати в мілісекундах
@@ -27,8 +21,7 @@ function Training() {
   // дати в датах для відображення в календарі
   const [startDate2, setStartDate2] = useState();
   const [finishDate2, setEndDate2] = useState();
-  // Масив книжок з беку для вибоу
-  const [initialbooks, setInitialBooks] = useState(defaultData);
+ 
   // Книжка в полі селект
   const [selectedBook, setSelectedBook] = useState();
   // Обрані книжки для відправки на бек
@@ -94,7 +87,7 @@ function Training() {
   };
 
   // Обєкт для відпавки на бек
-console.log(books)
+
 const book =[]
 
 const handleBeforeSubmit =() => {books.forEach(e => {const id = e._id;
