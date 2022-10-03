@@ -8,7 +8,6 @@ import { userSelector } from "../../redux/selector/user-selector";
 import { registerSchema } from "../../schemas/registerSchema";
 import { UserInfoInput } from "../../components/UserInfoInput";
 import { GoogleLink } from "../../components/GoogleLink";
-import { FeaturesList } from "../../components/FeaturesList/FeaturesList";
 import { ReactComponent as GoogleIcon } from "../../img/google icon.svg";
 import {
   PageContainer,
@@ -20,6 +19,7 @@ import {
   InfoContainer,
   Title,
   LoginLink,
+  FeaturesListStyled,
 } from "./Register.styled.js";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -138,7 +138,7 @@ export const Register = () => {
         <section>
           <InfoContainer>
             <Title>Books Reading</Title>
-            <FeaturesList
+            <FeaturesListStyled
               title="Допоможе вам"
               features={[
                 "Швидше сформулювати свою ціль і розпочати читати",
@@ -146,7 +146,7 @@ export const Register = () => {
                 "Відстежувати особистий успіх",
               ]}
             />
-            <FeaturesList
+            <FeaturesListStyled
               title="Також ви зможете "
               features={[
                 "Формувати особисту думку незалежну від інших",
