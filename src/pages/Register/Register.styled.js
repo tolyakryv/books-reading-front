@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../../components/Button";
 import { device } from "../../helpers/device";
-import bgImgMobile from "../../img/background/loginBackgroundMobile.jpg";
-import bgImgMobile2x from "../../img/background/loginBackgroundMobile@2x.jpg";
-import bgImgTablet from "../../img/background/loginBackgroundTablet.jpg";
-import bgImgTablet2x from "../../img/background/loginBackgroundTablet@2x.jpg";
+import bgImgMobile from "../../img/background/registerBackgroundMobile.jpg";
+import bgImgMobile2x from "../../img/background/registerBackgroundMobile@2x.jpg";
+import bgImgTablet from "../../img/background/registerBackgroundTablet.jpg";
+import bgImgTablet2x from "../../img/background/registerBackgroundTablet@2x.jpg";
 import bgImgDesktop from "../../img/background/loginBackgroundDesktop.jpg";
 import bgImgDesktop2x from "../../img/background/loginBackgroundDesktop@2x.jpg";
 
@@ -26,7 +26,7 @@ export const PageContainer = styled.div`
   }
 `;
 
-export const LoginSection = styled.section`
+export const RegisterSection = styled.section`
   background-color: rgba(9, 30, 63, 0.8);
   background-image: linear-gradient(
       to right,
@@ -36,6 +36,7 @@ export const LoginSection = styled.section`
     url(${bgImgMobile});
   background-position: center -60px;
   background-repeat: repeat-y;
+  background-size: cover;
 
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
@@ -94,7 +95,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  padding: 32px 20px;
+  padding: 32px 20px 44px;
 
   @media ${device.tablet} {
     padding: 65px 185px;
@@ -102,7 +103,7 @@ export const Container = styled.div`
 
   @media ${device.desktop} {
     width: 550px;
-    padding: 185px 75px 145px;
+    padding: 90px 75px;
   }
 `;
 
@@ -127,11 +128,11 @@ export const ButtonStyled = styled(Button)`
   margin-top: 20px;
 
   @media ${device.tablet} {
-    margin-top: 32px;
+    margin-top: 35px;
   }
 `;
 
-export const LinkStyled = styled(Link)`
+export const LoginLink = styled(Link)`
   display: block;
 
   margin: 16px auto 0;
@@ -141,11 +142,17 @@ export const LinkStyled = styled(Link)`
   font-size: 13px;
   line-height: 1.23;
 
-  color: #ff6b08;
+  text-decoration: none;
+  color: #898f9f;
 
   &:hover,
   &:focus {
-    color: #d15807;
+    color: #ff6b08;
+    text-decoration: none;
+
+    span {
+      color: inherit;
+    }
   }
 
   transition: color ${duration} ${cubic};
@@ -155,19 +162,35 @@ export const LinkStyled = styled(Link)`
   }
 `;
 
-export const QuoteContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+export const LinkStyled = styled.span`
+  text-decoration: underline;
+  color: #ff6b08;
 
-  position: relative;
-  padding: 50px 45px 16px 45px;
+  transition: color ${duration} ${cubic};
 
   @media ${device.tablet} {
-    padding: 126px 121px 70px 121px;
+    margin-top: 20px;
   }
+`;
+
+export const InfoContainer = styled.div`
+  padding: 64px 145px 88px;
 
   @media ${device.desktop} {
-    padding: 268px 167px 266px;
+    padding: 180px 126px 240px;
   }
+`;
+
+export const Title = styled.h1`
+  margin: 0;
+  margin-bottom: 48px;
+
+  text-align: center;
+
+  font-family: "Abril Fatface";
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.12;
+
+  color: #242a37;
 `;

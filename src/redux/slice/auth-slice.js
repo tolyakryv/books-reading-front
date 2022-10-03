@@ -60,18 +60,18 @@ const authSlice = createSlice({
       state.error = action.payload;
     },
 
-    [operation.google.pending](state, _) {
+    [operation.currentUser.pending](state, _) {
       state.isLoading = true;
       state.error = null;
     },
-    [operation.google.fulfilled](state, action) {
+    [operation.currentUser.fulfilled](state, action) {
       state.isLoading = false;
 
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLogin = true;
     },
-    [operation.google.rejected](state, action) {
+    [operation.currentUser.rejected](state, action) {
       state.isLoading = false;
       state.error = action.payload;
     },
