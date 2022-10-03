@@ -29,6 +29,8 @@ export const LinkStyled = styled.a`
 
   &:hover,
   &:focus {
+    text-decoration: none;
+    color: #707375;
     background-color: #edeff2;
   }
 

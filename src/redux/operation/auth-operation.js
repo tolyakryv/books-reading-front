@@ -45,14 +45,18 @@ const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   }
 });
 
-const google = createAsyncThunk("auth/google", async (token, thunkAPI) => {
-  try {
-    await axios.get("/api/auth/google");
-    token.set(token);
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data);
+const currentUser = createAsyncThunk(
+  "auth/currentUser",
+  async (userToken, thunkAPI) => {
+    try {
+      token.set(userToken);
+      const { data } = await axios.get("/api/auth/current");
+      return { ...data, token: userToken };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
-});
+);
 
-const operation = { register, logIn, logOut, google };
+const operation = { register, logIn, logOut, currentUser };
 export default operation;
