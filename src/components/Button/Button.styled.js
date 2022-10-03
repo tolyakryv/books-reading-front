@@ -16,12 +16,17 @@ const duration = "250ms";
 const cubic = "cubic-bezier(0.4, 0, 0.2, 1)";
 
 export const ButtonStyled = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   height: ${({ height }) => height};
   width: 100%;
   max-width: ${({ width }) => width};
 
   padding: 0;
   border: none;
+  text-decoration: none;
 
   font-family: "Montserrat";
 

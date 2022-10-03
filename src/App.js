@@ -8,8 +8,7 @@ import { LibraryPage } from "./pages/Library/LibraryPage";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import ShowTimer from "./components/Timer/ShowTimer/ShowTimer";
-
-
+import { InfoMobile } from "./pages/InfoMobile";
 
 function App() {
   return (
@@ -23,6 +22,14 @@ function App() {
                 <LibraryPage />
                 <ShowTimer />
               </PrivateRoute>
+            }
+          />
+          <Route
+            path="info"
+            element={
+              <PublicRoute navigateTo="/">
+                <InfoMobile />
+              </PublicRoute>
             }
           />
           <Route
