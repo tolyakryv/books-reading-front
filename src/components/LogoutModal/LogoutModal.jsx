@@ -1,12 +1,14 @@
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import style from "./LogoutModal.module.css";
+import operation from "../../redux/operation/auth-operation";
+
 export const LogoutModal = ({ closeLogoutModal }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
     closeLogoutModal();
 
-    // dispatch("Треба настроїти редакс...");
+    dispatch(operation.logOut());
   };
 
   return (

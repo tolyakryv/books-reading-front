@@ -1,0 +1,14 @@
+:root {
+  --color-main: #242a37;
+  --color-secondary: #a6abb9;
+  --color-main-accent: #ff6b08;
+  --color-secondary-accent: #b1b5c2;
+  --color-chart-legend: #091e3f;
+  --color-background: #f5f7fa;
+  --color-img-overlay: rgba(9, 30, 63, 0.8);
+  --color-overlay: rgba(43, 43, 43, 0.1);
+  --color-main-background: #f6f7fb;
+  --color-secondary-background: #ffffff;
+  /*--color-arrows: #898F9F;*/
+  /*--color-gray: #6D7A8D*/
+}

@@ -3,14 +3,13 @@ import { useMediaQuery } from "react-responsive";
 import { useFormik } from "formik";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import * as Yup from "yup";
+import operation from "../../redux/operation/auth-operation";
+import { userSelector } from "../../redux/selector/user-selector";
+import { registerSchema } from "../../schemas/registerSchema";
 import { UserInfoInput } from "../../components/UserInfoInput";
 import { GoogleLink } from "../../components/GoogleLink";
 import { FeaturesList } from "../../components/FeaturesList/FeaturesList";
 import { ReactComponent as GoogleIcon } from "../../img/google icon.svg";
-import operation from "../../redux/operation/auth-operation";
-import { userSelector } from "../../redux/selector/user-selector";
-import { inputErrors } from "../../helpers/errors";
 import {
   PageContainer,
   Container,
@@ -24,33 +23,9 @@ import {
 } from "./Register.styled.js";
 import "react-toastify/dist/ReactToastify.css";
 
-const EMAIL_REGEXP =
-  /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
-
-const PASSWORD_REGEXP = /^[a-zA-Z0-9]{6,30}$/;
-
-const schema = Yup.object({
-  name: Yup.string(inputErrors.MISTAKE)
-    .min(3, inputErrors.MISTAKE)
-    .max(100, inputErrors.MISTAKE)
-    .required(inputErrors.REQUIRED),
-
-  email: Yup.string(inputErrors.MISTAKE)
-    .matches(EMAIL_REGEXP, inputErrors.MISTAKE)
-    .required(inputErrors.REQUIRED),
-
-  password: Yup.string(inputErrors.MISTAKE)
-    .matches(PASSWORD_REGEXP, inputErrors.MISTAKE)
-    .required(inputErrors.REQUIRED),
-
-  confirmPassword: Yup.string(inputErrors.MISTAKE)
-    .oneOf([Yup.ref("password"), null], inputErrors.MATCH)
-    .required(inputErrors.REQUIRED),
-});
-
 export const Register = () => {
   const dispatch = useDispatch();
-  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isNotMobile = !useMediaQuery({ maxWidth: 767 });
 
   const isLoading = useSelector(userSelector.getIsLoading);
   const error = useSelector(userSelector.getError);
@@ -72,7 +47,7 @@ export const Register = () => {
       password: "",
       confirmPassword: "",
     },
-    validationSchema: schema,
+    validationSchema: registerSchema,
     onSubmit: handleSubmit,
   });
 
@@ -159,7 +134,7 @@ export const Register = () => {
           </Form>
         </Container>
       </RegisterSection>
-      {!isMobile ? (
+      {isNotMobile && (
         <section>
           <InfoContainer>
             <Title>Books Reading</Title>
@@ -181,8 +156,6 @@ export const Register = () => {
             />
           </InfoContainer>
         </section>
-      ) : (
-        <></>
       )}
     </PageContainer>
   );
