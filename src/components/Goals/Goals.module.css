@@ -16,12 +16,6 @@
     }
 }
 
-@media (min-width:1279px) {
-    .wrapper {
-        margin-top: 20px;
-
-    }
-}
 
 
 .text {
@@ -84,6 +78,7 @@
 @media (min-width: 1279px) {
     .main {
         margin-left: 32px;
+        margin-top: 20px;
     }
 }
 

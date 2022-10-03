@@ -1,6 +1,6 @@
 import { useMediaQuery } from "react-responsive";
 import { Navigate } from "react-router-dom";
-import { Button } from "../../components/Button";
+import { ButtonLink } from "../../components/ButtonLink";
 import {
   Container,
   Title,
@@ -35,21 +35,19 @@ export const InfoMobile = () => {
         />
       </Container>
       <ButtonsContainer>
-        <Button
+        <ButtonLink
           width="130px"
           height="40px"
           text="Увійти"
           shadow={false}
-          as="a"
-          href="/login"
+          to="/login"
         />
-        <Button
+        <ButtonLink
           width="130px"
           height="40px"
           text="Реєстрація"
           color="accent"
-          as="a"
-          href="/register"
+          to="/register"
         />
       </ButtonsContainer>
     </section>
