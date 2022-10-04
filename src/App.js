@@ -7,7 +7,7 @@ import { PublicRoute } from "./components/PublicRoute/PublicRoute.jsx";
 import { LibraryPage } from "./pages/Library/LibraryPage";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
-import ShowTimer from "./components/Timer/ShowTimer/ShowTimer";
+import StatisticsPage from "./pages/Statistics/StatisticsPage.jsx";
 import { TrainingPage } from "./pages/Training/TrainingPage";
 import { InfoMobile } from "./pages/InfoMobile";
 
@@ -21,7 +21,6 @@ function App() {
             element={
               <PrivateRoute navigateTo="/login">
                 <LibraryPage />
-                <ShowTimer />
               </PrivateRoute>
             }
           />
@@ -54,6 +53,7 @@ function App() {
             element={
               <PublicRoute navigateTo="/training">
                 <TrainingPage />
+                <StatisticsPage />
               </PublicRoute>
             }
           />
