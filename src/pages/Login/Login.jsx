@@ -20,13 +20,19 @@ import {
   QuoteContainer,
 } from "./Login.styled.js";
 import { getRandomInt } from "../../helpers/getRandomInt.js";
+import { useEffect, useState } from "react";
 
 export const Login = () => {
-  const dispatch = useDispatch();
+  const [quote, setQuote] = useState(null);
 
+  const dispatch = useDispatch();
   const isLoading = useSelector(userSelector.getIsLoading);
 
   useGoogle();
+
+  useEffect(() => {
+    setQuote(quotes[getRandomInt(0, quotes.length)]);
+  }, []);
 
   const handleSubmit = (data) => {
     dispatch(operation.logIn(data));
@@ -43,8 +49,6 @@ export const Login = () => {
 
   const isDisabled =
     Boolean(formik.errors.email || formik.errors.password) || isLoading;
-
-  const quote = quotes[getRandomInt(0, quotes.length)];
 
   return (
     <PageContainer>
@@ -96,7 +100,7 @@ export const Login = () => {
       </LoginSection>
       <section>
         <QuoteContainer>
-          <Quote text={quote.text} author={quote.author} />
+          <Quote text={quote?.text} author={quote?.author} />
         </QuoteContainer>
       </section>
     </PageContainer>
