@@ -8,6 +8,7 @@ import bgImgTablet from "../../img/background/registerBackgroundTablet.jpg";
 import bgImgTablet2x from "../../img/background/registerBackgroundTablet@2x.jpg";
 import bgImgDesktop from "../../img/background/loginBackgroundDesktop.jpg";
 import bgImgDesktop2x from "../../img/background/loginBackgroundDesktop@2x.jpg";
+import { FeaturesList } from "../../components/FeaturesList/FeaturesList";
 
 const duration = "250ms";
 const cubic = "cubic-bezier(0.4, 0, 0.2, 1)";
@@ -193,4 +194,10 @@ export const Title = styled.h1`
   line-height: 1.12;
 
   color: #242a37;
+`;
+
+export const FeaturesListStyled = styled(FeaturesList)`
+  &:not(:last-child) {
+    margin-bottom: 32px;
+  }
 `;
