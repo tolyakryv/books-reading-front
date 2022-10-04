@@ -1,8 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import { useFormik } from "formik";
-import { useEffect } from "react";
-import { toast } from "react-toastify";
 import operation from "../../redux/operation/auth-operation";
 import { userSelector } from "../../redux/selector/user-selector";
 import { registerSchema } from "../../schemas/registerSchema";
@@ -28,11 +26,6 @@ export const Register = () => {
   const isNotMobile = !useMediaQuery({ maxWidth: 767 });
 
   const isLoading = useSelector(userSelector.getIsLoading);
-  const error = useSelector(userSelector.getError);
-
-  useEffect(() => {
-    if (error) toast.error(error.message);
-  }, [error]);
 
   const handleSubmit = (data) => {
     dispatch(operation.register(data));

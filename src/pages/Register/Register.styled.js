@@ -10,9 +10,6 @@ import bgImgDesktop from "../../img/background/loginBackgroundDesktop.jpg";
 import bgImgDesktop2x from "../../img/background/loginBackgroundDesktop@2x.jpg";
 import { FeaturesList } from "../../components/FeaturesList/FeaturesList";
 
-const duration = "250ms";
-const cubic = "cubic-bezier(0.4, 0, 0.2, 1)";
-
 export const PageContainer = styled.div`
   margin: 0 auto;
   max-width: 320px;
@@ -121,7 +118,7 @@ export const Form = styled.form`
 
     font-weight: 500;
     color: #898f9f;
-    background-color: #ffffff;
+    background-color: var(--color-secondary-background);
   }
 `;
 
@@ -148,7 +145,7 @@ export const LoginLink = styled(Link)`
 
   &:hover,
   &:focus {
-    color: #ff6b08;
+    color: var(--color-main-accent);
     text-decoration: none;
 
     span {
@@ -156,7 +153,7 @@ export const LoginLink = styled(Link)`
     }
   }
 
-  transition: color ${duration} ${cubic};
+  transition: color var(--duration) var(--cubic);
 
   @media ${device.tablet} {
     margin-top: 20px;
@@ -167,7 +164,7 @@ export const LinkStyled = styled.span`
   text-decoration: underline;
   color: #ff6b08;
 
-  transition: color ${duration} ${cubic};
+  transition: color var(--duration) var(--cubic);
 
   @media ${device.tablet} {
     margin-top: 20px;
@@ -193,7 +190,7 @@ export const Title = styled.h1`
   font-size: 34px;
   line-height: 1.12;
 
-  color: #242a37;
+  color: var(--color-main);
 `;
 
 export const FeaturesListStyled = styled(FeaturesList)`

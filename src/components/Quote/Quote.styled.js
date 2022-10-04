@@ -12,7 +12,7 @@ export const Blockquote = styled.blockquote`
   font-size: 13px;
   line-height: 1.23;
 
-  color: #242a37;
+  color: var(--color-main);
 
   &:before {
     content: "“";
@@ -28,7 +28,7 @@ export const Blockquote = styled.blockquote`
     font-size: 59px;
     line-height: 1;
 
-    color: #ff6b08;
+    color: var(--color-main-accent);
 
     @media ${device.tablet} {
       top: -62px;
