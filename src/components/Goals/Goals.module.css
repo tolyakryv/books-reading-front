@@ -16,8 +16,6 @@
     }
 }
 
-
-
 .text {
     font-family: "Montserrat";
     font-style: normal;
@@ -34,7 +32,7 @@
     font-weight: 700;
     font-size: 45px;
     line-height: 38px;
-
+    
 }
 
 .whiteWrapper {
@@ -44,7 +42,7 @@
     flex-direction: column;
     background-color: #FFFFFF;
     box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
-
+    margin-top: 0px;
     align-items: center;
 }
 
@@ -64,7 +62,7 @@
     box-shadow: 4px 4px 8px rgba(36, 42, 55, 0.15);
     margin-bottom: 14px;
     margin-top: 20px;
-
+    
 }
 
 @media (min-width: 768px) and (max-width: 1279px) {
@@ -74,6 +72,7 @@
         height: 60px;
     }
 }
+.main{margin-top: 20px;}
 
 @media (min-width: 1279px) {
     .main {
