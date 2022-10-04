@@ -53,6 +53,13 @@ function App() {
             element={
               <PublicRoute navigateTo="/training">
                 <TrainingPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="statistics"
+            element={
+              <PublicRoute navigateTo="/statistics">
                 <StatisticsPage />
               </PublicRoute>
             }
