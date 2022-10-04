@@ -1,0 +1,12 @@
+.countdownContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.caption {
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #898f9f;
+}

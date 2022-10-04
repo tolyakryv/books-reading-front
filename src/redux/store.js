@@ -1,7 +1,8 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+
+import { configureStore } from "@reduxjs/toolkit";
 import {
-  // persistStore,
-  // persistReducer,
+  persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -10,21 +11,33 @@ import {
   REGISTER,
 } from "redux-persist";
 import { statisticsApi } from "./slice/statisticsSlice";
-// import counterReducer from "../features/counter/counterSlice";
-const middleware = [
-  ...getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),
-  statisticsApi.middleware,
-];
+import logger from "redux-logger";
+import storage from "redux-persist/lib/storage";
+import authReducer from "./slice/auth-slice";
+import { bookAPI } from "../services/booksAPI";
+
+const authPersistConfig = {
+  key: "auth",
+  storage,
+  whitelist: ["token"],
+};
 
 export const store = configureStore({
   reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
+    [bookAPI.reducerPath]: bookAPI.reducer,
     [statisticsApi.reducerPath]: statisticsApi.reducer,
-    // counter: counterReducer,
   },
-  middleware,
   devTools: process.env.NODE_ENV === "development",
+  middleware: (getDefaultMiddleware) => [
+    ...getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+    bookAPI.middleware,
+    statisticsApi.middleware,
+    logger,
+  ],
 });
+export const persistor = persistStore(store);

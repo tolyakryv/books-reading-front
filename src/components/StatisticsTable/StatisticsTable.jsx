@@ -1,11 +1,11 @@
 import { AgGridReact } from "ag-grid-react";
 import { useState } from "react";
-import EllipsisText from "react-ellipsis-text";
+// import EllipsisText from "react-ellipsis-text";
 import "ag-grid-community/styles//ag-grid.css";
 import s from "./StatisticsTable.module.css";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
-import { format } from "date-fns";
+// import { format } from "date-fns";
 import "ag-grid-community/styles//ag-theme-alpine.css";
 import "ag-grid-community/styles/ag-grid.css";
 import {
@@ -50,15 +50,19 @@ const StatisticsTable = () => {
 
   const handleNameChange = (e) => {
     const { name, value } = e.currentTarget;
-    setCreatedAt(new Date().toLocaleTimeString());
+    // const test = Number(new Date().toLocaleTimeString());
+    // setCreatedAt(new Date().toLocaleTimeString().slice(0,-3));
+    setCreatedAt(new Date().getTime());
     if (name === "pageNumber") {
-      setPageNumber(value);
+      setPageNumber(Number(value));
     }
   };
 
   const fetchNewStatistics = async (e) => {
     try {
-      const formalizedDate = format(new Date(date), "dd.MM.yyyy");
+      // const formalizedDate = format(new Date(date), "dd.MM.yyyy");
+      const formalizedDate = new Date().getTime();
+
       await addStatistics({ formalizedDate, pageNumber, createdAt });
     } catch (err) {
       console.error(err);
@@ -69,14 +73,14 @@ const StatisticsTable = () => {
     e.preventDefault();
     fetchNewStatistics();
     setDate(new Date());
-    setPageNumber("");
+    // setPageNumber("");
     setCreatedAt("");
   };
 
   return (
     <section className={s.section}>
       <div className={s.container}>
-        <h4 className={s.headerStatistic}>Статистика</h4>
+        <h4 className={s.headerStatistic}>Результати</h4>
         <form className={s.form} action="submit" onSubmit={handleSubmit}>
           <div className={s.inputContainer}>
             <div className={s.labelWrapper}>
@@ -118,17 +122,20 @@ const StatisticsTable = () => {
               </label>
             </div>
           </div>
-          <button type="submit" className={s.button}>
-            Додати результат
-          </button>
+          <div className={s.buttonWrapper}>
+            <button type="submit" className={s.button}>
+              Додати результат
+            </button>
+          </div>
           {/* </div> */}
         </form>
-        <h4 className={s.header}>Результати</h4>
+        <h4 className={s.header}>Статистика</h4>
         <div className={s.test}>
+          {/* -///////проверить работает ли тест */}
           <div
             className={s.ag}
             style={{
-              height: "100px",
+              height: "130px",
               width: "100%",
               margin: "0",
             }}
@@ -138,7 +145,7 @@ const StatisticsTable = () => {
               rowData={data}
               columnDefs={columnDefs}
             />
-            <EllipsisText text={"1234567890"} length={"7"} />
+            {/* <EllipsisText text={"1234567890"} length={"7"} /> */}
           </div>
         </div>
       </div>
