@@ -1,0 +1,146 @@
+@import "react-date-picker/dist/DatePicker.css";
+
+.container {
+  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+  padding: 20px;
+}
+.section {
+  width: 320px;
+  padding: 20px;
+  background: var(--color-secondary-background);
+  margin: 0 auto;
+}
+.headerStatistic {
+  font-family: "Montserrat";
+  margin-top: 20px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.header {
+  font-family: "Montserrat";
+  margin-top: 0;
+  margin-bottom: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  position: relative;
+}
+.header:after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-bottom: 2px solid #e0e5eb;
+  top: 50%;
+  right: 10px;
+  width: 65px;
+}
+@media (max-width: 767px) {
+  .header:before {
+    content: "";
+    display: block;
+    position: absolute;
+    border-bottom: 2px solid #e0e5eb;
+    top: 50%;
+    left: 10px;
+    width: 65px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .form {
+    display: flex;
+    align-content: baseline;
+  }
+  .labelWrapper {
+    margin-right: 32px;
+  }
+  .section {
+    width: 704px;
+  }
+  .headerStatistic {
+    margin-bottom: 28px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+  .buttonWrapper {
+    padding-top: 19px;
+  }
+  .header {
+    margin-left: 0;
+    text-align: left;
+    font-size: 14px;
+    line-height: 17px;
+  }
+  .header:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-bottom: 2px solid #e0e5eb;
+    top: 50%;
+    right: 62%;
+    width: 130px;
+  }
+}
+@media (min-width: 1280px) {
+  .header:before {
+    content: "";
+    display: block;
+    position: absolute;
+    border-bottom: 1px solid #e0e5eb;
+    top: 50%;
+    left: 10px;
+    width: 70px;
+  }
+}
+
+.spanColor {
+  font-family: "Montserrat";
+  color: var(--color-secondary-accent);
+}
+
+.inputContainer {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.ag {
+  --ag-grid-size: 3px;
+  --ag-list-item-height: 20px;
+}
+.input {
+  font-family: "Montserrat";
+  display: block;
+  width: 110px;
+  height: 42px;
+  font-size: 14px;
+}
+
+.labelWrapper:first-child {
+  margin-right: 20px;
+}
+
+.label {
+  font-family: "Montserrat";
+  font-size: 10px;
+  color: var(--color-secondary-accent);
+}
+.button {
+  font-family: "Montserrat";
+  width: 240px;
+  height: 40px;
+  margin-bottom: 25px;
+  background-color: var(--color-main-accent);
+  color: var(--color-secondary-background);
+  border: none;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.button:hover,
+.button:focus {
+  box-shadow: 2px 11px 29px -3px rgba(0, 0, 0, 0.75);
+}
