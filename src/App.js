@@ -1,5 +1,4 @@
 import React from "react";
-import StatisticsTable from "./components/StatisticsTable";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Header } from "./components/Header/Header.jsx";
@@ -54,7 +53,6 @@ function App() {
             element={
               <PublicRoute navigateTo="/training">
                 <TrainingPage />
-                <StatisticsTable />
               </PublicRoute>
             }
           />

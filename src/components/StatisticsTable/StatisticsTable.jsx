@@ -72,7 +72,7 @@ const StatisticsTable = () => {
     e.preventDefault();
     fetchNewStatistics();
     setDate(new Date());
-    // setPageNumber("");
+    setPageNumber("");
     setCreatedAt("");
   };
 
