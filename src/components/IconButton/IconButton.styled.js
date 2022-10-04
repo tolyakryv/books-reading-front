@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-const duration = "250ms";
-const cubic = "cubic-bezier(0.4, 0, 0.2, 1)";
-
 export const ButtonStyled = styled.a`
   display: flex;
   align-items: center;
@@ -23,7 +20,7 @@ export const ButtonStyled = styled.a`
   color: #707375;
 
   border: none;
-  background-color: #f5f7fa;
+  background-color: var(--color-background);
   box-shadow: 0px 2px 2px rgba(9, 30, 63, 0.15);
 
   &:hover,
@@ -31,5 +28,5 @@ export const ButtonStyled = styled.a`
     background-color: #edeff2;
   }
 
-  transition: background-color ${duration} ${cubic};
+  transition: background-color var(--duration) var(--cubic);
 `;

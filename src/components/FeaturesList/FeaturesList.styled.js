@@ -9,7 +9,7 @@ export const ListTitle = styled.p`
   font-size: 20px;
   line-height: 1.9;
 
-  color: #242a37;
+  color: var(--color-main);
 `;
 
 export const List = styled.ul`

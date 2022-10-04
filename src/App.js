@@ -74,7 +74,7 @@ function App() {
           />
         </Route>
       </Routes>
-      <ToastContainer />
+      <ToastContainer autoClose={3000} />
     </>
   );
 }
