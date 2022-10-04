@@ -5,7 +5,7 @@ import "ag-grid-community/styles//ag-grid.css";
 import s from "./StatisticsTable.module.css";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
-// import { format } from "date-fns";
+import { format } from "date-fns";
 import "ag-grid-community/styles//ag-theme-alpine.css";
 import "ag-grid-community/styles/ag-grid.css";
 import {
@@ -15,7 +15,7 @@ import {
 
 const StatisticsTable = () => {
   const [addStatistics] = useAddStatisticsMutation();
-  const { data } = useGetStatisticsQuery();
+  const { data = [] } = useGetStatisticsQuery();
   const [date, setDate] = useState(new Date());
   const [pageNumber, setPageNumber] = useState("");
   const [createdAt, setCreatedAt] = useState("");
@@ -29,14 +29,14 @@ const StatisticsTable = () => {
       cellStyle: { fontSize: "10px" },
     },
     {
-      headerName: "createdAt",
-      field: "createdAt",
+      headerName: "createAt",
+      field: "createAt",
       width: 87,
       cellStyle: { fontSize: "10px", color: "#898F9F" },
     },
     {
-      headerName: "pages",
-      field: "pages",
+      headerName: "amountPages",
+      field: "amountPages",
       width: 87,
       cellStyle: { fontSize: "10px" },
       cellRenderer: (p) => (
@@ -50,9 +50,8 @@ const StatisticsTable = () => {
 
   const handleNameChange = (e) => {
     const { name, value } = e.currentTarget;
-    // const test = Number(new Date().toLocaleTimeString());
-    // setCreatedAt(new Date().toLocaleTimeString().slice(0,-3));
-    setCreatedAt(new Date().getTime());
+    setCreatedAt(new Date().toLocaleTimeString());
+    console.log(createdAt);
     if (name === "pageNumber") {
       setPageNumber(Number(value));
     }
@@ -60,8 +59,8 @@ const StatisticsTable = () => {
 
   const fetchNewStatistics = async (e) => {
     try {
-      // const formalizedDate = format(new Date(date), "dd.MM.yyyy");
-      const formalizedDate = new Date().getTime();
+      const formalizedDate = format(new Date(date), "dd.MM.yyyy");
+      // const formalizedDate = new Date().getTime();
 
       await addStatistics({ formalizedDate, pageNumber, createdAt });
     } catch (err) {
@@ -142,7 +141,7 @@ const StatisticsTable = () => {
           >
             <AgGridReact
               headerHeight={headerHeight}
-              rowData={data}
+              rowData={data.statistic}
               columnDefs={columnDefs}
             />
             {/* <EllipsisText text={"1234567890"} length={"7"} /> */}

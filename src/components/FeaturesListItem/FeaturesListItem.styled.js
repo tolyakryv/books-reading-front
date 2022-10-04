@@ -16,6 +16,7 @@ export const ListItem = styled.li`
   }
 
   & > svg {
+    flex-shrink: 0;
     margin-right: 12px;
   }
 `;

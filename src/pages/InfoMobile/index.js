@@ -1,0 +1,1 @@
+export { InfoMobile } from "./InfoMobile";

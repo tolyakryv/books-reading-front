@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ListTitle = styled.p`
+  margin: 0;
   margin-bottom: 14px;
 
   font-family: "Montserrat";
@@ -16,8 +17,4 @@ export const List = styled.ul`
   padding: 0;
 
   list-style: none;
-
-  &:not(:last-child) {
-    margin-bottom: 32px;
-  }
 `;
