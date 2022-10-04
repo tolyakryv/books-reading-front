@@ -9,6 +9,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import { statisticsApi } from "./slice/statisticsSlice";
 import logger from "redux-logger";
 import storage from "redux-persist/lib/storage";
 import authReducer from "./slice/auth-slice";
@@ -24,6 +25,9 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     [bookAPI.reducerPath]: bookAPI.reducer,
+
+    [statisticsApi.reducerPath]: statisticsApi.reducer,
+
     [trainingAPI.reducerPath]: trainingAPI.reducer,
   },
   devTools: process.env.NODE_ENV === "development",
@@ -34,6 +38,9 @@ export const store = configureStore({
       },
     }),
     bookAPI.middleware,
+
+    statisticsApi.middleware,
+
     trainingAPI.middleware,
     logger,
   ],
