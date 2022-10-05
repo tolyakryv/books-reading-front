@@ -14,8 +14,6 @@ import * as trainingAPI from "../../services/trainingAPI";
 import Media from "react-media";
 import { useNavigate } from "react-router-dom";
 
-
-
 function Training() {
   // дати в мілісекундах
   const [startDate, setStartDate] = useState();
@@ -33,7 +31,6 @@ function Training() {
   const [addTrain] = trainingAPI.useAddTrainMutation();
   const navigate = useNavigate();
 
-
   // Отримати масив книг
   let backResponce = [
     { id: "", title: "", author: "", publicDate: 1, amountPages: 1 },
@@ -46,7 +43,6 @@ function Training() {
     //  backResponce = filtered
     backResponce = data.result;
   }
-  
 
   // Кнопка видалити
   const handleDelete = (id) => {
@@ -123,7 +119,6 @@ function Training() {
 
   const newTraining = { startDate, finishDate, book };
 
-  
   // Кнопка почати тренування
   const handleSubmit = async () => {
     if (!startDate || !finishDate || book.length < 1) {
@@ -137,7 +132,7 @@ function Training() {
 
     if (newTraining) {
       await addTrain(newTraining);
-      navigate("/statistics");
+      navigate("/statistic");
     }
   };
 
@@ -211,12 +206,12 @@ function Training() {
         </div>
       </div>
       <div className={s.lower}>
-       <button type="button" className={s.button}>
-        <span className={s.buttonText} onClick={handleSubmit}>
-          Почати тренування
-        </span>
-      </button>
-      <Chart />
+        <button type="button" className={s.button}>
+          <span className={s.buttonText} onClick={handleSubmit}>
+            Почати тренування
+          </span>
+        </button>
+        <Chart />
       </div>
     </div>
   );
