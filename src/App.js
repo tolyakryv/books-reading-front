@@ -25,6 +25,14 @@ function App() {
             }
           />
           <Route
+            path="library"
+            element={
+              <PublicRoute navigateTo="/">
+                <LibraryPage />
+              </PublicRoute>
+            }
+          />
+          <Route
             path="info"
             element={
               <PublicRoute navigateTo="/">
@@ -51,15 +59,15 @@ function App() {
           <Route
             path="training"
             element={
-              <PublicRoute navigateTo="/training">
+              <PublicRoute navigateTo="/">
                 <TrainingPage />
               </PublicRoute>
             }
           />
           <Route
-            path="statistics"
+            path="statistic"
             element={
-              <PublicRoute navigateTo="/statistics">
+              <PublicRoute navigateTo="/">
                 <StatisticsPage />
               </PublicRoute>
             }

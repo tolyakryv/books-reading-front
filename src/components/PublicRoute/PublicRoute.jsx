@@ -4,5 +4,5 @@ import { userSelector } from "../../redux/selector/user-selector";
 
 export const PublicRoute = ({ children, navigateTo }) => {
   const isLogin = useSelector(userSelector.getIsLogin);
-  return !isLogin ? children : <Navigate to={navigateTo} />;
+  return isLogin ? children : <Navigate to={navigateTo} />;
 };
