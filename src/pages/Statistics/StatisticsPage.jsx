@@ -3,6 +3,7 @@ import MyTarget from "../../components/MyTarget/MyTarget";
 import Training from "../../components/Training/Training";
 import s from "./StatisticsPage.module.css";
 import StatisticsTable from "../../components/StatisticsTable/StatisticsTable";
+import StatisticsBook from "../../components/StatisticsBook/StatisticsBook";
 const StatisticsPage = () => {
   return (
     <>
@@ -12,6 +13,7 @@ const StatisticsPage = () => {
         <Training />
         {/* <Results/> */}
         <StatisticsTable />
+        <StatisticsBook />
       </div>
     </>
   );

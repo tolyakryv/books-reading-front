@@ -9,13 +9,13 @@ import { format } from "date-fns";
 import "ag-grid-community/styles//ag-theme-alpine.css";
 import "ag-grid-community/styles/ag-grid.css";
 import {
-  useGetStatisticsQuery,
-  useAddStatisticsMutation,
-} from "../../redux/slice/statisticsSlice";
+  useAddTrainStatisticMutation,
+  useGetTrainQuery,
+} from "../../services/trainingAPI";
 
 const StatisticsTable = () => {
-  const [addStatistics] = useAddStatisticsMutation();
-  const { data = [] } = useGetStatisticsQuery();
+  const [addTrainStatistics] = useAddTrainStatisticMutation();
+  const { data = [] } = useGetTrainQuery();
   const [date, setDate] = useState(new Date());
   const [pageNumber, setPageNumber] = useState("");
   const [createdAt, setCreatedAt] = useState("");
@@ -60,9 +60,11 @@ const StatisticsTable = () => {
   const fetchNewStatistics = async (e) => {
     try {
       const formalizedDate = format(new Date(date), "dd.MM.yyyy");
-      // const formalizedDate = new Date().getTime();
-
-      await addStatistics({ formalizedDate, pageNumber, createdAt });
+      await addTrainStatistics({
+        formalizedDate,
+        pageNumber,
+        createdAt,
+      });
     } catch (err) {
       console.error(err);
     }
@@ -72,7 +74,6 @@ const StatisticsTable = () => {
     e.preventDefault();
     fetchNewStatistics();
     setDate(new Date());
-    setPageNumber("");
     setCreatedAt("");
   };
 
@@ -129,8 +130,7 @@ const StatisticsTable = () => {
           {/* </div> */}
         </form>
         <h4 className={s.header}>Статистика</h4>
-        <div className={s.test}>
-          {/* -///////проверить работает ли тест */}
+        <div>
           <div
             className={s.ag}
             style={{
@@ -139,12 +139,13 @@ const StatisticsTable = () => {
               margin: "0",
             }}
           >
-            <AgGridReact
-              headerHeight={headerHeight}
-              rowData={data.statistic}
-              columnDefs={columnDefs}
-            />
-            {/* <EllipsisText text={"1234567890"} length={"7"} /> */}
+            {data && (
+              <AgGridReact
+                headerHeight={headerHeight}
+                rowData={data.statistic}
+                columnDefs={columnDefs}
+              />
+            )}
           </div>
         </div>
       </div>
