@@ -12,10 +12,32 @@ import {
 import { Line } from 'react-chartjs-2';
 import { useMediaQuery } from 'react-responsive';
 import styles from './Chart.module.css';
+import { useGetTrainQuery } from '../../services/trainingAPI';
+import { useLocation } from 'react-router-dom';
 
 export function Chart() {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
+  const { data = [] } = useGetTrainQuery();
+  const { statistic = [] } = data;
+
+  const amountPagesFromStatistic = statistic?.reduce(
+    (totalPages, statisticBookInfo) => totalPages + statisticBookInfo.amountPages,
+    0
+  );
+
+  const amountDays = statistic.length;
+
+  let amountPagesForDay = 0;
+
+  if (amountDays || amountPagesFromStatistic) {
+    amountPagesForDay = Math.ceil(amountPagesFromStatistic / amountDays);
+  }
+
+  const { pathname } = useLocation();
+
+  console.log('location', pathname);
 
   const options = {
     responsive: true,
@@ -78,14 +100,17 @@ export function Chart() {
     },
   };
 
-  const labels = ['10', '11', '12', '13', '14', '15', '16'];
+  const labels = statistic.map(item => item.date);
 
-  const data = {
+  const readPagesFromStatistic = statistic.map(item => item.amountPages);
+  const pagesToRead = statistic.map(item => amountPagesForDay);
+
+  const dataChart = {
     labels,
     datasets: [
       {
         label: 'План',
-        data: labels.map(() => Math.random()),
+        data: pathname === '/statistic' ? pagesToRead : [],
         borderColor: '#091E3F',
         backgroundColor: '#091E3F',
         pointRadius: 5,
@@ -93,7 +118,8 @@ export function Chart() {
       },
       {
         label: 'Факт',
-        data: labels.map(() => Math.random()),
+        data: pathname === '/statistic' ? readPagesFromStatistic : [],
+
         borderColor: '#FF6B08',
         backgroundColor: '#FF6B08',
         pointRadius: 5,
@@ -107,7 +133,7 @@ export function Chart() {
       <div className={styles.chartInfoWrapper}>
         <div className={styles.amountWrapper}>
           <p className={styles.amountLabel}>КІЛЬКІСТЬ СТОРІНОК / ДЕНЬ</p>
-          <p className={styles.amountBox}>34</p>
+          <p className={styles.amountBox}>{pathname === '/statistic' ? amountPagesForDay : 0}</p>
         </div>
         <div className={styles.lineTitleBox}>
           <p className={styles.lineTitleValue}>План</p>
@@ -115,7 +141,7 @@ export function Chart() {
         </div>
       </div>
       <div className={styles.chartWrapper}>
-        <Line options={options} data={data} />
+        <Line options={options} data={dataChart} />
       </div>
     </div>
   );

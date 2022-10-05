@@ -1,45 +1,42 @@
-import { AgGridReact } from "ag-grid-react";
-import { useState } from "react";
+import { AgGridReact } from 'ag-grid-react';
+import { useState } from 'react';
 // import EllipsisText from "react-ellipsis-text";
-import "ag-grid-community/styles//ag-grid.css";
-import s from "./StatisticsTable.module.css";
-import DatePicker from "react-date-picker";
-import "react-date-picker/dist/DatePicker.css";
-import { format } from "date-fns";
-import "ag-grid-community/styles//ag-theme-alpine.css";
-import "ag-grid-community/styles/ag-grid.css";
-import {
-  useAddTrainStatisticMutation,
-  useGetTrainQuery,
-} from "../../services/trainingAPI";
+import 'ag-grid-community/styles//ag-grid.css';
+import s from './StatisticsTable.module.css';
+import DatePicker from 'react-date-picker';
+import 'react-date-picker/dist/DatePicker.css';
+import { format } from 'date-fns';
+import 'ag-grid-community/styles//ag-theme-alpine.css';
+import 'ag-grid-community/styles/ag-grid.css';
+import { useAddTrainStatisticMutation, useGetTrainQuery } from '../../services/trainingAPI';
 
 const StatisticsTable = () => {
   const [addTrainStatistics] = useAddTrainStatisticMutation();
   const { data = [] } = useGetTrainQuery();
   const [date, setDate] = useState(new Date());
-  const [pageNumber, setPageNumber] = useState("");
-  const [createdAt, setCreatedAt] = useState("");
+  const [pageNumber, setPageNumber] = useState('');
+  const [createdAt, setCreatedAt] = useState('');
   const headerHeight = 0;
 
   const columnDefs = [
     {
-      headerName: "date",
-      field: "date",
+      headerName: 'date',
+      field: 'date',
       width: 87,
-      cellStyle: { fontSize: "10px" },
+      cellStyle: { fontSize: '10px' },
     },
     {
-      headerName: "createAt",
-      field: "createAt",
+      headerName: 'createAt',
+      field: 'createAt',
       width: 87,
-      cellStyle: { fontSize: "10px", color: "#898F9F" },
+      cellStyle: { fontSize: '10px', color: '#898F9F' },
     },
     {
-      headerName: "amountPages",
-      field: "amountPages",
+      headerName: 'amountPages',
+      field: 'amountPages',
       width: 87,
-      cellStyle: { fontSize: "10px" },
-      cellRenderer: (p) => (
+      cellStyle: { fontSize: '10px' },
+      cellRenderer: p => (
         <>
           {p.value}&nbsp;
           <span className={s.spanColor}> стор.</span>
@@ -48,18 +45,18 @@ const StatisticsTable = () => {
     },
   ];
 
-  const handleNameChange = (e) => {
+  const handleNameChange = e => {
     const { name, value } = e.currentTarget;
     setCreatedAt(new Date().toLocaleTimeString());
     console.log(createdAt);
-    if (name === "pageNumber") {
+    if (name === 'pageNumber') {
       setPageNumber(Number(value));
     }
   };
 
-  const fetchNewStatistics = async (e) => {
+  const fetchNewStatistics = async e => {
     try {
-      const formalizedDate = format(new Date(date), "dd.MM.yyyy");
+      const formalizedDate = format(new Date(date), 'dd.MM.yyyy');
       await addTrainStatistics({
         formalizedDate,
         pageNumber,
@@ -70,11 +67,11 @@ const StatisticsTable = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     fetchNewStatistics();
     setDate(new Date());
-    setCreatedAt("");
+    setCreatedAt('');
   };
 
   return (
@@ -90,7 +87,7 @@ const StatisticsTable = () => {
                   <DatePicker
                     className={s.input}
                     maxDate={new Date()}
-                    format={"d.MM.yy"}
+                    format={'d.MM.yy'}
                     onChange={setDate}
                     clearIcon={null}
                     height={42}
@@ -134,9 +131,9 @@ const StatisticsTable = () => {
           <div
             className={s.ag}
             style={{
-              height: "130px",
-              width: "100%",
-              margin: "0",
+              height: '130px',
+              width: '100%',
+              margin: '0',
             }}
           >
             {data && (
