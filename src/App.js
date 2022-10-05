@@ -20,7 +20,7 @@ function App() {
             index
             element={
               <PrivateRoute navigateTo="/login">
-                <LibraryPage />
+               
               </PrivateRoute>
             }
           />
@@ -37,6 +37,14 @@ function App() {
             element={
               <PublicRoute navigateTo="/">
                 <InfoMobile />
+              </PublicRoute>
+            }
+          />
+           <Route
+            path="library"
+            element={
+              <PublicRoute navigateTo="/">
+                <LibraryPage />
               </PublicRoute>
             }
           />
