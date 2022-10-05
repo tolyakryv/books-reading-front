@@ -38,7 +38,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                   {data.result.map((book) => {
                     return (
                       book.status === "alreadyRead" && (
-                        <li key={book.id} className={style.item}>
+                        <li key={book._id} className={style.item}>
                           <div className={style.icon}>
                             <HandySvg
                               src={iconLibrary}
@@ -78,7 +78,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                               type="button"
                               className={style.buttonSummary}
                               onClick={() => {
-                                currentIdBooksSummary = book.id;
+                                currentIdBooksSummary = book._id;
                                 setIsSummaryModal(true);
                               }}
                             >
@@ -99,7 +99,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                   {data.result.map((book) => {
                     return (
                       book.status === "readingNow" && (
-                        <li key={book.id} className={style.item}>
+                        <li key={book._id} className={style.item}>
                           <div className={style.icon}>
                             <HandySvg
                               src={orangeIconLibrary}
@@ -140,7 +140,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                   {data.result.map((book) => {
                     return (
                       book.status === "goingToRead" && (
-                        <li key={book.id} className={style.item}>
+                        <li key={book._id} className={style.item}>
                           <div className={style.icon}>
                             <HandySvg
                               src={iconLibrary}
@@ -208,7 +208,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                   {data.result.map((book) => {
                     return (
                       book.status === "alreadyRead" && (
-                        <li key={book.id} className={style.bookItem}>
+                        <li key={book._id} className={style.bookItem}>
                           <div className={style.bookIcon}>
                             <HandySvg
                               src={iconLibrary}
@@ -238,7 +238,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                             type="button"
                             className={style.alreadyReadBookButtonSummary}
                             onClick={() => {
-                              currentIdBooksSummary = book.id;
+                              currentIdBooksSummary = book._id;
                               setIsSummaryModal(true);
                             }}
                           >
@@ -264,7 +264,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                   {data.result.map((book) => {
                     return (
                       book.status === "readingNow" && (
-                        <li key={book.id} className={style.bookItem}>
+                        <li key={book._id} className={style.bookItem}>
                           <div className={style.bookIcon}>
                             <HandySvg
                               src={orangeIconLibrary}
@@ -298,7 +298,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                   {data.result.map((book) => {
                     return (
                       book.status === "goingToRead" && (
-                        <li key={book.id} className={style.bookItem}>
+                        <li key={book._id} className={style.bookItem}>
                           <div className={style.bookIcon}>
                             <HandySvg
                               src={iconLibrary}
@@ -348,7 +348,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                   {data.result.map((book) => {
                     return (
                       book.status === "alreadyRead" && (
-                        <li key={book.id} className={style.bookItem}>
+                        <li key={book._id} className={style.bookItem}>
                           <div className={style.bookIcon}>
                             <HandySvg
                               src={iconLibrary}
@@ -378,7 +378,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                             type="button"
                             className={style.alreadyReadBookButtonSummary}
                             onClick={() => {
-                              currentIdBooksSummary = book.id;
+                              currentIdBooksSummary = book._id;
                               setIsSummaryModal(true);
                             }}
                           >
@@ -404,7 +404,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                   {data.result.map((book) => {
                     return (
                       book.status === "readingNow" && (
-                        <li key={book.id} className={style.bookItem}>
+                        <li key={book._id} className={style.bookItem}>
                           <div className={style.bookIcon}>
                             <HandySvg
                               src={orangeIconLibrary}
@@ -438,7 +438,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                   {data.result.map((book) => {
                     return (
                       book.status === "goingToRead" && (
-                        <li key={book.id} className={style.bookItem}>
+                        <li key={book._id} className={style.bookItem}>
                           <div className={style.bookIcon}>
                             <HandySvg
                               src={iconLibrary}
