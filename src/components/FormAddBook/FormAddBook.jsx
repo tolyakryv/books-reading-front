@@ -6,23 +6,28 @@ import { HandySvg } from "handy-svg";
 import s from "./FormAddBook.module.css";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
 import iconBack from "../../img/back.svg";
-
 import { toast } from "react-toastify";
 import { userSelector } from "../../redux/selector/user-selector";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-export const FormAddBook = () => {
+import { useGetAllBookQuery } from "../../services/booksAPI";
+
+export const FormAddBook = ({ getFormAddBook }) => {
   const isLoading = useSelector(userSelector.getIsLoading);
   const error = useSelector(userSelector.getError);
+  const { data = [] } = useGetAllBookQuery();
+
   useEffect(() => {
     if (error) toast.error(error.message);
   }, [error]);
+
   const newBookTemplate = {
     title: "",
     author: "",
     publicDate: 1900,
     amountPages: 0,
   };
+
   const addBookSchema = Yup.object({
     title: Yup.string()
       .min(2)
@@ -41,7 +46,9 @@ export const FormAddBook = () => {
       .positive("кількість сторінок це число більше нуля")
       .required(),
   });
+
   const [addBook] = booksAPI.useAddBookMutation();
+
   const handleSubmit = async (data, actions) => {
     if (data) {
       await addBook(data).unwrap();
@@ -53,7 +60,9 @@ export const FormAddBook = () => {
         localStorage.setItem("newBook", JSON.stringify([data]));
       }
     }
+    getFormAddBook();
   };
+
   const formik = useFormik({
     initialValues: newBookTemplate,
     validationSchema: addBookSchema,
@@ -67,6 +76,7 @@ export const FormAddBook = () => {
         formik.errors.publicDate ||
         formik.errors.amountPages
     ) || isLoading;
+
   return (
     <>
       <Mobile>
@@ -74,7 +84,11 @@ export const FormAddBook = () => {
           <form onSubmit={formik.handleSubmit}>
             <div className={s.form}>
               <div className={s.icon}>
-                <HandySvg src={iconBack} width="24px" height="12px" />
+                {data.result === undefined || data.result.length === 0 ? (
+                  <></>
+                ) : (
+                  <HandySvg src={iconBack} width="24px" height="12px" onClick={getFormAddBook}/>
+                )}
               </div>
               <label className={s.label} htmlFor="title">
                 Назва книги
@@ -85,11 +99,9 @@ export const FormAddBook = () => {
                 name="title"
                 type="text"
                 placeholder="..."
-                required="true"
+                required={true}
                 onChange={formik.handleChange}
                 value={formik.values.title}
-                errorText={formik.errors.title}
-                showError={formik.touched.title}
                 onBlur={formik.handleBlur}
               />
 

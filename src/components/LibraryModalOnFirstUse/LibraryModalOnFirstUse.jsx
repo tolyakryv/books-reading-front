@@ -5,11 +5,7 @@ import iconFlag from "../../img/flag.svg";
 import style from "./LibraryModalOnFirstUse.module.css";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
 
-const handleButton = () => {
-  // ???
-};
-
-export const LibraryModalOnFirstUse = () => {
+export const LibraryModalOnFirstUse = ({ getFormAddBook }) => {
   return (
     <>
       <Mobile>
@@ -62,7 +58,7 @@ export const LibraryModalOnFirstUse = () => {
             <button
               className={style.button}
               type="button"
-              onClick={handleButton}
+              onClick={getFormAddBook}
             >
               Ok
             </button>
