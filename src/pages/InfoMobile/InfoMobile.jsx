@@ -8,7 +8,7 @@ import {
   ButtonsContainer,
 } from "./InfoMobile.styled";
 
-export const InfoMobile = () => {
+const InfoMobile = () => {
   const isNotMobile = !useMediaQuery({ maxWidth: 767 });
 
   if (isNotMobile) return <Navigate to="/" />;
@@ -53,3 +53,5 @@ export const InfoMobile = () => {
     </section>
   );
 };
+
+export default InfoMobile;

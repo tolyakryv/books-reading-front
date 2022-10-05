@@ -21,7 +21,7 @@ import {
 } from "./Register.styled.js";
 import "react-toastify/dist/ReactToastify.css";
 
-export const Register = () => {
+const Register = () => {
   const dispatch = useDispatch();
   const isNotMobile = !useMediaQuery({ maxWidth: 767 });
 
@@ -153,3 +153,5 @@ export const Register = () => {
     </PageContainer>
   );
 };
+
+export default Register;

@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { HandySvg } from "handy-svg";
 import iconHome from "../../img/icon home.svg";
 import iconLibrary from "../../img/icon library.svg";
@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { userSelector } from "../../redux/selector/user-selector";
 
-export const Header = () => {
+const Header = () => {
   const userName = useSelector(userSelector.getUserName);
   const isLogin = useSelector(userSelector.getIsLogin);
   const [IsLogoutModal, setIsLogoutModal] = useState(false);
@@ -102,7 +102,8 @@ export const Header = () => {
         </div>
       </Desktop>
       {IsLogoutModal && <LogoutModal closeLogoutModal={closeLogoutModal} />}
-      <Outlet />
     </>
   );
 };
+
+export default Header;
