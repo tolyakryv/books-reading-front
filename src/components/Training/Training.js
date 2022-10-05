@@ -132,7 +132,7 @@ function Training() {
 
     if (newTraining) {
       await addTrain(newTraining);
-      navigate("/statistic");
+      navigate("/statistics", { replace: true });
     }
   };
 
