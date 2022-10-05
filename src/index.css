@@ -1,11 +1,11 @@
-:root {
+/* :root {
   --color-grey-lite: #f6f7fb;
   --color-text: #242a37;
   --color-orang: #ff6b08;
   --color-grey: #6d7a8d;
   --color-background: rgba(43, 43, 43, 0.1);
   --color-icon: #a6abb9;
-}
+} */
 @import url("./fonts/font.css");
 @import url("./colors.css");
 body {

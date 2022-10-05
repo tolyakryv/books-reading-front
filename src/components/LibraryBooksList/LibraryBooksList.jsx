@@ -15,7 +15,7 @@ export const LibraryBooksList = () => {
   console.log(data);
 
   const handleMyTraining = () => {
-    navigate("/training");
+    navigate("/training", { replace: true });
   };
 
   return (

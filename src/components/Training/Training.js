@@ -38,9 +38,9 @@ function Training() {
 
   // фільтрація по статусу
   if (data) {
-     const filtered = data.result.filter(e => e.status === "goingToRead")
-     backResponce = filtered
-    // backResponce = data.result;
+    //  const filtered = data.result.filter(e => e.status === "goingToRead")
+    //  backResponce = filtered
+    backResponce = data.result;
   }
 
   // Кнопка видалити
@@ -132,7 +132,7 @@ function Training() {
 
     if (newTraining) {
       await addTrain(newTraining);
-      navigate("/statistic", { replace: true });
+      navigate("/statistics", { replace: true });
     }
   };
 
