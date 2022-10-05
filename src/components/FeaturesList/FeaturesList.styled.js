@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ListTitle = styled.p`
+  margin: 0;
   margin-bottom: 14px;
 
   font-family: "Montserrat";
@@ -8,7 +9,7 @@ export const ListTitle = styled.p`
   font-size: 20px;
   line-height: 1.9;
 
-  color: #242a37;
+  color: var(--color-main);
 `;
 
 export const List = styled.ul`
@@ -16,8 +17,4 @@ export const List = styled.ul`
   padding: 0;
 
   list-style: none;
-
-  &:not(:last-child) {
-    margin-bottom: 32px;
-  }
 `;

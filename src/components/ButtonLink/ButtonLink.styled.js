@@ -1,6 +1,11 @@
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-export const ButtonStyled = styled.button`
+export const LinkStyled = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   height: ${({ height }) => height};
   width: 100%;
   max-width: ${({ width }) => width};
@@ -13,15 +18,20 @@ export const ButtonStyled = styled.button`
   transition: background-color var(--duration) var(--cubic),
     border-color var(--duration) var(--cubic);
 
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
   ${({ shadow }) =>
-    shadow
+    shadow === "true"
       ? css`
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
         `
       : ""};
 
-  ${({ textSize }) => {
-    switch (textSize) {
+  ${({ textsize }) => {
+    switch (textsize) {
       case "medium":
         return css`
           font-weight: 500;
@@ -46,6 +56,7 @@ export const ButtonStyled = styled.button`
           &:hover,
           &:focus,
           &:disabled {
+            color: #ffffff;
             background-color: #d15807;
           }
         `;
@@ -55,6 +66,7 @@ export const ButtonStyled = styled.button`
           background-color: #6d7a8d;
           &:hover,
           &:focus {
+            color: #ffffff;
             background-color: #47566f;
           }
         `;
@@ -65,6 +77,7 @@ export const ButtonStyled = styled.button`
           border: 1px solid var(--color-main);
           &:hover,
           &:focus {
+            color: var(--color-main);
             border-color: #f25137;
           }
         `;

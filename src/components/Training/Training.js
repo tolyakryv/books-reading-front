@@ -12,6 +12,7 @@ import TableMin from '../TableMin/TableMin';
 import * as booksAPI from '../../services/booksAPI';
 import * as trainingAPI from '../../services/trainingAPI';
 import Media from 'react-media';
+import { useNavigate } from 'react-router-dom';
 
 function Training() {
   // дати в мілісекундах
@@ -20,24 +21,29 @@ function Training() {
   // дати в датах для відображення в календарі
   const [startDate2, setStartDate2] = useState();
   const [finishDate2, setEndDate2] = useState();
-
   // Книжка в полі селект
   const [selectedBook, setSelectedBook] = useState();
   // Обрані книжки для відправки на бек
   const [books, setBooks] = useState([]);
+  // неправильно введені дати, книжки
+  const [error, setError] = useState(false);
 
   const [addTrain] = trainingAPI.useAddTrainMutation();
+  const navigate = useNavigate();
 
   // Отримати масив книг
-  let backResponce = [{ id: '', title: '', author: '', publicDate: 1, amountPages: 0 }];
+  let backResponce = [{ id: '', title: '', author: '', publicDate: 1, amountPages: 1 }];
   const { data } = booksAPI.useGetAllBookQuery();
+
+  // фільтрація по статусу
   if (data) {
+    //  const filtered = data.result.filter(e => e.status === "goingToRead")
+    //  backResponce = filtered
     backResponce = data.result;
   }
 
   // Кнопка видалити
   const handleDelete = id => {
-    console.log(id);
     setBooks(books.filter(e => e._id !== id));
   };
 
@@ -46,13 +52,16 @@ function Training() {
     const date = Date.parse(e);
     setStartDate(date);
     setStartDate2(e);
+    setError(false);
   };
 
   // Обробка кінцевої дати
   const handleChangeEnd = e => {
     const date = Date.parse(e);
+    setError(false);
     if (date <= startDate) {
-      return alert('mistake2');
+      setError(true);
+      return;
     }
     setEndDate(date);
     setEndDate2(e);
@@ -60,9 +69,20 @@ function Training() {
 
   // Обробка списку книг з беку для селекту
   let sel2 = [];
+
   if (backResponce) {
     const sel = JSON.parse(JSON.stringify(backResponce).replaceAll('_id', 'value'));
     sel2 = JSON.parse(JSON.stringify(sel).replaceAll('title', 'label'));
+
+    if (books) {
+      for (let i = 0; i < books.length; i++) {
+        for (let j = 0; j < sel2.length; j++) {
+          if (books[i]._id === sel2[j].value) {
+            sel2.splice([j], 1);
+          }
+        }
+      }
+    }
   }
 
   const onChangeHandle = e => {
@@ -70,43 +90,45 @@ function Training() {
   };
 
   // додавання книги в таблицю
-  const onClickHandle = e => {
-    e.preventDefault();
-
-    const selBook = backResponce.filter(e => e._id === selectedBook);
-
-    // backResponce = (backResponce.filter((e) => e.id !== selectedBook));
-
-    setBooks([...books, ...selBook]);
+  const onClickHandle = () => {
+    setError(false);
+    const existBook = books.filter(e => e._id === selectedBook);
+    if (existBook.length > 0) {
+      return;
+    } else {
+      const selBook = backResponce.filter(e => e._id === selectedBook);
+      setBooks([...books, ...selBook]);
+    }
   };
 
   // Обєкт для відпавки на бек
 
   const book = [];
-  const booksForReading = [];
 
   const handleBeforeSubmit = () => {
     books.forEach(e => {
       const id = e._id;
       book.push(id);
-      // на будущее
-      booksForReading.push(e);
     });
   };
   handleBeforeSubmit();
 
-  // на будущее
-  const amountPagesForChart = booksForReading.reduce((total, { amountPages }) => {
-    return total + amountPages;
-  }, 0);
-
   const newTraining = { startDate, finishDate, book };
 
-  console.log(newTraining);
   // Кнопка почати тренування
   const handleSubmit = async () => {
+    if (!startDate || !finishDate || book.length < 1) {
+      setError(true);
+      return;
+    }
+    if (startDate > finishDate) {
+      setError(true);
+      return;
+    }
+
     if (newTraining) {
       await addTrain(newTraining);
+      navigate('/statistics');
     }
   };
 
@@ -135,6 +157,7 @@ function Training() {
           <div className={s.wrapper}>
             <h3 className={s.text}> Моє тренування </h3>
           </div>
+          {error && <p className={s.redText}>Введіть коректно дати та оберіть книжки</p>}
           <div className={s.dateInput}>
             <DateInputEl
               placeholder={'Початок'}
@@ -172,13 +195,14 @@ function Training() {
           />
         </div>
       </div>
-      <button type="button" className={s.button}>
-        <span className={s.buttonText} onClick={handleSubmit}>
-          Почати тренування
-        </span>
-      </button>
-      {/* на будущее */}
-      <Chart amountPages={amountPagesForChart} amountDays={days} />
+      <div className={s.lower}>
+        <button type="button" className={s.button}>
+          <span className={s.buttonText} onClick={handleSubmit}>
+            Почати тренування
+          </span>
+        </button>
+        <Chart />
+      </div>
     </div>
   );
 }

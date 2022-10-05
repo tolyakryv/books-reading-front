@@ -4,6 +4,9 @@
     padding-left: 20px;
     padding-right: 20px;     
     margin: 0 auto;
+    padding-top: 20px;
+    text-align: center;
+  
     
 }
 
@@ -11,6 +14,7 @@
     .training {
       width: 768px;
       padding: 0 32px;
+      padding-top: 20px;
     }
   }
   
@@ -18,11 +22,20 @@
     .training {
       width: 1280px;
       padding: 0 16px;
+      padding-top: 20px;
       
       
     }
   }
 
+  @media (min-width: 1280px) {
+    .lower {
+      width: 928px;
+      
+      
+      
+    }
+  }
   @media (min-width: 1280px) {
     .reverse {
       display: flex;
@@ -49,6 +62,7 @@
     background-color:#B1B5C2;
     box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
     margin-bottom: 20px;
+    
    
 }
 
@@ -72,13 +86,13 @@
     margin-top: 32px;
     margin-bottom: 32px;
     border: none;
-    margin-left: 74px;
+   
 }
 @media (min-width: 768px) {
     .button {
       width: 200px;
       height: 40px;
-      margin-left: 284px;
+     
       }
   }
 
@@ -101,8 +115,10 @@
   @media (min-width: 1280px) {
     .bigwrapper {
       width: 928px;
+      
     }
   }
+  
 
   @media (min-width: 768px) {
     .dateInput{
@@ -114,4 +130,10 @@
     .svg_1{
       width: 22px;
       height: 17px;
+  }
+
+  .redText {
+    font-family: "Montserrat";
+    color: red;
+    font-size: 14px;
   }

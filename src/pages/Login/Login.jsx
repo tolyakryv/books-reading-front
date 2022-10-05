@@ -1,13 +1,14 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
-import { toast } from "react-toastify";
+import { useGoogle } from "../../hooks/useGoogle.js";
 import operation from "../../redux/operation/auth-operation.js";
 import { userSelector } from "../../redux/selector/user-selector.js";
 import { UserInfoInput } from "../../components/UserInfoInput";
 import { Quote } from "../../components/Quote";
 import { GoogleLink } from "../../components/GoogleLink";
 import { loginSchema } from "../../schemas/loginSchema.js";
+import quotes from "../../data/quotes.json";
+
 import { ReactComponent as GoogleIcon } from "../../img/google icon.svg";
 import {
   PageContainer,
@@ -18,19 +19,20 @@ import {
   LoginSection,
   QuoteContainer,
 } from "./Login.styled.js";
-import { useGoogle } from "../../hooks/useGoogle.js";
+import { getRandomInt } from "../../helpers/getRandomInt.js";
+import { useEffect, useState } from "react";
 
 export const Login = () => {
-  const dispatch = useDispatch();
+  const [quote, setQuote] = useState(null);
 
+  const dispatch = useDispatch();
   const isLoading = useSelector(userSelector.getIsLoading);
-  const error = useSelector(userSelector.getError);
 
   useGoogle();
 
   useEffect(() => {
-    if (error) toast.error(error.message);
-  }, [error]);
+    setQuote(quotes[getRandomInt(0, quotes.length)]);
+  }, []);
 
   const handleSubmit = (data) => {
     dispatch(operation.logIn(data));
@@ -98,11 +100,7 @@ export const Login = () => {
       </LoginSection>
       <section>
         <QuoteContainer>
-          <Quote
-            text=" Книги — это корабли мысли, странствующие по волнам времени и бережно
-            несущие свой драгоценный груз от поколения к поколению."
-            author="Бэкон Ф."
-          />
+          <Quote text={quote?.text} author={quote?.author} />
         </QuoteContainer>
       </section>
     </PageContainer>

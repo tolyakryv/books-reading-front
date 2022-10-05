@@ -7,10 +7,9 @@ import { PublicRoute } from "./components/PublicRoute/PublicRoute.jsx";
 import { LibraryPage } from "./pages/Library/LibraryPage";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
-import ShowTimer from "./components/Timer/ShowTimer/ShowTimer";
-import {TrainingPage} from "./pages/Training/TrainingPage";
-
-
+import StatisticsPage from "./pages/Statistics/StatisticsPage.jsx";
+import { TrainingPage } from "./pages/Training/TrainingPage";
+import { InfoMobile } from "./pages/InfoMobile";
 
 function App() {
   return (
@@ -21,9 +20,32 @@ function App() {
             index
             element={
               <PrivateRoute navigateTo="/login">
-                <LibraryPage />
-                <ShowTimer />
+               
               </PrivateRoute>
+            }
+          />
+          <Route
+            path="library"
+            element={
+              <PublicRoute navigateTo="/">
+                <LibraryPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="info"
+            element={
+              <PublicRoute navigateTo="/">
+                <InfoMobile />
+              </PublicRoute>
+            }
+          />
+           <Route
+            path="library"
+            element={
+              <PublicRoute navigateTo="/">
+                <LibraryPage />
+              </PublicRoute>
             }
           />
           <Route
@@ -45,8 +67,16 @@ function App() {
           <Route
             path="training"
             element={
-              <PublicRoute navigateTo="/training">
+              <PublicRoute navigateTo="/">
                 <TrainingPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="statistic"
+            element={
+              <PublicRoute navigateTo="/">
+                <StatisticsPage />
               </PublicRoute>
             }
           />
@@ -60,7 +90,7 @@ function App() {
           />
         </Route>
       </Routes>
-      <ToastContainer />
+      <ToastContainer autoClose={3000} />
     </>
   );
 }

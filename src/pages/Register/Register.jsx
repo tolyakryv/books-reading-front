@@ -1,14 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import { useFormik } from "formik";
-import { useEffect } from "react";
-import { toast } from "react-toastify";
 import operation from "../../redux/operation/auth-operation";
 import { userSelector } from "../../redux/selector/user-selector";
 import { registerSchema } from "../../schemas/registerSchema";
 import { UserInfoInput } from "../../components/UserInfoInput";
 import { GoogleLink } from "../../components/GoogleLink";
-import { FeaturesList } from "../../components/FeaturesList/FeaturesList";
 import { ReactComponent as GoogleIcon } from "../../img/google icon.svg";
 import {
   PageContainer,
@@ -20,6 +17,7 @@ import {
   InfoContainer,
   Title,
   LoginLink,
+  FeaturesListStyled,
 } from "./Register.styled.js";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -28,11 +26,6 @@ export const Register = () => {
   const isNotMobile = !useMediaQuery({ maxWidth: 767 });
 
   const isLoading = useSelector(userSelector.getIsLoading);
-  const error = useSelector(userSelector.getError);
-
-  useEffect(() => {
-    if (error) toast.error(error.message);
-  }, [error]);
 
   const handleSubmit = (data) => {
     dispatch(operation.register(data));
@@ -138,7 +131,7 @@ export const Register = () => {
         <section>
           <InfoContainer>
             <Title>Books Reading</Title>
-            <FeaturesList
+            <FeaturesListStyled
               title="Допоможе вам"
               features={[
                 "Швидше сформулювати свою ціль і розпочати читати",
@@ -146,7 +139,7 @@ export const Register = () => {
                 "Відстежувати особистий успіх",
               ]}
             />
-            <FeaturesList
+            <FeaturesListStyled
               title="Також ви зможете "
               features={[
                 "Формувати особисту думку незалежну від інших",

@@ -9,9 +9,6 @@ import bgImgTablet2x from "../../img/background/loginBackgroundTablet@2x.jpg";
 import bgImgDesktop from "../../img/background/loginBackgroundDesktop.jpg";
 import bgImgDesktop2x from "../../img/background/loginBackgroundDesktop@2x.jpg";
 
-const duration = "250ms";
-const cubic = "cubic-bezier(0.4, 0, 0.2, 1)";
-
 export const PageContainer = styled.div`
   margin: 0 auto;
   max-width: 320px;
@@ -119,7 +116,7 @@ export const Form = styled.form`
 
     font-weight: 500;
     color: #898f9f;
-    background-color: #ffffff;
+    background-color: var(--color-secondary-background);
   }
 `;
 
@@ -148,7 +145,7 @@ export const LinkStyled = styled(Link)`
     color: #d15807;
   }
 
-  transition: color ${duration} ${cubic};
+  transition: color var(--duration) var(--cubic);
 
   @media ${device.tablet} {
     margin-top: 20px;

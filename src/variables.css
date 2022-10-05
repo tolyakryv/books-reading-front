@@ -11,4 +11,7 @@
   --color-secondary-background: #ffffff;
   /*--color-arrows: #898F9F;*/
   /*--color-gray: #6D7A8D*/
+
+  --duration: 250ms;
+  --cubic: cubic-bezier(0.4, 0, 0.2, 1);
 }
