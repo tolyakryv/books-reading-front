@@ -56,7 +56,7 @@ const Header = () => {
               <p className={style.logoBeforeLogin}>BR</p>
               <p className={style.avatar}>{getFirstLetterOfName(userName)}</p>
               <p className={style.userName}>{userName}</p>
-              <Link to="/library" className={style.iconLibrary}>
+              <Link to="/" className={style.iconLibrary}>
                 <HandySvg src={iconLibrary} width="22" height="17" />
               </Link>
               <Link to="/training" className={style.iconHome}>
@@ -82,7 +82,7 @@ const Header = () => {
               <p className={style.logoBeforeLogin}>BR</p>
               <p className={style.avatar}>{getFirstLetterOfName(userName)}</p>
               <p className={style.userName}>{userName}</p>
-              <Link to="/library" className={style.iconLibrary}>
+              <Link to="/" className={style.iconLibrary}>
                 <HandySvg src={iconLibrary} width="22" height="17" />
               </Link>
               <Link to="/training" className={style.iconHome}>

@@ -3,11 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute.jsx";
 import { PublicRoute } from "./components/PublicRoute/PublicRoute.jsx";
+import { Layout } from "./components/Layout";
 import StatisticsPage from "./pages/Statistics/StatisticsPage.jsx";
 import { useSelector } from "react-redux";
 import { userSelector } from "./redux/selector/user-selector.js";
 import { useGetUser } from "./hooks/useGetUser.js";
-import { Layout } from "./components/Layout";
 
 const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
