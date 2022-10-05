@@ -19,7 +19,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
   let currentIdBooksSummary = null;
 
   const handleMyTraining = () => {
-    navigate("/training");
+    navigate("/training", { replace: true });
   };
 
   const closeSummaryModal = () => {

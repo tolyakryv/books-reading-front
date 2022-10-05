@@ -1,18 +1,18 @@
-import React from 'react';
-import BookList from '../BookList/BookList';
-import BookSelector from '../BookSelector/BookSelector';
-import s from '../Training/Training.module.css';
-import DateInputEl from '../DateInputEl/DateInputEl';
-import { useState } from 'react';
-import Icon from '../../img/icon library.svg';
-import { HandySvg } from 'handy-svg';
-import Goals from '../Goals/Goals';
-import { Chart } from '../Chart/Chart';
-import TableMin from '../TableMin/TableMin';
-import * as booksAPI from '../../services/booksAPI';
-import * as trainingAPI from '../../services/trainingAPI';
-import Media from 'react-media';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import BookList from "../BookList/BookList";
+import BookSelector from "../BookSelector/BookSelector";
+import s from "../Training/Training.module.css";
+import DateInputEl from "../DateInputEl/DateInputEl";
+import { useState } from "react";
+import Icon from "../../img/icon library.svg";
+import { HandySvg } from "handy-svg";
+import Goals from "../Goals/Goals";
+import { Chart } from "../Chart/Chart";
+import TableMin from "../TableMin/TableMin";
+import * as booksAPI from "../../services/booksAPI";
+import * as trainingAPI from "../../services/trainingAPI";
+import Media from "react-media";
+import { useNavigate } from "react-router-dom";
 
 function Training() {
   // дати в мілісекундах
@@ -32,7 +32,9 @@ function Training() {
   const navigate = useNavigate();
 
   // Отримати масив книг
-  let backResponce = [{ id: '', title: '', author: '', publicDate: 1, amountPages: 1 }];
+  let backResponce = [
+    { id: "", title: "", author: "", publicDate: 1, amountPages: 1 },
+  ];
   const { data } = booksAPI.useGetAllBookQuery();
 
   // фільтрація по статусу
@@ -43,12 +45,12 @@ function Training() {
   }
 
   // Кнопка видалити
-  const handleDelete = id => {
-    setBooks(books.filter(e => e._id !== id));
+  const handleDelete = (id) => {
+    setBooks(books.filter((e) => e._id !== id));
   };
 
   // Обробка стартової дати
-  const handleChangeStart = e => {
+  const handleChangeStart = (e) => {
     const date = Date.parse(e);
     setStartDate(date);
     setStartDate2(e);
@@ -56,7 +58,7 @@ function Training() {
   };
 
   // Обробка кінцевої дати
-  const handleChangeEnd = e => {
+  const handleChangeEnd = (e) => {
     const date = Date.parse(e);
     setError(false);
     if (date <= startDate) {
@@ -71,8 +73,10 @@ function Training() {
   let sel2 = [];
 
   if (backResponce) {
-    const sel = JSON.parse(JSON.stringify(backResponce).replaceAll('_id', 'value'));
-    sel2 = JSON.parse(JSON.stringify(sel).replaceAll('title', 'label'));
+    const sel = JSON.parse(
+      JSON.stringify(backResponce).replaceAll("_id", "value")
+    );
+    sel2 = JSON.parse(JSON.stringify(sel).replaceAll("title", "label"));
 
     if (books) {
       for (let i = 0; i < books.length; i++) {
@@ -85,18 +89,18 @@ function Training() {
     }
   }
 
-  const onChangeHandle = e => {
+  const onChangeHandle = (e) => {
     setSelectedBook(e.value);
   };
 
   // додавання книги в таблицю
   const onClickHandle = () => {
     setError(false);
-    const existBook = books.filter(e => e._id === selectedBook);
+    const existBook = books.filter((e) => e._id === selectedBook);
     if (existBook.length > 0) {
       return;
     } else {
-      const selBook = backResponce.filter(e => e._id === selectedBook);
+      const selBook = backResponce.filter((e) => e._id === selectedBook);
       setBooks([...books, ...selBook]);
     }
   };
@@ -106,7 +110,7 @@ function Training() {
   const book = [];
 
   const handleBeforeSubmit = () => {
-    books.forEach(e => {
+    books.forEach((e) => {
       const id = e._id;
       book.push(id);
     });
@@ -128,7 +132,7 @@ function Training() {
 
     if (newTraining) {
       await addTrain(newTraining);
-      navigate('/statistic');
+      navigate("/statistic");
     }
   };
 
@@ -145,8 +149,8 @@ function Training() {
   }
 
   const goalsData = [
-    { type: 'books', value: `${amount}`, text: 'Кількість книжок' },
-    { type: 'days', value: `${days}`, text: 'Кількість днів' },
+    { type: "books", value: `${amount}`, text: "Кількість книжок" },
+    { type: "days", value: `${days}`, text: "Кількість днів" },
   ];
 
   return (
@@ -157,22 +161,28 @@ function Training() {
           <div className={s.wrapper}>
             <h3 className={s.text}> Моє тренування </h3>
           </div>
-          {error && <p className={s.redText}>Введіть коректно дати та оберіть книжки</p>}
+          {error && (
+            <p className={s.redText}>Введіть коректно дати та оберіть книжки</p>
+          )}
           <div className={s.dateInput}>
             <DateInputEl
-              placeholder={'Початок'}
+              placeholder={"Початок"}
               minDate={new Date()}
               value={startDate2}
               onChange={handleChangeStart}
             />
             <DateInputEl
-              placeholder={'Завершення'}
+              placeholder={"Завершення"}
               minDate={new Date()}
               value={finishDate2}
               onChange={handleChangeEnd}
             />
           </div>
-          <BookSelector onClickHandle={onClickHandle} onChangeHandle={onChangeHandle} book={sel2} />
+          <BookSelector
+            onClickHandle={onClickHandle}
+            onChangeHandle={onChangeHandle}
+            book={sel2}
+          />
           <Media
             query="(max-width: 767px)"
             render={() => (
