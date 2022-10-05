@@ -2,7 +2,17 @@
     min-width: 200px;
 
 }
+tr,
+.tr {
+  width: fit-content;
+  height: 30px;
+}
 
+table,
+.divTable {
+  border: 1px solid lightgray;
+  width: fit-content;
+}
 .table{
 width: 280px;
 }

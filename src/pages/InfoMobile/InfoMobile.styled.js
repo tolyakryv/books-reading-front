@@ -18,7 +18,7 @@ export const Title = styled.h1`
   font-size: 34px;
   line-height: 1.12;
 
-  color: #242a37;
+  color: var(--color-main);
 `;
 
 export const FeaturesListStyled = styled(FeaturesList)`

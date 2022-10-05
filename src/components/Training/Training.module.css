@@ -5,6 +5,8 @@
     padding-right: 20px;     
     margin: 0 auto;
     padding-top: 20px;
+    text-align: center;
+  
     
 }
 
@@ -26,6 +28,14 @@
     }
   }
 
+  @media (min-width: 1280px) {
+    .lower {
+      width: 928px;
+      
+      
+      
+    }
+  }
   @media (min-width: 1280px) {
     .reverse {
       display: flex;
@@ -76,13 +86,13 @@
     margin-top: 32px;
     margin-bottom: 32px;
     border: none;
-    margin-left: 74px;
+   
 }
 @media (min-width: 768px) {
     .button {
       width: 200px;
       height: 40px;
-      margin-left: 284px;
+     
       }
   }
 
@@ -105,8 +115,10 @@
   @media (min-width: 1280px) {
     .bigwrapper {
       width: 928px;
+      
     }
   }
+  
 
   @media (min-width: 768px) {
     .dateInput{
