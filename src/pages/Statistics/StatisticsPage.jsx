@@ -11,7 +11,6 @@ const StatisticsPage = () => {
         <ShowTimer />
         <MyTarget />
         <Training />
-        {/* <Results/> */}
         <StatisticsTable />
         <StatisticsBook />
       </div>
