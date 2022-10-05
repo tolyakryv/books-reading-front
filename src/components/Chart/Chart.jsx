@@ -13,9 +13,18 @@ import { Line } from 'react-chartjs-2';
 import { useMediaQuery } from 'react-responsive';
 import styles from './Chart.module.css';
 
-export function Chart() {
+export function Chart({ amountPages, amountDays }) {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
+  console.log('amountPages in chart', amountPages);
+  console.log('amountDays', amountDays);
+
+  let amountPagesForDay = 0;
+
+  if (amountDays || amountPages) {
+    amountPagesForDay = Math.ceil(amountPages / amountDays);
+  }
 
   const options = {
     responsive: true,
@@ -85,7 +94,7 @@ export function Chart() {
     datasets: [
       {
         label: 'План',
-        data: labels.map(() => Math.random()),
+        // data: labels.map(() => Math.random()),
         borderColor: '#091E3F',
         backgroundColor: '#091E3F',
         pointRadius: 5,
@@ -93,7 +102,7 @@ export function Chart() {
       },
       {
         label: 'Факт',
-        data: labels.map(() => Math.random()),
+        // data: labels.map(() => Math.random()),
         borderColor: '#FF6B08',
         backgroundColor: '#FF6B08',
         pointRadius: 5,
@@ -107,7 +116,7 @@ export function Chart() {
       <div className={styles.chartInfoWrapper}>
         <div className={styles.amountWrapper}>
           <p className={styles.amountLabel}>КІЛЬКІСТЬ СТОРІНОК / ДЕНЬ</p>
-          <p className={styles.amountBox}>34</p>
+          <p className={styles.amountBox}>{amountPagesForDay}</p>
         </div>
         <div className={styles.lineTitleBox}>
           <p className={styles.lineTitleValue}>План</p>

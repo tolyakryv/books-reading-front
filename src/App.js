@@ -8,6 +8,7 @@ import { LibraryPage } from "./pages/Library/LibraryPage";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import ShowTimer from "./components/Timer/ShowTimer/ShowTimer";
+import {TrainingPage} from "./pages/Training/TrainingPage";
 
 
 
@@ -38,6 +39,14 @@ function App() {
             element={
               <PublicRoute navigateTo="/">
                 <Register />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="training"
+            element={
+              <PublicRoute navigateTo="/training">
+                <TrainingPage />
               </PublicRoute>
             }
           />
