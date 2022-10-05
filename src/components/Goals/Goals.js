@@ -7,7 +7,7 @@ const Goals = ({data}) => {
           <span className={s.text}>Моя мета прочитати</span>{" "}
         </div>
         <div className={s.row}>
-          {data.map(e=> <div className={s.column}>
+          {data.map(e=> <div className={s.column} key = {e.text}>
             <div className={s.box}>
               <span className={s.number}>{e.value}</span>
             </div>

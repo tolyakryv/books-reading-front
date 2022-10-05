@@ -34,14 +34,14 @@ export const Input = styled.input`
   font-size: 14px;
   line-height: 1.21;
 
-  color: #242a37;
+  color: var(--color-main);
 
   border: none;
-  background: #f5f7fa;
+  background: var(--color-background);
   box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
 
   &::placeholder {
-    color: #a6abb9;
+    color: var(--color-secondary);
   }
 `;
 

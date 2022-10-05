@@ -20,8 +20,16 @@ function App() {
             index
             element={
               <PrivateRoute navigateTo="/login">
-                <LibraryPage />
+               
               </PrivateRoute>
+            }
+          />
+          <Route
+            path="library"
+            element={
+              <PublicRoute navigateTo="/">
+                <LibraryPage />
+              </PublicRoute>
             }
           />
           <Route
@@ -29,6 +37,14 @@ function App() {
             element={
               <PublicRoute navigateTo="/">
                 <InfoMobile />
+              </PublicRoute>
+            }
+          />
+           <Route
+            path="library"
+            element={
+              <PublicRoute navigateTo="/">
+                <LibraryPage />
               </PublicRoute>
             }
           />
@@ -51,15 +67,15 @@ function App() {
           <Route
             path="training"
             element={
-              <PublicRoute navigateTo="/training">
+              <PublicRoute navigateTo="/">
                 <TrainingPage />
               </PublicRoute>
             }
           />
           <Route
-            path="statistics"
+            path="statistic"
             element={
-              <PublicRoute navigateTo="/statistics">
+              <PublicRoute navigateTo="/">
                 <StatisticsPage />
               </PublicRoute>
             }
@@ -74,7 +90,7 @@ function App() {
           />
         </Route>
       </Routes>
-      <ToastContainer />
+      <ToastContainer autoClose={3000} />
     </>
   );
 }

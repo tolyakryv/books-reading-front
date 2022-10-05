@@ -18,17 +18,17 @@ export default function BookList ({data, handleDelete, cellItem}) {
 
     const columns = [
         columnHelper.accessor('_', {
-          
-            header: () => "",
+              header: () => "",
               cell: () =>cellItem,
+              
              
          }),
             columnHelper.accessor('title', {
                 header: () => <span>Назва</span>,
               cell: info => info.getValue(),
              }),
-            columnHelper.accessor(row => row.Author, {
-              id: 'author',
+            columnHelper.accessor("author", {
+      
               cell: info => <i>{info.getValue()}</i>,
               header: () => <span>Автор</span>,
               
