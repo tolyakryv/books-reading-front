@@ -5,7 +5,7 @@ import { FormAddBook } from "../../components/FormAddBook/FormAddBook.jsx";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents.js";
 import { useState } from "react";
 
-export const LibraryPage = () => {
+const LibraryPage = () => {
   const { data = [] } = useGetAllBookQuery();
   const [formAddBook, setFormAddBook] = useState(false);
 
@@ -47,3 +47,5 @@ export const LibraryPage = () => {
     </>
   );
 };
+
+export default LibraryPage;

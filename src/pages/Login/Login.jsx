@@ -22,7 +22,7 @@ import {
 import { getRandomInt } from "../../helpers/getRandomInt.js";
 import { useEffect, useState } from "react";
 
-export const Login = () => {
+const Login = () => {
   const [quote, setQuote] = useState(null);
 
   const dispatch = useDispatch();
@@ -106,3 +106,5 @@ export const Login = () => {
     </PageContainer>
   );
 };
+
+export default Login;

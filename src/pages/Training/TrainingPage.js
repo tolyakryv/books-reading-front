@@ -1,14 +1,11 @@
-
-
 import Training from "../../components/Training/Training";
 
-
-export const TrainingPage = () => {
+const TrainingPage = () => {
   return (
     <>
-    
-      <Training/>
-      
+      <Training />
     </>
   );
 };
+
+export default TrainingPage;
