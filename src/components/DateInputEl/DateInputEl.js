@@ -16,6 +16,7 @@ function DateInputEl({placeholder, minDate, onChange, value}) {
             minDate={minDate}
             onChange={onChange}
             value={value} 
+            
         />
     );
 }
