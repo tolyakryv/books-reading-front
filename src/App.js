@@ -8,6 +8,7 @@ import StatisticsPage from "./pages/Statistics/StatisticsPage.jsx";
 import { useSelector } from "react-redux";
 import { userSelector } from "./redux/selector/user-selector.js";
 import { useGetUser } from "./hooks/useGetUser.js";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
