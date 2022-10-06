@@ -25,6 +25,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
   const closeSummaryModal = () => {
     setIsSummaryModal(false);
   };
+  console.log(data.result);
 
   return (
     <>
