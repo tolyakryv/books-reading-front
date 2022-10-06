@@ -27,7 +27,7 @@ export function Chart() {
     0
   );
 
-  const amountDays = statistic.length;
+  const amountDays = statistic?.length;
 
   let amountPagesForDay = 0;
 
@@ -102,8 +102,8 @@ export function Chart() {
 
   const labels = statistic.map(item => item.date);
 
-  const readPagesFromStatistic = statistic.map(item => item.amountPages);
-  const pagesToRead = statistic.map(item => amountPagesForDay);
+  const readPagesFromStatistic = statistic?.map(item => item.amountPages);
+  const pagesToRead = statistic?.map(item => amountPagesForDay);
 
   const dataChart = {
     labels,
