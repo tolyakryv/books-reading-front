@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import { HandySvg } from "handy-svg";
-import iconHome from "../../img/icon home.svg";
-import iconLibrary from "../../img/icon library.svg";
+import iconLibrary from "../../img/new-icons-library.svg";
+import iconTraining from "../../img/icon library.svg";
 import style from "./Header.module.css";
 import { LogoutModal } from "../LogoutModal/LogoutModal";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { userSelector } from "../../redux/selector/user-selector";
+import { Avatar } from "@mui/material";
 
 const Header = () => {
   const userName = useSelector(userSelector.getUserName);
@@ -30,12 +31,27 @@ const Header = () => {
             <>
               <p className={style.logoBeforeLogin}>BR</p>
               <Link to="/" className={style.iconLibrary}>
-                <HandySvg src={iconLibrary} width="22" height="17" />
+                <HandySvg
+                  src={iconLibrary}
+                  width="22px"
+                  height="20px"
+                  fill="#A6ABB9"
+                />
               </Link>
               <Link to="/training" className={style.iconHome}>
-                <HandySvg src={iconHome} width="20" height="17" />
+                <HandySvg src={iconTraining} width="20px" height="17px" />
               </Link>
-              <p className={style.avatar}>{getFirstLetterOfName(userName)}</p>
+              <Avatar
+                className={style.avatar}
+                sx={{
+                  width: 33,
+                  height: 33,
+                  bgcolor: "#F5F7FA",
+                  color: "black",
+                }}
+              >
+                {getFirstLetterOfName(userName)}
+              </Avatar>
               <button
                 className={style.logout}
                 type="button"
@@ -54,13 +70,28 @@ const Header = () => {
           {isLogin ? (
             <>
               <p className={style.logoBeforeLogin}>BR</p>
-              <p className={style.avatar}>{getFirstLetterOfName(userName)}</p>
+              <Avatar
+                className={style.avatar}
+                sx={{
+                  width: 33,
+                  height: 33,
+                  bgcolor: "#F5F7FA",
+                  color: "black",
+                }}
+              >
+                {getFirstLetterOfName(userName)}
+              </Avatar>
               <p className={style.userName}>{userName}</p>
               <Link to="/" className={style.iconLibrary}>
-                <HandySvg src={iconLibrary} width="22" height="17" />
+                <HandySvg
+                  src={iconLibrary}
+                  width="22"
+                  height="20px"
+                  fill="#A6ABB9"
+                />
               </Link>
               <Link to="/training" className={style.iconHome}>
-                <HandySvg src={iconHome} width="20" height="17" />
+                <HandySvg src={iconTraining} width="20" height="17" />
               </Link>
               <button
                 className={style.logout}
@@ -80,13 +111,28 @@ const Header = () => {
           {isLogin ? (
             <>
               <p className={style.logoBeforeLogin}>BR</p>
-              <p className={style.avatar}>{getFirstLetterOfName(userName)}</p>
+              <Avatar
+                className={style.avatar}
+                sx={{
+                  width: 33,
+                  height: 33,
+                  bgcolor: "#F5F7FA",
+                  color: "black",
+                }}
+              >
+                {getFirstLetterOfName(userName)}
+              </Avatar>
               <p className={style.userName}>{userName}</p>
               <Link to="/" className={style.iconLibrary}>
-                <HandySvg src={iconLibrary} width="22" height="17" />
+                <HandySvg
+                  src={iconLibrary}
+                  width="22"
+                  height="20px"
+                  fill="#A6ABB9"
+                />
               </Link>
               <Link to="/training" className={style.iconHome}>
-                <HandySvg src={iconHome} width="20" height="17" />
+                <HandySvg src={iconTraining} width="20" height="17" />
               </Link>
               <button
                 className={style.logout}
