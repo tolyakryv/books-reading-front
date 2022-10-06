@@ -18,7 +18,7 @@ const MyTarget = ({ className }) => {
       setAmountBooks(booksReadingNow.length);
       console.log(booksReadingNow);
       const booksAlreadyRead = data.book.filter(
-        (item) => item.status === "alreadyRead"
+        (item) => item?.status === "alreadyRead"
       );
 
       const booksLeft = amountBooks - booksAlreadyRead.length;
