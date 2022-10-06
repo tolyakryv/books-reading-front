@@ -3,9 +3,9 @@ import { useGetTrainQuery } from "../../services/trainingAPI";
 import s from "./MyTarget.module.css";
 
 const MyTarget = ({ className }) => {
-  const [amountBooks, setAmountBooks] = useState();
-  const [daysLeft, setDaysLeft] = useState();
-  const [booksLeft, setBooksLeft] = useState();
+  const [amountBooks, setAmountBooks] = useState(0);
+  const [daysLeft, setDaysLeft] = useState(0);
+  const [booksLeft, setBooksLeft] = useState(0);
 
   const { data = [] } = useGetTrainQuery();
 
