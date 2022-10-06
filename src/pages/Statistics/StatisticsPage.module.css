@@ -1,0 +1,15 @@
+.containerPage {
+  background-color: var(--color-main-background);
+  padding: 20px;
+}
+
+@media (min-width: 768px) {
+  .containerPage {
+    padding: 32px;
+  }
+}
+@media (min-width: 1280px) {
+  .containerPage {
+    padding: 28px 16px;
+  }
+}

@@ -1,0 +1,59 @@
+.p-2{
+    min-width: 200px;
+
+}
+tr,
+.tr {
+  width: fit-content;
+  height: 30px;
+}
+
+table,
+.divTable {
+  border: 1px solid lightgray;
+  width: fit-content;
+}
+.table{
+width: 280px;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+    .table{
+        width: 701px;
+    }}
+
+@media (min-width: 1280px)  {
+        .table{
+            width: 928px;
+           
+        }} 
+
+.header{
+    font-family: Montserrat;
+    font-size: 12px;
+    color: #898F9F;
+}
+.button {
+    background-color:  #F6F7FB;;
+    border: none;
+    width: 14px;
+    height: 18px;
+    
+}
+
+.svg{
+    width: 14px;
+    height: 18px;
+    
+} 
+
+.body{
+    font-family: Montserrat;
+    font-size: 12px;
+    color: #242A37;
+}
+@media (min-width: 769px)  {
+    .body{
+        font-size: 14px;
+       
+    }} 

@@ -24,6 +24,7 @@
 }
 
 .logoAfterLogin {
+  margin: 0;
   font-family: "Abril Fatface";
   font-style: normal;
   font-weight: 400;
@@ -39,6 +40,7 @@
 }
 
 .logoBeforeLogin {
+  margin: 0;
   margin-right: 73px;
   font-family: "Abril Fatface";
   font-style: normal;
@@ -101,6 +103,7 @@
   font-size: 14px;
   line-height: 17px;
   color: #242a37;
+  background-color: #F5F7FA;
 }
 
 @media (min-width: 768px) and (max-width: 1279px) {
@@ -116,6 +119,7 @@
 }
 
 .userName {
+  margin: 0;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 300;

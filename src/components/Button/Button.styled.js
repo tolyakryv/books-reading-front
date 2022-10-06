@@ -1,20 +1,5 @@
 import styled, { css } from "styled-components";
 
-const accentColor = "#ff6b08";
-const accentColorHover = "#d15807";
-const accentTextColor = "#ffffff";
-
-const primaryColor = "transparent";
-const primaryColorBorder = "#242A37";
-const primaryColorHover = "#f25137";
-const primaryTextColor = "#242A37";
-
-const greyColor = "#6d7a8d";
-const greyColorHover = "#47566f";
-
-const duration = "250ms";
-const cubic = "cubic-bezier(0.4, 0, 0.2, 1)";
-
 export const ButtonStyled = styled.button`
   height: ${({ height }) => height};
   width: 100%;
@@ -25,8 +10,8 @@ export const ButtonStyled = styled.button`
 
   font-family: "Montserrat";
 
-  transition: background-color ${duration} ${cubic},
-    border-color ${duration} ${cubic};
+  transition: background-color var(--duration) var(--cubic),
+    border-color var(--duration) var(--cubic);
 
   ${({ shadow }) =>
     shadow
@@ -56,30 +41,31 @@ export const ButtonStyled = styled.button`
     switch (color) {
       case "accent":
         return css`
-          color: ${accentTextColor};
-          background-color: ${accentColor};
+          color: #ffffff;
+          background-color: var(--color-main-accent);
           &:hover,
-          &:focus {
-            background-color: ${accentColorHover};
+          &:focus,
+          &:disabled {
+            background-color: #d15807;
           }
         `;
       case "grey":
         return css`
-          color: ${accentTextColor};
-          background-color: ${greyColor};
+          color: #ffffff;
+          background-color: #6d7a8d;
           &:hover,
           &:focus {
-            background-color: ${greyColorHover};
+            background-color: #47566f;
           }
         `;
       default:
         return css`
-          color: ${primaryTextColor};
-          background-color: ${primaryColor};
-          border: 1px solid ${primaryColorBorder};
+          color: var(--color-main);
+          background-color: transparent;
+          border: 1px solid var(--color-main);
           &:hover,
           &:focus {
-            border-color: ${primaryColorHover};
+            border-color: #f25137;
           }
         `;
     }

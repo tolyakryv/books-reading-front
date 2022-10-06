@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ButtonStyled = styled.button`
+export const ButtonStyled = styled.a`
   display: flex;
   align-items: center;
   column-gap: 16px;
@@ -16,15 +16,17 @@ export const ButtonStyled = styled.button`
 
   font-weight: 700;
   font-size: 16px;
-  line-height: 1;
+  line-height: 2.38;
   color: #707375;
 
   border: none;
-  background: #f5f7fa;
+  background-color: var(--color-background);
   box-shadow: 0px 2px 2px rgba(9, 30, 63, 0.15);
 
-  & svg {
-    width: 20px;
-    height: 20px;
+  &:hover,
+  &:focus {
+    background-color: #edeff2;
   }
+
+  transition: background-color var(--duration) var(--cubic);
 `;
