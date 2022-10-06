@@ -38,7 +38,7 @@ const Header = () => {
                   fill="#A6ABB9"
                 />
               </Link>
-              <Link to="/training" className={style.iconHome}>
+              <Link to="/statistics" className={style.iconHome}>
                 <HandySvg src={iconTraining} width="22px" height="17px" />
               </Link>
               <Avatar

@@ -5,6 +5,7 @@
   position: fixed;
   overflow-y: auto;
   top: 0;
+  z-index: 5;
 }
 
 .modal {
