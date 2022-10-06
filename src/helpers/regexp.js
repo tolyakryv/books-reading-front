@@ -1,4 +1,5 @@
-export const EMAIL_REGEXP =
-  /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+export const NAME_REGEXP = /^[^\W_].*$/;
 
-export const PASSWORD_REGEXP = /^[a-zA-Z0-9]{6,30}$/;
+export const EMAIL_REGEXP = /^[^-\s]\S+@\S+\.\S*[^-]$/;
+
+export const PASSWORD_REGEXP = /^[^-.\s]\S*$/;
