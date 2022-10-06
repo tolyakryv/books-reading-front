@@ -7,31 +7,35 @@ const MyTarget = ({ className }) => {
   const [daysLeft, setDaysLeft] = useState(0);
   const [booksLeft, setBooksLeft] = useState(0);
 
-  const { data = [] } = useGetTrainQuery();
+  const { data } = useGetTrainQuery();
+  console.log(data);
 
   useEffect(() => {
-    console.log(data.book);
-    const booksReadingNow = data.book.filter(
-      (item) => item.status === "readingNow"
-    );
-    setAmountBooks(booksReadingNow.length);
-    console.log(booksReadingNow);
-    const booksAlreadyRead = data.book.filter(
-      (item) => item.status === "alreadyRead"
-    );
+    if (data) {
+      const booksReadingNow = data.book.filter(
+        (item) => item?.status === "readingNow"
+      );
+      setAmountBooks(booksReadingNow.length);
+      console.log(booksReadingNow);
+      const booksAlreadyRead = data.book.filter(
+        (item) => item.status === "alreadyRead"
+      );
 
-    const booksLeft = amountBooks - booksAlreadyRead.length;
-    setBooksLeft(booksLeft);
-  }, [amountBooks, data.book]);
+      const booksLeft = amountBooks - booksAlreadyRead.length;
+      setBooksLeft(booksLeft);
+    }
+  }, [amountBooks, data]);
   useEffect(() => {
-    console.log(data.startDate);
-    const { startDate } = data;
-    console.log(data.finishDate);
-    const { finishDate } = data;
-    const daysLeft = Math.floor(
-      (startDate - finishDate) / (1000 * 60 * 60 * 24)
-    );
-    setDaysLeft(daysLeft);
+    if (data) {
+      console.log(data.startDate);
+      const { startDate } = data;
+      console.log(data.finishDate);
+      const { finishDate } = data;
+      const daysLeft = Math.floor(
+        (finishDate - startDate) / (1000 * 60 * 60 * 24)
+      );
+      setDaysLeft(daysLeft);
+    }
   }, [data]);
 
   return (
