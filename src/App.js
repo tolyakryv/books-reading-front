@@ -70,9 +70,9 @@ function App() {
             <Route
               path="statistics"
               element={
-                <PrivateRoute navigateTo="/login">
-                  <StatisticsPage />
-                </PrivateRoute>
+                // <PrivateRoute navigateTo="/login">
+                <StatisticsPage />
+                // </PrivateRoute>
               }
             />
             <Route
