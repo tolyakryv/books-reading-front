@@ -42,9 +42,9 @@ function Training() {
 
   // фільтрація по статусу
   if (data) {
-    //  const filtered = data.result.filter(e => e.status === "goingToRead")
-    //  backResponce = filtered
-    backResponce = data.result;
+     const filtered = data.result.filter(e => e.status === "goingToRead")
+     backResponce = filtered
+    // backResponce = data.result;
     BooksInProgress= data.result.filter(e => e.status === "readingNow")
   }
 
@@ -137,14 +137,15 @@ function Training() {
 
   // Кнопка почати тренування
   const handleSubmit = async () => {
+    if(BooksInProgress.length > 0){
+      setError2(true);
+      return
+    }
     if (!startDate || !finishDate || book.length === 0) {
       setError(true);
       return;
     }
-    // if(BooksInProgress.length > 0){
-    //   setError2(true);
-    //   return
-    // }
+    
     if (startDate > finishDate || (Math.floor((finishDate - startDate) / (1000 * 60 * 60 * 24))) > 31)  {
       setError(true);
       return;
