@@ -63,7 +63,7 @@ const Login = () => {
 
             <div>
               <UserInfoInput
-                type="email"
+                type="text"
                 text="Електронна адреса"
                 placeholder="your@email.com"
                 required={true}
@@ -85,6 +85,7 @@ const Login = () => {
                 errorText={formik.errors.password}
                 showError={formik.touched.password}
                 onBlur={formik.handleBlur}
+                maxLength={30}
               />
             </div>
             <ButtonStyled

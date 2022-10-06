@@ -52,6 +52,8 @@ const Register = () => {
         formik.errors.confirmPassword
     ) || isLoading;
 
+  console.log(formik.errors.email);
+
   return (
     <PageContainer>
       <RegisterSection>
@@ -77,7 +79,7 @@ const Register = () => {
                 onBlur={formik.handleBlur}
               />
               <UserInfoInput
-                type="email"
+                type="text"
                 text="Електронна адреса"
                 placeholder="your@email.com"
                 required={true}
@@ -99,6 +101,7 @@ const Register = () => {
                 errorText={formik.errors.password}
                 showError={formik.touched.password}
                 onBlur={formik.handleBlur}
+                maxLength={30}
               />
               <UserInfoInput
                 type="password"
@@ -112,6 +115,7 @@ const Register = () => {
                 showError={formik.touched.confirmPassword}
                 onBlur={formik.handleBlur}
                 onPaste={resetPaste}
+                maxLength={30}
               />
             </div>
             <ButtonStyled
