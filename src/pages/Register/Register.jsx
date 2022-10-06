@@ -19,7 +19,6 @@ import {
   LoginLink,
   FeaturesListStyled,
 } from "./Register.styled.js";
-import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -51,8 +50,6 @@ const Register = () => {
         formik.errors.name ||
         formik.errors.confirmPassword
     ) || isLoading;
-
-  console.log(formik.errors.email);
 
   return (
     <PageContainer>
