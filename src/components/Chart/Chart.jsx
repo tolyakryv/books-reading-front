@@ -14,26 +14,46 @@ import { useMediaQuery } from 'react-responsive';
 import styles from './Chart.module.css';
 import { useGetTrainQuery } from '../../services/trainingAPI';
 import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 export function Chart() {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-  const { data = [] } = useGetTrainQuery();
-  const { statistic = [] } = data;
+  const { data } = useGetTrainQuery();
+const [statistic, setStatistic ] = useState([]);
+
+
+
+useEffect(() => {
+
+  if(data) {
+    setStatistic(data.statistic);
+  }
+
+}, [data])
+
+console.log('data', data)
+console.log('statistic', statistic);
 
   const amountPagesFromStatistic = statistic?.reduce(
     (totalPages, statisticBookInfo) => totalPages + statisticBookInfo.amountPages,
     0
   );
 
-  const amountDays = statistic.length;
+  const amountDays = statistic?.length;
 
   let amountPagesForDay = 0;
 
   if (amountDays || amountPagesFromStatistic) {
     amountPagesForDay = Math.ceil(amountPagesFromStatistic / amountDays);
   }
+
+console.log('amountDays', amountDays);
+
+console.log('amountPagesFromStatistic', amountPagesFromStatistic);
+
+console.log('amountPagesForDay', amountPagesForDay)
 
   const { pathname } = useLocation();
 
@@ -100,17 +120,17 @@ export function Chart() {
     },
   };
 
-  const labels = statistic.map(item => item.date);
+  const labels = statistic?.map(item => item.date);
 
-  const readPagesFromStatistic = statistic.map(item => item.amountPages);
-  const pagesToRead = statistic.map(item => amountPagesForDay);
+  const readPagesFromStatistic = statistic?.map(item => item.amountPages);
+  const pagesToRead = statistic?.map(item => amountPagesForDay);
 
   const dataChart = {
     labels,
     datasets: [
       {
         label: 'План',
-        data: pathname === '/statistic' ? pagesToRead : [],
+        data: pathname === '/statistics' ? pagesToRead : [],
         borderColor: '#091E3F',
         backgroundColor: '#091E3F',
         pointRadius: 5,
@@ -118,7 +138,7 @@ export function Chart() {
       },
       {
         label: 'Факт',
-        data: pathname === '/statistic' ? readPagesFromStatistic : [],
+        data: pathname === '/statistics' ? readPagesFromStatistic : [],
 
         borderColor: '#FF6B08',
         backgroundColor: '#FF6B08',
@@ -133,7 +153,7 @@ export function Chart() {
       <div className={styles.chartInfoWrapper}>
         <div className={styles.amountWrapper}>
           <p className={styles.amountLabel}>КІЛЬКІСТЬ СТОРІНОК / ДЕНЬ</p>
-          <p className={styles.amountBox}>{pathname === '/statistic' ? amountPagesForDay : 0}</p>
+          <p className={styles.amountBox}>{pathname === '/statistics' ? amountPagesForDay : 0}</p>
         </div>
         <div className={styles.lineTitleBox}>
           <p className={styles.lineTitleValue}>План</p>
