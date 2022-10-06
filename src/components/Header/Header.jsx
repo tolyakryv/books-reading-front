@@ -39,7 +39,7 @@ const Header = () => {
                 />
               </Link>
               <Link to="/training" className={style.iconHome}>
-                <HandySvg src={iconTraining} width="20px" height="17px" />
+                <HandySvg src={iconTraining} width="22px" height="17px" />
               </Link>
               <Avatar
                 className={style.avatar}
@@ -91,7 +91,7 @@ const Header = () => {
                 />
               </Link>
               <Link to="/training" className={style.iconHome}>
-                <HandySvg src={iconTraining} width="20" height="17" />
+                <HandySvg src={iconTraining} width="22" height="17" />
               </Link>
               <button
                 className={style.logout}
@@ -132,7 +132,7 @@ const Header = () => {
                 />
               </Link>
               <Link to="/training" className={style.iconHome}>
-                <HandySvg src={iconTraining} width="20" height="17" />
+                <HandySvg src={iconTraining} width="22" height="17" />
               </Link>
               <button
                 className={style.logout}
