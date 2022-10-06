@@ -16,32 +16,36 @@ import { useNavigate } from "react-router-dom";
 
 function Training() {
   // дати в мілісекундах
-  const [startDate, setStartDate] = useState();
-  const [finishDate, setEndDate] = useState();
+  const [startDate, setStartDate] = useState(JSON.parse(localStorage.getItem("startDate")) || 0);
+  const [finishDate, setEndDate] = useState(JSON.parse(localStorage.getItem("endDate")) || 0);
   // дати в датах для відображення в календарі
-  const [startDate2, setStartDate2] = useState();
-  const [finishDate2, setEndDate2] = useState();
+  const [startDate2, setStartDate2] = useState(JSON.parse(localStorage.getItem("startDate2")) || null);
+  const [finishDate2, setEndDate2] = useState(JSON.parse(localStorage.getItem("endDate2")) || null);
   // Книжка в полі селект
   const [selectedBook, setSelectedBook] = useState();
   // Обрані книжки для відправки на бек
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState(JSON.parse(localStorage.getItem("books")) || []);
   // неправильно введені дати, книжки
   const [error, setError] = useState(false);
+  const [error2, setError2] = useState(false);
 
   const [addTrain] = trainingAPI.useAddTrainMutation();
   const navigate = useNavigate();
 
   // Отримати масив книг
   let backResponce = [
-    { id: "", title: "", author: "", publicDate: 1, amountPages: 1 },
+    { id: "", title: "", author: "", publicDate: 0, amountPages: 0 },
   ];
+  let BooksInProgress = [];
   const { data } = booksAPI.useGetAllBookQuery();
+
 
   // фільтрація по статусу
   if (data) {
     //  const filtered = data.result.filter(e => e.status === "goingToRead")
     //  backResponce = filtered
     backResponce = data.result;
+    BooksInProgress= data.result.filter(e => e.status === "readingNow")
   }
 
   // Кнопка видалити
@@ -55,19 +59,25 @@ function Training() {
     setStartDate(date);
     setStartDate2(e);
     setError(false);
+    localStorage["startDate"] = JSON.stringify(date);
+    localStorage["startDate2"] = JSON.stringify(e) 
+
   };
 
   // Обробка кінцевої дати
   const handleChangeEnd = (e) => {
     const date = Date.parse(e);
     setError(false);
+    setError2(false)
     if (date <= startDate) {
       setError(true);
       return;
     }
     setEndDate(date);
     setEndDate2(e);
-  };
+    localStorage["endDate"] = JSON.stringify(date);
+    localStorage["endDate2"] = JSON.stringify(e) 
+  }
 
   // Обробка списку книг з беку для селекту
   let sel2 = [];
@@ -92,46 +102,61 @@ function Training() {
   const onChangeHandle = (e) => {
     setSelectedBook(e.value);
   };
-
+  
   // додавання книги в таблицю
   const onClickHandle = () => {
     setError(false);
+    setError2(false);
     const existBook = books.filter((e) => e._id === selectedBook);
     if (existBook.length > 0) {
       return;
     } else {
       const selBook = backResponce.filter((e) => e._id === selectedBook);
       setBooks([...books, ...selBook]);
+      console.log(books)
+      localStorage["books"] = JSON.stringify(books); 
     }
+   
   };
 
+  localStorage["books"] = JSON.stringify(books); 
   // Обєкт для відпавки на бек
 
   const book = [];
 
   const handleBeforeSubmit = () => {
+    if (books.length > 0 ){ 
     books.forEach((e) => {
       const id = e._id;
       book.push(id);
     });
-  };
+  };}
   handleBeforeSubmit();
 
   const newTraining = { startDate, finishDate, book };
 
   // Кнопка почати тренування
   const handleSubmit = async () => {
-    if (!startDate || !finishDate || book.length < 1) {
+    if (!startDate || !finishDate || book.length === 0) {
       setError(true);
       return;
     }
-    if (startDate > finishDate) {
+    // if(BooksInProgress.length > 0){
+    //   setError2(true);
+    //   return
+    // }
+    if (startDate > finishDate || (Math.floor((finishDate - startDate) / (1000 * 60 * 60 * 24))) > 31)  {
       setError(true);
       return;
     }
 
     if (newTraining) {
       await addTrain(newTraining);
+      localStorage.removeItem("books")
+      localStorage.removeItem("startDate")
+      localStorage.removeItem("startDate2")
+      localStorage.removeItem("endDate")
+      localStorage.removeItem("endDate2")
       navigate("/statistics", { replace: true });
     }
   };
@@ -141,6 +166,7 @@ function Training() {
   var days = 0;
   if (startDate && finishDate) {
     days = Math.floor((finishDate - startDate) / (1000 * 60 * 60 * 24));
+  
   }
 
   var amount = 0;
@@ -162,7 +188,7 @@ function Training() {
             <h3 className={s.text}> Моє тренування </h3>
           </div>
           {error && (
-            <p className={s.redText}>Введіть коректно дати та оберіть книжки</p>
+            <p className={s.redText}>Введіть коректно дати та оберіть книжки: термін тренування має бути не менше одного дня та не більше 31 дня </p>
           )}
           <div className={s.dateInput}>
             <DateInputEl
@@ -206,7 +232,10 @@ function Training() {
         </div>
       </div>
       <div className={s.lower}>
-        <button type="button" className={s.button}>
+      {error2 && (
+            <p className={s.redText}> Завершіть попередні тренування </p>
+          )}
+        <button type="button" className={s.button} disabled={true}>
           <span className={s.buttonText} onClick={handleSubmit}>
             Почати тренування
           </span>
