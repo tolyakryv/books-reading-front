@@ -88,6 +88,7 @@
 @media (min-width: 1280px) {
   .section {
     width: 288px;
+    margin: 0;
   }
   .header:before {
     content: "";
