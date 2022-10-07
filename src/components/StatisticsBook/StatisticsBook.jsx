@@ -5,12 +5,12 @@ import "ag-grid-community/styles/ag-grid.css";
 import StatisticBookMobile from "../StatisticBookMobile/StatisticBookMobile";
 import Media from "react-media";
 import { useGetAllBookQuery } from "../../services/booksAPI";
+import { useUpdateStatusBookMutation } from "../../services/trainingAPI";
 import s from "./StatisticsBook.module.css";
-
-// import Icon from "../../img/icon library.svg";
 
 const StatisticsBook = () => {
   const { data } = useGetAllBookQuery();
+  const [updateStatusBook] = useUpdateStatusBookMutation();
   const columnDefs = [
     {
       headerName: "Назва книги",
@@ -43,8 +43,20 @@ const StatisticsBook = () => {
     },
   ];
 
-  const onCellClicked = (e) => {
+  const onCellClicked = async (e) => {
     console.log("Cell was clicked");
+    console.log(e.data);
+    try {
+      const bookId = e.data._id;
+      console.log(bookId);
+      const status = "alreadyRead";
+      await updateStatusBook({
+        bookId,
+        status,
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   function RowSelected(event) {
@@ -93,7 +105,7 @@ const StatisticsBook = () => {
         <div
           className="ag-theme-alpine"
           style={{
-            height: "130px",
+            height: "175px",
             width: "100%",
             margin: "0",
             fontFamily: "Montserrat",
@@ -112,16 +124,6 @@ const StatisticsBook = () => {
               />
             )}
           />
-          {/* {data.result.some((book) => book.status === "goingToRead") && (
-            <AgGridReact
-              className={s.grid}
-              // headerHeight={headerHeight}
-              rowData={bookGoingToRead()}
-              columnDefs={columnDefs}
-              onCellClicked={onCellClicked}
-              gridOptions={gridOptions}
-            />
-          )} */}
         </div>
       </div>
     </section>

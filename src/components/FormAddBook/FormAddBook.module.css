@@ -60,6 +60,95 @@ margin-bottom: 32px;
     width: 100%;
     height: 42px;
     margin-bottom: 20px;
+    position: relative;
+}
+.inputNotifyTitle{
+        color: red;
+            position: absolute;
+            font-size: 11px;
+            top: 192px;
+}
+.inputNotifyAuthor{
+    color: red;
+    position: absolute;
+    font-size: 11px;
+    top: 280px;
+}
+.inputNotifyDate{color: red;
+    position: absolute;
+    font-size: 11px;
+    top: 365px;
+}
+.inputNotifyPage{
+    color : red;
+    position:absolute;
+    font-size: 11px;
+    top: 455px;
+}
+@media (min-width: 768px) and (max-width: 1279px) {
+    .form{
+        position: relative;
+    }
+.inputNotifyTitle {
+        color: red;
+        position: absolute;
+        font-size: 11px;
+        top: 92px;
+    }
+
+    .inputNotifyAuthor {
+        color: red;
+        position: absolute;
+        font-size: 11px;
+        top: 178px;
+    }
+
+    .inputNotifyDate {
+        color: red;
+        position: absolute;
+        font-size: 11px;
+        top: 178px;
+    }
+
+    .inputNotifyPage {
+        color: red;
+        position: absolute;
+        font-size: 11px;
+        top: 178px;
+    }
+}
+@media (min-width: 1280px){
+    .form {
+            position: relative;
+        }
+    
+        .inputNotifyTitle {
+            color: red;
+            position: absolute;
+            font-size: 11px;
+            top: 98px;
+        }
+    
+        .inputNotifyAuthor {
+            color: red;
+            position: absolute;
+            font-size: 11px;
+            top: 98px;
+        }
+    
+        .inputNotifyDate {
+            color: red;
+            position: absolute;
+            font-size: 11px;
+            top: 98px;
+        }
+    
+        .inputNotifyPage {
+            color: red;
+            position: absolute;
+            font-size: 11px;
+            top: 98px;
+        }
 }
 
 /* input.input_erorr,

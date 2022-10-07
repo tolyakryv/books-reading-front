@@ -10,6 +10,17 @@
 }
 @media (min-width: 1280px) {
   .containerPage {
+    display: flex;
+    flex-direction: column;
     padding: 28px 16px;
+  }
+  .wrapperRow {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    margin-bottom: 39px;
+  }
+  .wrapperCol {
+    margin-right: 32px;
   }
 }

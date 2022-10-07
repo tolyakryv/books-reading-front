@@ -30,21 +30,23 @@ export const FormAddBook = ({ getFormAddBook }) => {
 
   const addBookSchema = Yup.object({
     title: Yup.string()
-      .min(2)
-      .max(50)
+      .min(2, "Поле повинно містити більше 2 символів")
+      .max(50, "не більше 50 символів")
       .required("Необхідно заповнити поле Назва книги"),
-    author: Yup.string().max(50).required("Необхідно заповнити поле Автор"),
+    author: Yup.string()
+      .max(50, "не більше 50 символів")
+      .required("Необхідно заповнити поле Автор"),
     publicDate: Yup.number()
-      .min(1900)
-      .max(2021)
-      .integer()
+      .min(1900, "Рік більше 1900")
+      .max(2021, "Рік  менше 2021")
+      .integer("це ціле число")
       .positive("число більше нуля"),
     amountPages: Yup.number()
       .min(20)
       .max(1500)
-      .integer()
+      .integer("кількість сторінок це ціле число")
       .positive("кількість сторінок це число більше нуля")
-      .required(),
+      .required("кількість сторінок обов'язкове поле"),
   });
 
   const [addBook] = booksAPI.useAddBookMutation();
@@ -53,12 +55,12 @@ export const FormAddBook = ({ getFormAddBook }) => {
     if (data) {
       await addBook(data).unwrap();
       actions.resetForm();
-      const bookLocal = JSON.parse(localStorage.getItem("newBook"));
-      if (bookLocal) {
-        localStorage.setItem("newBook", JSON.stringify([...bookLocal, data]));
-      } else {
-        localStorage.setItem("newBook", JSON.stringify([data]));
-      }
+      // const bookLocal = JSON.parse(localStorage.getItem("newBook"));
+      // if (bookLocal) {
+      //   localStorage.setItem("newBook", JSON.stringify([...bookLocal, data]));
+      // } else {
+      //   localStorage.setItem("newBook", JSON.stringify([data]));
+      // }
     }
     getFormAddBook();
   };
@@ -87,11 +89,16 @@ export const FormAddBook = ({ getFormAddBook }) => {
                 {data.result === undefined || data.result.length === 0 ? (
                   <></>
                 ) : (
-                  <HandySvg src={iconBack} width="24px" height="12px" onClick={getFormAddBook}/>
+                  <HandySvg
+                    src={iconBack}
+                    width="24px"
+                    height="12px"
+                    onClick={getFormAddBook}
+                  />
                 )}
               </div>
               <label className={s.label} htmlFor="title">
-                Назва книги
+                Назва книги*
               </label>
               <input
                 className={s.input}
@@ -104,9 +111,11 @@ export const FormAddBook = ({ getFormAddBook }) => {
                 value={formik.values.title}
                 onBlur={formik.handleBlur}
               />
-
+              {(formik.errors.title || formik.touched.title) && (
+                <p className={s.inputNotifyTitle}>{formik.errors.title}</p>
+              )}
               <label className={s.label} htmlFor="author">
-                Автор
+                Автор*
               </label>
               <input
                 className={s.input}
@@ -116,7 +125,9 @@ export const FormAddBook = ({ getFormAddBook }) => {
                 onChange={formik.handleChange}
                 value={formik.values.author}
               />
-
+              {(formik.errors.author || formik.touched.author) && (
+                <p className={s.inputNotifyAuthor}>{formik.errors.author}</p>
+              )}
               <label className={s.label} htmlFor="publicDate">
                 Рік випуску
               </label>
@@ -128,8 +139,11 @@ export const FormAddBook = ({ getFormAddBook }) => {
                 onChange={formik.handleChange}
                 value={formik.values.publicDate}
               />
+              {(formik.errors.publicDate || formik.touched.publicDate) && (
+                <p className={s.inputNotifyDate}>{formik.errors.publicDate}</p>
+              )}
               <label className={s.label} htmlFor="amountPages">
-                Кількість сторінок
+                Кількість сторінок*
               </label>
               <input
                 className={s.input}
@@ -139,7 +153,9 @@ export const FormAddBook = ({ getFormAddBook }) => {
                 onChange={formik.handleChange}
                 value={formik.values.amountPages}
               />
-
+              {(formik.errors.amountPages || formik.touched.amountPages) && (
+                <p className={s.inputNotifyPage}>{formik.errors.amountPages}</p>
+              )}
               <button className={s.button} disabled={isDisabled} type="submit">
                 Додати
               </button>
@@ -162,6 +178,9 @@ export const FormAddBook = ({ getFormAddBook }) => {
                 onChange={formik.handleChange}
                 value={formik.values.title}
               />
+              {(formik.errors.title || formik.touched.title) && (
+                <p className={s.inputNotifyTitle}>{formik.errors.title}</p>
+              )}
               <div className={s.input_container}>
                 <div className={s.input_block_author}>
                   <label className={s.label} htmlFor="author">
@@ -175,6 +194,11 @@ export const FormAddBook = ({ getFormAddBook }) => {
                     onChange={formik.handleChange}
                     value={formik.values.author}
                   />
+                  {(formik.errors.author || formik.touched.author) && (
+                    <p className={s.inputNotifyAuthor}>
+                      {formik.errors.author}
+                    </p>
+                  )}
                 </div>
 
                 <div className={s.input_block_date}>
@@ -189,6 +213,11 @@ export const FormAddBook = ({ getFormAddBook }) => {
                     onChange={formik.handleChange}
                     value={formik.values.publicDate}
                   />
+                  {(formik.errors.publicDate || formik.touched.publicDate) && (
+                    <p className={s.inputNotifyDate}>
+                      {formik.errors.publicDate}
+                    </p>
+                  )}
                 </div>
                 <div className={s.input_block_pages}>
                   <label className={s.label} htmlFor="amountPages">
@@ -202,6 +231,12 @@ export const FormAddBook = ({ getFormAddBook }) => {
                     onChange={formik.handleChange}
                     value={formik.values.amountPages}
                   />
+                  {(formik.errors.amountPages ||
+                    formik.touched.amountPages) && (
+                    <p className={s.inputNotifyPage}>
+                      {formik.errors.amountPages}
+                    </p>
+                  )}
                 </div>
               </div>
               <button className={s.button} disabled={isDisabled} type="submit">
@@ -228,6 +263,9 @@ export const FormAddBook = ({ getFormAddBook }) => {
                     onChange={formik.handleChange}
                     value={formik.values.title}
                   />
+                  {(formik.errors.title || formik.touched.title) && (
+                    <p className={s.inputNotifyTitle}>{formik.errors.title}</p>
+                  )}
                 </div>
                 <div className={s.input_block_author}>
                   <label className={s.label} htmlFor="author">
@@ -241,6 +279,11 @@ export const FormAddBook = ({ getFormAddBook }) => {
                     onChange={formik.handleChange}
                     value={formik.values.author}
                   />
+                  {(formik.errors.author || formik.touched.author) && (
+                    <p className={s.inputNotifyAuthor}>
+                      {formik.errors.author}
+                    </p>
+                  )}
                 </div>
 
                 <div className={s.input_block_date}>
@@ -255,6 +298,11 @@ export const FormAddBook = ({ getFormAddBook }) => {
                     onChange={formik.handleChange}
                     value={formik.values.publicDate}
                   />
+                  {(formik.errors.publicDate || formik.touched.publicDate) && (
+                    <p className={s.inputNotifyDate}>
+                      {formik.errors.publicDate}
+                    </p>
+                  )}
                 </div>
                 <div className={s.input_block_pages}>
                   <label className={s.label} htmlFor="amountPages">
@@ -268,6 +316,12 @@ export const FormAddBook = ({ getFormAddBook }) => {
                     onChange={formik.handleChange}
                     value={formik.values.amountPages}
                   />
+                  {(formik.errors.amountPages ||
+                    formik.touched.amountPages) && (
+                    <p className={s.inputNotifyPage}>
+                      {formik.errors.amountPages}
+                    </p>
+                  )}
                 </div>
                 <button
                   className={s.button}
