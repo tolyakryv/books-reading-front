@@ -6,63 +6,53 @@ const MyTarget = ({ className }) => {
   const [amountBooks, setAmountBooks] = useState(0);
   const [daysLeft, setDaysLeft] = useState(0);
   const [booksLeft, setBooksLeft] = useState(0);
-
   const { data } = useGetTrainQuery();
-  console.log(data);
+  console.log("dataFromBack:", data);
 
   useEffect(() => {
     if (data) {
-      const booksReadingNow = data.book.filter(
-        (item) => item?.status === "readingNow"
-      );
-      setAmountBooks(booksReadingNow.length);
-      console.log(booksReadingNow);
+      setAmountBooks(data.book.length);
       const booksAlreadyRead = data.book.filter(
-        (item) => item?.status === "alreadyRead"
+        (item) => item.status === "alreadyRead"
       );
-
       const booksLeft = amountBooks - booksAlreadyRead.length;
       setBooksLeft(booksLeft);
     }
   }, [amountBooks, data]);
+
   useEffect(() => {
     if (data) {
-      console.log(data.startDate);
-      const { startDate } = data;
-      console.log(data.finishDate);
-      const { finishDate } = data;
+      const { startDate, finishDate } = data;
       const daysLeft = Math.floor(
         (finishDate - startDate) / (1000 * 60 * 60 * 24)
       );
       setDaysLeft(daysLeft);
+      console.log("startDate:", data.startDate);
+      console.log("finishDate:", data.finishDate);
     }
   }, [data]);
 
   return (
     <div className={`${s.container} ${className}`}>
       <p className={s.title}>Моя мета прочитати</p>
-
       <div className={s.targetListContainer}>
         <ul className={s.targetList}>
           <li className={s.targetItem}>
             <div className={s.valueContainer}>
               <span className={s.value}>{amountBooks}</span>
             </div>
-
             <span className={s.capture}>Кількість книжок</span>
           </li>
           <li className={s.targetItem}>
             <div className={s.valueContainer}>
               <span className={s.value}>{daysLeft}</span>
             </div>
-
             <span className={s.capture}>Кількість днів</span>
           </li>
           <li className={s.targetItem}>
             <div className={s.valueContainer}>
               <span className={s.value}>{booksLeft}</span>
             </div>
-
             <span className={s.capture}>Залишилось книжок</span>
           </li>
         </ul>
