@@ -24,7 +24,7 @@ const Header = () => {
   };
 
   return (
-    <>
+    <div className={style.container}>
       <Mobile>
         <div className={style.header}>
           {isLogin ? (
@@ -148,7 +148,7 @@ const Header = () => {
         </div>
       </Desktop>
       {IsLogoutModal && <LogoutModal closeLogoutModal={closeLogoutModal} />}
-    </>
+    </div>
   );
 };
 
