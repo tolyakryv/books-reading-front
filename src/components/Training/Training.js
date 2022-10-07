@@ -14,6 +14,7 @@ import * as trainingAPI from "../../services/trainingAPI";
 import Media from "react-media";
 import { useNavigate } from "react-router-dom";
 
+
 function Training() {
   // дати в мілісекундах
   const [startDate, setStartDate] = useState(
@@ -38,6 +39,8 @@ function Training() {
   // неправильно введені дати, книжки
   const [error, setError] = useState(false);
   const [error2, setError2] = useState(false);
+
+  const [status, setStatus] = useState(false)
 
   const [addTrain] = trainingAPI.useAddTrainMutation();
   const navigate = useNavigate();
@@ -109,19 +112,21 @@ function Training() {
 
   const onChangeHandle = (e) => {
     setSelectedBook(e.value);
+    setStatus(false)
   };
 
   // додавання книги в таблицю
   const onClickHandle = () => {
     setError(false);
     setError2(false);
+    setStatus(true)
     const existBook = books.filter((e) => e._id === selectedBook);
     if (existBook.length > 0) {
       return;
     } else {
       const selBook = backResponce.filter((e) => e._id === selectedBook);
       setBooks([...books, ...selBook]);
-      console.log(books);
+      
       localStorage["books"] = JSON.stringify(books);
     }
   };
@@ -222,6 +227,7 @@ function Training() {
             onClickHandle={onClickHandle}
             onChangeHandle={onChangeHandle}
             book={sel2}
+            statusInput = {status}
           />
           <Media
             query="(max-width: 767px)"
