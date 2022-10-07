@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
 import ShowTimer from "../../components/Timer/ShowTimer/ShowTimer";
 import MyTarget from "../../components/MyTarget/MyTarget";
 import s from "./StatisticsPage.module.css";
@@ -12,9 +13,9 @@ const ShowTimerStyled = styled(ShowTimer)`
 const MyTargetStyled = styled(MyTarget)`
   margin-bottom: 20px;
 `;
-// const StatisticsBookStyled = styled(StatisticsBook)`
-//   margin-bottom: 32px;
-// `;
+const StatisticsBookStyled = styled(StatisticsBook)`
+  margin-bottom: 32px;
+`;
 // const ChartStyled = styled(Chart)`
 //   margin-bottom: 32px;
 // `;
@@ -22,13 +23,39 @@ const MyTargetStyled = styled(MyTarget)`
 const StatisticsPage = () => {
   return (
     <>
-      <div className={s.containerPage}>
-        <ShowTimerStyled />
-        <MyTargetStyled />
-        <StatisticsBook />
-        <Chart />
-        <StatisticsTable />
-      </div>
+      <Mobile>
+        <div className={s.containerPage}>
+          <ShowTimerStyled />
+          <MyTargetStyled />
+          <StatisticsBookStyled />
+          <Chart />
+          <StatisticsTable />
+        </div>
+      </Mobile>
+      <Tablet>
+        <div className={s.containerPage}>
+          <ShowTimerStyled />
+          <MyTargetStyled />
+          <StatisticsBookStyled />
+          <Chart />
+          <StatisticsTable />
+        </div>
+      </Tablet>
+      <Desktop>
+        <div className={s.containerPage}>
+          <div className={s.wrapperRow}>
+            <div className={s.wrapperCol}>
+              <ShowTimer />
+              <StatisticsBook />
+            </div>
+            <MyTarget />
+          </div>
+          <div className={s.wrapperRow}>
+            <Chart />
+            <StatisticsTable />
+          </div>
+        </div>
+      </Desktop>
     </>
   );
 };
