@@ -4,10 +4,8 @@ export const bookAPI = createApi({
   reducerPath: "book",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://book-reading-08.herokuapp.com",
-    // baseUrl: "http://localhost:5000",
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
-      // const token= "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzg4MGY3NmQ3OWIzMDI4M2QyOTI0NyIsInNpZCI6IjYzM2FjYjNmOWI3YzYxMzM0MzlkZjAzMSIsImlhdCI6MTY2NDc5NzUwMywiZXhwIjoxNjY0ODA4MzAzfQ.U51QlAfflw4GUqv1yAWe1BHW_jgl_QU0hOFOTyHRzb8"
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
       }
@@ -18,6 +16,7 @@ export const bookAPI = createApi({
   endpoints: (build) => ({
     getAllBook: build.query({
       query: () => "/api/book/",
+      keepUnusedDataFor: 0,
       providesTags: ["book"],
     }),
     addBook: build.mutation({
