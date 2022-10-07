@@ -23,6 +23,10 @@ export const PageContainer = styled.div`
 
 export const LoginSection = styled.section`
   width: 100%;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+
   background-color: rgba(9, 30, 63, 0.8);
   background-image: linear-gradient(
       to right,
@@ -30,8 +34,13 @@ export const LoginSection = styled.section`
       rgba(9, 30, 63, 0.8)
     ),
     url(${bgImgMobile});
-  background-position: center -60px;
+  background-position: center;
   background-repeat: repeat-y;
+  background-size: cover;
+
+  @media screen and (min-width: 320px) {
+    background-position: center -60px;
+  }
 
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
@@ -157,6 +166,7 @@ export const LoginSection = styled.section`
 
 export const Container = styled.div`
   max-width: 320px;
+  width: 100%;
   margin: 0 auto;
 
   display: flex;
@@ -188,6 +198,7 @@ export const Form = styled.form`
 
   @media ${device.tablet} {
     padding: 40px;
+    max-width: 400px;
 
     font-weight: 500;
     color: #898f9f;
@@ -229,6 +240,9 @@ export const LinkStyled = styled(Link)`
 
 export const QuoteSection = styled.section`
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const QuoteContainer = styled.div`
