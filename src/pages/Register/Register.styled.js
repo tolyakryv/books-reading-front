@@ -24,6 +24,10 @@ export const PageContainer = styled.div`
 
 export const RegisterSection = styled.section`
   width: 100%;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+
   background-color: rgba(9, 30, 63, 0.8);
   background-image: linear-gradient(
       to right,
@@ -31,8 +35,14 @@ export const RegisterSection = styled.section`
       rgba(9, 30, 63, 0.8)
     ),
     url(${bgImgMobile});
-  background-position: center -60px;
+
   background-repeat: repeat-y;
+  background-size: cover;
+  background-position: center;
+
+  @media screen and (min-width: 320px) {
+    background-position: center -60px;
+  }
 
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
@@ -156,6 +166,7 @@ export const RegisterSection = styled.section`
 `;
 
 export const Container = styled.div`
+  width: 100%;
   max-width: 320px;
   margin: 0 auto;
 
@@ -186,6 +197,7 @@ export const Form = styled.form`
 
   @media ${device.tablet} {
     padding: 40px;
+    width: 400px;
 
     font-weight: 500;
     color: #898f9f;
@@ -244,6 +256,9 @@ export const LinkStyled = styled.span`
 
 export const InfoSection = styled.section`
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const InfoContainer = styled.div`
