@@ -16,3 +16,8 @@
     justify-content: center;
   }
 }
+@media (min-width: 1280px) {
+  .timerContainer {
+    margin-bottom: 44px;
+  }
+}

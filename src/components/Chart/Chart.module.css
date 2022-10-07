@@ -17,7 +17,7 @@
 }
 
 .amountLabel {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 500;
   font-size: 12px;
   line-height: 1.25;
@@ -33,7 +33,7 @@
   min-width: 25px;
   min-height: 25px;
   background-color: #f5f7fa;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 600;
   font-size: 12px;
   color: #242a37;
@@ -55,7 +55,7 @@
   background: #f5f7fa;
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
   line-height: 1.25;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 600;
   font-size: 12px;
   text-transform: uppercase;
@@ -107,6 +107,7 @@
 @media screen and (min-width: 1280px) {
   .chartSectionWrapper {
     width: 928px;
+    margin-right: 32px;
   }
 
   .chartWrapper {
