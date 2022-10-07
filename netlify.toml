@@ -3,5 +3,5 @@ publish = "build"
 
 [[redirects]]
 from = "/*"
-to = "/*"
-status = 200
+to = "/"
+status = 301
