@@ -1,30 +1,29 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../../components/Button";
+import { FeaturesList } from "../../components/FeaturesList/FeaturesList";
 import { device } from "../../helpers/device";
 import bgImgMobile from "../../img/background/registerBackgroundMobile.jpg";
 import bgImgMobile2x from "../../img/background/registerBackgroundMobile@2x.jpg";
+import bgImgMobile3x from "../../img/background/registerBackgroundMobile@3x.jpg";
 import bgImgTablet from "../../img/background/registerBackgroundTablet.jpg";
 import bgImgTablet2x from "../../img/background/registerBackgroundTablet@2x.jpg";
+import bgImgTablet3x from "../../img/background/registerBackgroundTablet@3x.jpg";
 import bgImgDesktop from "../../img/background/loginBackgroundDesktop.jpg";
 import bgImgDesktop2x from "../../img/background/loginBackgroundDesktop@2x.jpg";
-import { FeaturesList } from "../../components/FeaturesList/FeaturesList";
+import bgImgDesktop3x from "../../img/background/loginBackgroundDesktop@3x.jpg";
 
 export const PageContainer = styled.div`
   margin: 0 auto;
-  max-width: 320px;
-
-  @media ${device.tablet} {
-    max-width: 768px;
-  }
 
   @media ${device.desktop} {
-    max-width: 1280px;
     display: flex;
+    justify-content: center;
   }
 `;
 
 export const RegisterSection = styled.section`
+  width: 100%;
   background-color: rgba(9, 30, 63, 0.8);
   background-image: linear-gradient(
       to right,
@@ -34,7 +33,6 @@ export const RegisterSection = styled.section`
     url(${bgImgMobile});
   background-position: center -60px;
   background-repeat: repeat-y;
-  background-size: cover;
 
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
@@ -45,6 +43,28 @@ export const RegisterSection = styled.section`
         rgba(9, 30, 63, 0.8)
       ),
       url(${bgImgMobile2x});
+  }
+
+  @media screen and (min-width: 321px) {
+    background-size: cover;
+    background-image: linear-gradient(
+        to right,
+        rgba(9, 30, 63, 0.8),
+        rgba(9, 30, 63, 0.8)
+      ),
+      url(${bgImgMobile2x});
+
+    @media (min-device-pixel-ratio: 2),
+      (-webkit-min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: linear-gradient(
+          to right,
+          rgba(9, 30, 63, 0.8),
+          rgba(9, 30, 63, 0.8)
+        ),
+        url(${bgImgMobile3x});
+    }
   }
 
   @media ${device.tablet} {
@@ -67,7 +87,31 @@ export const RegisterSection = styled.section`
     }
   }
 
+  @media screen and (min-width: 769px) {
+    background-size: cover;
+    background-image: linear-gradient(
+        to right,
+        rgba(9, 30, 63, 0.8),
+        rgba(9, 30, 63, 0.8)
+      ),
+      url(${bgImgTablet2x});
+
+    @media (min-device-pixel-ratio: 2),
+      (-webkit-min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: linear-gradient(
+          to right,
+          rgba(9, 30, 63, 0.8),
+          rgba(9, 30, 63, 0.8)
+        ),
+        url(${bgImgTablet3x});
+    }
+  }
+
   @media ${device.desktop} {
+    width: 43%;
+    flex-shrink: 0;
     background-image: linear-gradient(
         to right,
         rgba(9, 30, 63, 0.8),
@@ -86,9 +130,35 @@ export const RegisterSection = styled.section`
         url(${bgImgDesktop2x});
     }
   }
+
+  @media screen and (min-width: 1281px) {
+    width: 43%;
+    background-size: cover;
+    background-image: linear-gradient(
+        to right,
+        rgba(9, 30, 63, 0.8),
+        rgba(9, 30, 63, 0.8)
+      ),
+      url(${bgImgDesktop2x});
+
+    @media (min-device-pixel-ratio: 2),
+      (-webkit-min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: linear-gradient(
+          to right,
+          rgba(9, 30, 63, 0.8),
+          rgba(9, 30, 63, 0.8)
+        ),
+        url(${bgImgDesktop3x});
+    }
+  }
 `;
 
 export const Container = styled.div`
+  max-width: 320px;
+  margin: 0 auto;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,6 +166,7 @@ export const Container = styled.div`
   padding: 32px 20px 44px;
 
   @media ${device.tablet} {
+    max-width: 768px;
     padding: 65px 185px;
   }
 
@@ -171,7 +242,15 @@ export const LinkStyled = styled.span`
   }
 `;
 
+export const InfoSection = styled.section`
+  width: 100%;
+`;
+
 export const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   padding: 64px 145px 88px;
 
   @media ${device.desktop} {
