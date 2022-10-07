@@ -56,7 +56,7 @@ const currentUser = createAsyncThunk(
       const { data } = await axios.get("/api/auth/current");
       return { ...data, token: userToken };
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );

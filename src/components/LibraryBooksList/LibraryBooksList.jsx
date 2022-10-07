@@ -17,15 +17,25 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
   const [isSummaryModal, setIsSummaryModal] = useState(false);
 
   let currentIdBooksSummary = null;
-
-  const handleMyTraining = () => {
-    navigate("/training", { replace: true });
+  
+   
+     const handleMyTraining = () => {
+      
+    const readingNow = data?.result.filter((e) => e.status === "readingNow");
+    if (readingNow.length > 0) {
+      navigate("/statistics");
+      
+    }
+    if (readingNow.length < 1) {
+      navigate("/training");
+    }
   };
 
   const closeSummaryModal = () => {
     setIsSummaryModal(false);
   };
-  console.log(data.result);
+
+ 
 
   return (
     <>
