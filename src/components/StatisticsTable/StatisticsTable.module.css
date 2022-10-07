@@ -86,6 +86,9 @@
   }
 }
 @media (min-width: 1280px) {
+  .section {
+    width: 288px;
+  }
   .header:before {
     content: "";
     display: block;
