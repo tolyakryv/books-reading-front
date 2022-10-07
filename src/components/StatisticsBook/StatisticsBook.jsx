@@ -80,8 +80,8 @@ const StatisticsBook = () => {
   };
 
   const bookGoingToRead = () => {
-    if (data.result.some((book) => book.status === "goingToRead")) {
-      return data.result.filter((book) => book.status === "goingToRead");
+    if (data.result.some((book) => book.status === "readingNow")) {
+      return data.result.filter((book) => book.status === "readingNow");
     }
   };
   return (

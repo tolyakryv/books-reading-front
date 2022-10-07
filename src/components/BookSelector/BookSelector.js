@@ -1,20 +1,47 @@
-
-import React from 'react'
-import Select from 'react-select'
-import s from "../BookSelector/BookSelector.module.css"
-
+import React from "react";
+import Select from "react-select";
+import s from "../BookSelector/BookSelector.module.css";
 
 
+export default function BookSelector({
+  placeholder = "Обрати книгу",
+  onClickHandle,
+  onChangeHandle,
+  book,
+  statusInput
+}) 
 
-export default function BookSelector({placeholder = "Обрати книгу", onClickHandle, onChangeHandle, book}){
+
+{     
+
+      const customStyles = {
+            input: () => {
+                  const visibility = "hidden"
+                  return {visibility}
+                },
       
+            singleValue:() => {
       
-        return (
-        <div className={s.wrapper}>
-          <Select className={s.selector} options = {book} onChange = {onChangeHandle}  placeholder = {placeholder}/>
-          <button className={s.button} type = "button" onClick={onClickHandle}><span className={s.text}>Додати</span></button>
-</div>
-          
-   
-      );
+        const color = (statusInput === true) ? "white" : "black"; 
+        const justifyContent = "center"
+    
+        return { color, justifyContent };
+      }}
+  return (
+    <div className={s.wrapper}>
+      <Select
+        className={s.selector}
+        options={book}
+        onChange={onChangeHandle}
+        placeholder={placeholder}  
+        styles={customStyles}
+        
+       
+        
+      />
+      <button className={s.button} type="button" onClick={onClickHandle}>
+        <span className={s.text}>Додати</span>
+      </button>
+    </div>
+  );
 }
