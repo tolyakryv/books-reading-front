@@ -4,7 +4,7 @@ import getEndOfYear from "../getEndOfYear";
 import s from "./ShowTimer.module.css";
 
 const startTime = new Date("2022-09-28T19:39:30").getTime();
-const endTime = new Date("2022-09-28T19:39:35").getTime();
+const endTime = new Date("2022-09-28T19:39:45").getTime();
 const now = Date.now();
 // const now = new Date("2022-12-31T23:59:50").getTime();
 // const endOfYear = new Date(2022, 11, 32);
