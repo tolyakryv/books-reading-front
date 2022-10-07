@@ -15,11 +15,9 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
   const { data = [] } = useGetAllBookQuery();
   const navigate = useNavigate();
   const [isSummaryModal, setIsSummaryModal] = useState(false);
+  const [currentIdBooksSummary, setCurrentIdBooksSummary] = useState(null);
 
-  let currentIdBooksSummary = null;
-  
-   
-     const handleMyTraining = () => {
+  const handleMyTraining = () => {
       
     const readingNow = data?.result.filter((e) => e.status === "readingNow");
     if (readingNow.length > 0) {
@@ -89,7 +87,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                               type="button"
                               className={style.buttonSummary}
                               onClick={() => {
-                                currentIdBooksSummary = book._id;
+                                setCurrentIdBooksSummary(book._id);
                                 setIsSummaryModal(true);
                               }}
                             >
@@ -249,7 +247,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                             type="button"
                             className={style.alreadyReadBookButtonSummary}
                             onClick={() => {
-                              currentIdBooksSummary = book._id;
+                              setCurrentIdBooksSummary(book._id);
                               setIsSummaryModal(true);
                             }}
                           >
@@ -389,7 +387,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                             type="button"
                             className={style.alreadyReadBookButtonSummary}
                             onClick={() => {
-                              currentIdBooksSummary = book._id;
+                              setCurrentIdBooksSummary(book._id);
                               setIsSummaryModal(true);
                             }}
                           >
