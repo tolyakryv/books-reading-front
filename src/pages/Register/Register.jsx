@@ -18,6 +18,7 @@ import {
   Title,
   LoginLink,
   FeaturesListStyled,
+  InfoSection,
 } from "./Register.styled.js";
 
 const Register = () => {
@@ -129,27 +130,29 @@ const Register = () => {
         </Container>
       </RegisterSection>
       {isNotMobile && (
-        <section>
+        <InfoSection>
           <InfoContainer>
             <Title>Books Reading</Title>
-            <FeaturesListStyled
-              title="Допоможе вам"
-              features={[
-                "Швидше сформулювати свою ціль і розпочати читати",
-                "Пропорційно розподілити навантаження на кожний день",
-                "Відстежувати особистий успіх",
-              ]}
-            />
-            <FeaturesListStyled
-              title="Також ви зможете "
-              features={[
-                "Формувати особисту думку незалежну від інших",
-                "Підвищити свої професійні якості опираючись на нові знання",
-                "Стати цікавим співрозмовником",
-              ]}
-            />
+            <div>
+              <FeaturesListStyled
+                title="Допоможе вам"
+                features={[
+                  "Швидше сформулювати свою ціль і розпочати читати",
+                  "Пропорційно розподілити навантаження на кожний день",
+                  "Відстежувати особистий успіх",
+                ]}
+              />
+              <FeaturesListStyled
+                title="Також ви зможете "
+                features={[
+                  "Формувати особисту думку незалежну від інших",
+                  "Підвищити свої професійні якості опираючись на нові знання",
+                  "Стати цікавим співрозмовником",
+                ]}
+              />
+            </div>
           </InfoContainer>
-        </section>
+        </InfoSection>
       )}
     </PageContainer>
   );

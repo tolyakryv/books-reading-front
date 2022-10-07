@@ -19,9 +19,9 @@ const TrainingPage = lazy(() => import("./pages/Training"));
 function App() {
   useGetUser();
 
-  const isLoading = useSelector(userSelector.getIsLoading);
+  const isFetchingUser = useSelector(userSelector.getIsFetchingUser);
 
-  if (!isLoading)
+  if (!isFetchingUser) {
     return (
       <>
         <Routes>
@@ -88,6 +88,7 @@ function App() {
         <ToastContainer autoClose={3000} />
       </>
     );
+  }
 }
 
 export default App;
