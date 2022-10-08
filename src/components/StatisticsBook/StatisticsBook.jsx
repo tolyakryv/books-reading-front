@@ -1,30 +1,105 @@
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles//ag-theme-alpine.css";
 import "ag-grid-community/styles/ag-grid.css";
+import { useState, useEffect } from "react";
 // import { HandySvg } from "handy-svg";
 import StatisticBookMobile from "../StatisticBookMobile/StatisticBookMobile";
 import Media from "react-media";
 import { useGetAllBookQuery } from "../../services/booksAPI";
-import { useUpdateStatusBookMutation } from "../../services/trainingAPI";
+import { useGetTrainQuery } from "../../services/trainingAPI";
+import {
+  useUpdateStatusBookMutation,
+  useDelTrainMutation,
+} from "../../services/trainingAPI";
 import s from "./StatisticsBook.module.css";
 
 const StatisticsBook = () => {
-  const { data } = useGetAllBookQuery();
+  // const { data: res } = useGetAllBookQuery();
+  const { data = [] } = useGetTrainQuery();
+  const [delTrain] = useDelTrainMutation();
   const [updateStatusBook] = useUpdateStatusBookMutation();
+  // const [relevantBook, setRelevantBook] = useState([]);
+  // const relevantBook = data.book.filter(
+  //   (item) => item?.status === "readingNow"
+  // );
+  // const [tableData, setTableData] = useState(relevantBook);
+  const [readingBook, setReadingBook] = useState([]);
+  console.log(data);
+
+  // const bookGoingToRead = () => {
+  //   // if (data.result.some((book) => book.status === "alreadyRead")) {
+  //   return data.result.filter((book) => book.status === "readingNow");
+  //   // }
+  // };
+
+  useEffect(() => {
+    if (data) {
+      const relevantBook = data.book.filter(
+        (item) => item?.status === "readingNow"
+      );
+      setReadingBook(relevantBook);
+      console.log(relevantBook);
+    }
+  }, [data]);
+
+  // useEffect(() => {
+  //   const bookGoingToRead = async () => {
+  //     try {
+  //       await delTrain();
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   };
+  //   if (data.book.filter((item) => item?.status !== "readingNow")) {
+  //     console.log("readingBook");
+  //     bookGoingToRead();
+  //     // console.log(data);
+  //   }
+  // }, [data.book, delTrain]);
+
+  const checkBoxRenderer = (e) => {
+    return (
+      <input
+        type="checkbox"
+        onChange={() => {
+          onCellClicked(e);
+        }}
+      />
+    );
+  };
+
+  const onCellClicked = async (e) => {
+    // console.log("Cell was clicked");
+    // console.log(e.data._id);
+    try {
+      const bookId = e.data._id;
+      console.log("bookId", bookId);
+
+      // console.log(bookId);
+      const status = "alreadyRead";
+      await updateStatusBook({
+        bookId,
+        status,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const columnDefs = [
     {
       headerName: "Назва книги",
       field: "title",
       width: 250,
       height: 70,
-      checkboxSelection: true,
+      // checkboxSelection: true,
       cellStyle: {
         fontSize: "14px",
         fontWeight: 500,
         lineHeight: "17px",
         color: "#242A37",
       },
-      cellClicked: true,
+      cellRenderer: checkBoxRenderer,
     },
     {
       headerName: "Aвтор",
@@ -43,35 +118,19 @@ const StatisticsBook = () => {
     },
   ];
 
-  const onCellClicked = async (e) => {
-    console.log("Cell was clicked");
-    console.log(e.data);
-    try {
-      const bookId = e.data._id;
-      console.log(bookId);
-      const status = "alreadyRead";
-      await updateStatusBook({
-        bookId,
-        status,
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  function RowSelected(event) {
-    if (event.node.isSelected()) {
-      console.log("deselected");
-      event.node.setSelected(false, false);
-    } else {
-      event.node.setSelected(true);
-      console.log("selected, add");
-    }
-  }
+  // function RowSelected(event) {
+  //   if (event.node.isSelected()) {
+  //     console.log("deselected");
+  //     event.node.setSelected(false, false);
+  //   } else {
+  //     event.node.setSelected(true);
+  //     console.log("selected, add");
+  //   }
+  // }
 
   var gridOptions = {
     columnDefs: columnDefs,
-    onRowClicked: RowSelected,
+    // onRowClicked: RowSelected,
     suppressRowClickSelection: true,
     enableRangeSelection: true,
     enableCellChangeFlash: true,
@@ -79,11 +138,6 @@ const StatisticsBook = () => {
     rowData: null,
   };
 
-  const bookGoingToRead = () => {
-    // if (data.result.some((book) => book.status === "alreadyRead")) {
-    return data.result.filter((book) => book.status === "readingNow");
-    // }
-  };
   return (
     <section className={s.section}>
       <div className={s.container}>
@@ -91,7 +145,7 @@ const StatisticsBook = () => {
           query="(max-width: 767px)"
           render={() => (
             <StatisticBookMobile
-              data={bookGoingToRead()}
+              data={readingBook}
               cellItem={
                 <div>
                   {/* {" "} */}
@@ -117,9 +171,9 @@ const StatisticsBook = () => {
               <AgGridReact
                 className={s.grid}
                 // headerHeight={headerHeight}
-                rowData={bookGoingToRead()}
+                rowData={readingBook}
                 columnDefs={columnDefs}
-                onCellClicked={onCellClicked}
+                onCheckBoxClicked={onCellClicked}
                 gridOptions={gridOptions}
               />
             )}

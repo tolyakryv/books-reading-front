@@ -135,7 +135,7 @@ const StatisticsTable = () => {
           <div
             className={s.ag}
             style={{
-              height: "138px",
+              height: "130px",
               width: "100%",
               margin: "0",
             }}
