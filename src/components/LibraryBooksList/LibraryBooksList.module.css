@@ -6,13 +6,13 @@
 
 @media (min-width: 768px) and (max-width: 1279px) {
   .container {
-    padding: 0 32px;
+    padding: 20px 32px 0 32px;
     width: 768px;
   }
 }
 @media (min-width: 1280px) {
   .container {
-    padding: 0 16px;
+    padding: 20px 16px 0 16px;
     width: 1280px;
   }
 }
@@ -42,9 +42,17 @@
   background: #ffffff;
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
   margin: 0 auto;
+  overflow-wrap: break-word;
+}
+
+.box {
+  display: block;
+  width: 191px;
+  overflow-wrap: break-word;
 }
 
 .bookName {
+  display: block;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -53,6 +61,7 @@
   color: #242a37;
   margin: 0;
   margin-bottom: 12px;
+  overflow-wrap: break-word;
 }
 
 .icon {
@@ -63,6 +72,7 @@
   display: flex;
   margin: 0;
   align-items: center;
+  overflow-wrap: break-word;
 }
 
 .description:not(:last-child) {
@@ -81,6 +91,7 @@
 }
 
 .property {
+  display: block;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -89,7 +100,8 @@
   color: #242a37;
   margin: 0;
   height: auto;
-  width: auto;
+  width: 115px;
+  overflow-wrap: break-word;
 }
 
 .buttonMore {
@@ -212,42 +224,52 @@
 }
 
 .bookTitle {
-  width: 295px;
+  width: 255px;
+  overflow-wrap: break-word;
+  margin-right: 40px;
 }
 
 @media (min-width: 1280px) {
   .bookTitle {
-    width: 570px;
+    width: 500px;
+    margin-right: 70px;
   }
 }
 
 .alreadyReadBookTitle {
-  width: 145px;
+  width: 125px;
+  overflow-wrap: break-word;
+  margin-right: 20px;
 }
 
 @media (min-width: 1280px) {
   .alreadyReadBookTitle {
-    width: 290px;
+    width: 260px;
   }
 }
 
 .bookAuthor {
-  width: 205px;
+  width: 170px;
+  margin-right: 40px;
+  overflow-wrap: break-word;
 }
 
 @media (min-width: 1280px) {
   .bookAuthor {
-    width: 370px;
+    width: 330px;
+    margin-right: 45px;
   }
 }
 
 .alreadyReadBookAuthor {
-  width: 125px;
+  width: 87px;
+  overflow-wrap: break-word;
+  margin-right: 35px;
 }
 
 @media (min-width: 1280px) {
   .alreadyReadBookAuthor {
-    width: 260px;
+    width: 235px;
   }
 }
 
@@ -314,7 +336,7 @@
 }
 
 @media (min-width: 1280px) {
-  .alreadyReadBookButtonSummary  {
+  .alreadyReadBookButtonSummary {
     width: 130px;
   }
 }

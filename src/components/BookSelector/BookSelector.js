@@ -13,7 +13,8 @@ export default function BookSelector({
   const customStyles = {
     input: () => {
       const visibility = "hidden";
-      return { visibility };
+      const display = "none";
+      return { visibility, display };
     },
 
     singleValue: () => {

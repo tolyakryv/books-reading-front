@@ -9,6 +9,7 @@ import { Rating } from "@mui/material";
 import { LibraryModalAddRating } from "../SummaryModal/SummaryModal";
 import { useState } from "react";
 import { LibraryModalOnFirstUse } from "../LibraryModalOnFirstUse/LibraryModalOnFirstUse";
+import EllipsisText from "react-ellipsis-text";
 
 export const LibraryBooksList = ({ getFormAddBook, data }) => {
 
@@ -50,7 +51,7 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                               height="17px"
                             />
                           </div>
-                          <div>
+                          <div className={style.box}>
                             <h2 className={style.bookName}>{book.title}</h2>
                             <dl className={style.description}>
                               <dt className={style.key}>Автор:</dt>
@@ -111,7 +112,7 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                               height="17px"
                             />
                           </div>
-                          <div>
+                          <div className={style.box}>
                             <h2 className={style.bookName}>{book.title}</h2>
                             <dl className={style.description}>
                               <dt className={style.key}>Автор:</dt>
@@ -152,7 +153,7 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                               height="17px"
                             />
                           </div>
-                          <div>
+                          <div className={style.box}>
                             <h2 className={style.bookName}>{book.title}</h2>
                             <dl className={style.description}>
                               <dt className={style.key}>Автор:</dt>
@@ -220,9 +221,11 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                               height="17px"
                             />
                           </div>
-                          <p className={style.alreadyReadBookTitle}>
-                            {book.title}
-                          </p>
+                          <EllipsisText
+                            className={style.alreadyReadBookTitle}
+                            text={book.title}
+                            length={"32"}
+                          />
                           <p className={style.alreadyReadBookAuthor}>
                             {book.author}
                           </p>
@@ -360,9 +363,11 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                               height="17px"
                             />
                           </div>
-                          <p className={style.alreadyReadBookTitle}>
-                            {book.title}
-                          </p>
+                          <EllipsisText
+                            className={style.alreadyReadBookTitle}
+                            text={book.title}
+                            length={"32"}
+                          />
                           <p className={style.alreadyReadBookAuthor}>
                             {book.author}
                           </p>
