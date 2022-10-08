@@ -61,16 +61,19 @@ const StatisticsPage = () => {
           (book) => book.status === "readingNow"
         );
 
-        let countReadPages = statistic.reduce(
+        const countReadPages = statistic.reduce(
           (acc, book) => acc + book.amountPages,
           0
         );
 
-        setRecentlyReadPages(countReadPages - countPagesOfAlreadyReadBooks);
+        const countRecentlyPages =
+          countReadPages - countPagesOfAlreadyReadBooks;
+
+        setRecentlyReadPages(countRecentlyPages);
 
         const firstBook = ReadingNowBooks[0];
 
-        if (recentlyReadPages < firstBook.amountPages) return;
+        if (countRecentlyPages < firstBook.amountPages) return;
 
         const bookId = firstBook._id;
         const status = "alreadyRead";
