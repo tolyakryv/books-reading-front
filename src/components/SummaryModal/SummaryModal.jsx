@@ -1,18 +1,19 @@
 import s from "./SummaryModal.module.css";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
 import { useFormik } from "formik";
-import * as booksAPI from "../../services/booksAPI";
+// import * as booksAPI from "../../services/booksAPI";
 import { Rating } from "@mui/material";
+import { useDispatch } from "react-redux";
+import operation from "../../redux/operation/books-operation";
 
 export const LibraryModalAddRating = ({ closeSummaryModal, id }) => {
-  const [updateBook] = booksAPI.useUpdateBookMutation();
+  // const [updateBook] = booksAPI.useUpdateBookMutation();
+  const dispatch = useDispatch();
 
-  const handleSubmit = async (data, actions) => {
-    
+  const handleSubmit = (data, actions) => {
     if (data) {
       closeSummaryModal();
-      console.log(data);
-      await updateBook(data).unwrap();
+      dispatch(operation.addSummary(data));
     }
   };
 
