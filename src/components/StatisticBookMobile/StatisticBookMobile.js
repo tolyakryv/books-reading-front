@@ -31,12 +31,17 @@ const StatisticBookMobile = () => {
     }
   };
 
-  if (data.length === 0) {
+  if (data?.length === 0) {
     return (
       <div>
         <div className={s.wrapper}>
           <div>
-            <input type="checkbox" id="book" name="book" className={s.myinput}></input>
+            <input
+              type="checkbox"
+              id="book"
+              name="book"
+              className={s.myinput}
+            ></input>
           </div>
           <div className={s.bigColumn}>
             <div className={s.title}>...</div>
@@ -75,7 +80,9 @@ const StatisticBookMobile = () => {
                 name="book"
                 onChange={() => handleChange(e._id)}
               ></input>
-               <label for={e._id}><span></span></label>
+              <label for={e._id}>
+                <span></span>
+              </label>
             </div>
             <div className={s.bigColumn}>
               <div className={s.title}>{e.title}</div>

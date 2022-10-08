@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import transformMSTime from "../components/Timer/transformMSTime";
 
 const ONE_SECOND = 1000;
 
-const useCountdown = (startTime, endTime) => {
+const useCountdown = (startTime, endTime, isCountingStatus = true) => {
   const timeLeft = endTime - startTime;
   const [countdown, setCountdown] = useState(timeLeft);
-  const [isCounting] = useState(true);
+  const [isCounting] = useState(isCountingStatus);
+
   useEffect(() => {
     const interval = setInterval(() => {
       isCounting &&
@@ -17,7 +17,7 @@ const useCountdown = (startTime, endTime) => {
 
     return () => clearInterval(interval);
   }, [countdown, isCounting]);
-  return transformMSTime(countdown);
+  return countdown;
 };
 
 export default useCountdown;
