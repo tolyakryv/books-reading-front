@@ -4,10 +4,21 @@ import { LibraryBooksList } from "../../components/LibraryBooksList/LibraryBooks
 import { FormAddBook } from "../../components/FormAddBook/FormAddBook.jsx";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents.js";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import operation from "../../redux/operation/books-operation";
+import { useEffect } from "react";
 
 const LibraryPage = () => {
-  const { data = [] } = useGetAllBookQuery();
+  const addBook = useSelector((state) => state.books.addBook);
+  const books = useSelector((state) => state.books.books);
+  console.log(books);
+  const dispatch = useDispatch();
+
   const [formAddBook, setFormAddBook] = useState(false);
+
+  useEffect(() => {
+    dispatch(operation.getBooks());
+  }, [dispatch, addBook]);
 
   const getFormAddBook = () => {
     setFormAddBook(!formAddBook);
@@ -17,31 +28,28 @@ const LibraryPage = () => {
     <>
       <Mobile>
         {formAddBook ? (
-          <FormAddBook getFormAddBook={getFormAddBook} />
+          <FormAddBook data={books} getFormAddBook={getFormAddBook} />
         ) : (
           <>
-            {data.result === undefined || data.result.length === 0 ? (
+            {books === undefined || books.length === 0 ? (
               <LibraryModalOnFirstUse getFormAddBook={getFormAddBook} />
             ) : (
-              <LibraryBooksList getFormAddBook={getFormAddBook} />
+              <LibraryBooksList data={books} getFormAddBook={getFormAddBook} />
             )}
           </>
         )}
       </Mobile>
       <Tablet>
-        <FormAddBook />
-        {data.result === undefined || data.result.length === 0 ? (
-          <LibraryModalOnFirstUse />
-        ) : (
-          <LibraryBooksList />
-        )}
+        <FormAddBook data={books} />
+
+        <LibraryBooksList data={books} />
       </Tablet>
       <Desktop>
-        <FormAddBook />
-        {data.result === undefined || data.result.length === 0 ? (
+        <FormAddBook data={books} />
+        {books === undefined || books.length === 0 ? (
           <LibraryModalOnFirstUse />
         ) : (
-          <LibraryBooksList />
+          <LibraryBooksList data={books} />
         )}
       </Desktop>
     </>

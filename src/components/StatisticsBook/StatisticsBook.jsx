@@ -1,15 +1,16 @@
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles//ag-theme-alpine.css";
 import "ag-grid-community/styles/ag-grid.css";
-// import { HandySvg } from "handy-svg";
 import StatisticBookMobile from "../StatisticBookMobile/StatisticBookMobile";
 import Media from "react-media";
-import { useGetAllBookQuery } from "../../services/booksAPI";
-import { useUpdateStatusBookMutation } from "../../services/trainingAPI";
+import {
+  useGetTrainQuery,
+  useUpdateStatusBookMutation,
+} from "../../services/trainingAPI";
 import s from "./StatisticsBook.module.css";
 
-const StatisticsBook = () => {
-  const { data } = useGetAllBookQuery();
+const StatisticsBook = ({ onReadBook }) => {
+  const { data } = useGetTrainQuery();
   const [updateStatusBook] = useUpdateStatusBookMutation();
   const columnDefs = [
     {
@@ -54,6 +55,7 @@ const StatisticsBook = () => {
         bookId,
         status,
       });
+      onReadBook(e.data.amountPages);
     } catch (err) {
       console.error(err);
     }
@@ -81,7 +83,9 @@ const StatisticsBook = () => {
 
   const bookGoingToRead = () => {
     // if (data.result.some((book) => book.status === "alreadyRead")) {
-    return data.result.filter((book) => book.status === "readingNow");
+    return data?.book.filter(
+      (book) => book.status === "readingNow" || book.status === "alreadyRead"
+    );
     // }
   };
   return (
