@@ -1,13 +1,43 @@
-import IconDelete from "../../img/delete.svg";
-import { HandySvg } from "handy-svg";
 import s from "../StatisticBookMobile/StatisticBookMobile.module.css";
+import { useUpdateStatusBookMutation } from "../../services/trainingAPI";
+import { useGetAllBookQuery } from "../../services/booksAPI";
 
-const StatisticBookMobile = ({ data, handleDelete, cellItem }) => {
+const StatisticBookMobile = () => {
+  const [updateStatusBook] = useUpdateStatusBookMutation();
+  const { data } = useGetAllBookQuery();
+  let bookGoingToRead = [];
+  if (data) {
+    bookGoingToRead = data.result.filter(
+      (book) => book.status === "readingNow"
+    );
+  }
+
+  console.log(bookGoingToRead);
+
+  const handleChange = async (id) => {
+    const chbox = document.getElementById(id);
+
+    if (chbox.checked) {
+      try {
+        const bookId = id;
+        const status = "alreadyRead";
+        await updateStatusBook({
+          bookId,
+          status,
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
+
   if (data.length === 0) {
     return (
       <div>
         <div className={s.wrapper}>
-          <div>{cellItem}</div>
+          <div>
+            <input type="checkbox" id="book" name="book" className={s.myinput}></input>
+          </div>
           <div className={s.bigColumn}>
             <div className={s.title}>...</div>
             <div className={s.row}>
@@ -29,22 +59,24 @@ const StatisticBookMobile = ({ data, handleDelete, cellItem }) => {
               </div>
             </div>
           </div>
-          <div>
-            {" "}
-            <button className={s.button} type="button">
-              {" "}
-              <HandySvg src={IconDelete} className={s.svg} />
-            </button>
-          </div>
         </div>
       </div>
     );
   } else {
     return (
       <div>
-        {data.map((e) => (
+        {bookGoingToRead.map((e) => (
           <div className={s.wrapper}>
-            <div>{cellItem}</div>
+            <div>
+              <input
+                type="checkbox"
+                className={s.myinput}
+                id={e._id}
+                name="book"
+                onChange={() => handleChange(e._id)}
+              ></input>
+               <label for={e._id}><span></span></label>
+            </div>
             <div className={s.bigColumn}>
               <div className={s.title}>{e.title}</div>
               <div className={s.row}>
@@ -65,17 +97,6 @@ const StatisticBookMobile = ({ data, handleDelete, cellItem }) => {
                   <div className={s.cell}>{e.amountPages}</div>
                 </div>
               </div>
-            </div>
-            <div>
-              {" "}
-              <button
-                className={s.button}
-                type="button"
-                onClick={() => handleDelete(e._id)}
-              >
-                {/* {" "} */}
-                {/* <HandySvg src={IconDelete} className={s.svg} /> */}
-              </button>
             </div>
           </div>
         ))}
