@@ -107,7 +107,7 @@
 @media screen and (min-width: 1280px) {
   .chartSectionWrapper {
     width: 928px;
-    margin-right: 32px;
+    margin: 0 32px 0 0;
   }
 
   .chartWrapper {

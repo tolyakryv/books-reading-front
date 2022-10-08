@@ -20,6 +20,9 @@
     align-items: flex-end;
     margin-bottom: 39px;
   }
+  .wrapperRow:last-child {
+    align-items: flex-start;
+  }
   .wrapperCol {
     margin-right: 32px;
   }

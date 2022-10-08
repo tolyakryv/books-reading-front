@@ -2,23 +2,18 @@ import s from "./SummaryModal.module.css";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
 import { useFormik } from "formik";
 import * as booksAPI from "../../services/booksAPI";
-// import orangeStar from "./../../img/orange star.svg";
-// import greyStar from "./../../img/grey star.svg";
 import { Rating } from "@mui/material";
-// import { useState } from "react";
-// import TextField from "@mui/material/TextField";
 
 export const LibraryModalAddRating = ({ closeSummaryModal, id }) => {
   const [updateBook] = booksAPI.useUpdateBookMutation();
 
   const handleSubmit = async (data, actions) => {
-    console.log(data);
+    
     if (data) {
+      closeSummaryModal();
       console.log(data);
       await updateBook(data).unwrap();
-      actions.resetForm();
     }
-    closeSummaryModal();
   };
 
   const formik = useFormik({
@@ -30,6 +25,7 @@ export const LibraryModalAddRating = ({ closeSummaryModal, id }) => {
 
     onSubmit: handleSubmit,
   });
+
   return (
     <>
       <Mobile>
@@ -45,7 +41,6 @@ export const LibraryModalAddRating = ({ closeSummaryModal, id }) => {
                 onChange={formik.handleChange}
               />
               <p className={s.text_resume}>Резюме</p>
-              {/* <TextField className={s.TextField} placeholder="..." maxRows={7} /> */}
               <textarea
                 className={s.TextField}
                 values={formik.values.resume}
@@ -84,7 +79,6 @@ export const LibraryModalAddRating = ({ closeSummaryModal, id }) => {
                 onChange={formik.handleChange}
               />
               <p className={s.text_resume}>Резюме</p>
-              {/* <TextField className={s.TextField} placeholder="..." maxRows={7} /> */}
               <textarea
                 className={s.TextField}
                 values={formik.values.resume}
@@ -123,7 +117,6 @@ export const LibraryModalAddRating = ({ closeSummaryModal, id }) => {
                 onChange={formik.handleChange}
               />
               <p className={s.text_resume}>Резюме</p>
-              {/* <TextField className={s.TextField} placeholder="..." maxRows={7} /> */}
               <textarea
                 className={s.TextField}
                 values={formik.values.resume}

@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { HandySvg } from "handy-svg";
+import styled from "styled-components";
 import iconLibrary from "../../img/new-icons-library.svg";
-import iconTraining from "../../img/icon library.svg";
+import iconTraining from "../../img/black-icon-library.svg";
 import style from "./Header.module.css";
 import { LogoutModal } from "../LogoutModal/LogoutModal";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
@@ -9,6 +10,14 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { userSelector } from "../../redux/selector/user-selector";
 import { Avatar } from "@mui/material";
+
+const StyledLink = styled(NavLink)`
+  fill: #a6abb9;
+
+  &.active {
+    fill: #ff6b08;
+  }
+`;
 
 const Header = () => {
   const userName = useSelector(userSelector.getUserName);
@@ -24,23 +33,18 @@ const Header = () => {
   };
 
   return (
-    <>
+    <div className={style.container}>
       <Mobile>
         <div className={style.header}>
           {isLogin ? (
             <>
               <p className={style.logoBeforeLogin}>BR</p>
-              <Link to="/" className={style.iconLibrary}>
-                <HandySvg
-                  src={iconLibrary}
-                  width="22px"
-                  height="20px"
-                  fill="#A6ABB9"
-                />
-              </Link>
-              <Link to="/statistics" className={style.iconHome}>
+              <StyledLink className={style.iconLibrary} to="/" end>
+                <HandySvg src={iconLibrary} width="22px" height="20px" />
+              </StyledLink>
+              <StyledLink className={style.iconHome} to="/statistics">
                 <HandySvg src={iconTraining} width="22px" height="17px" />
-              </Link>
+              </StyledLink>
               <Avatar
                 className={style.avatar}
                 sx={{
@@ -82,17 +86,12 @@ const Header = () => {
                 {getFirstLetterOfName(userName)}
               </Avatar>
               <p className={style.userName}>{userName}</p>
-              <Link to="/" className={style.iconLibrary}>
-                <HandySvg
-                  src={iconLibrary}
-                  width="22"
-                  height="20px"
-                  fill="#A6ABB9"
-                />
-              </Link>
-              <Link to="/training" className={style.iconHome}>
-                <HandySvg src={iconTraining} width="22" height="17" />
-              </Link>
+              <StyledLink className={style.iconLibrary} to="/" end>
+                <HandySvg src={iconLibrary} width="22px" height="20px" />
+              </StyledLink>
+              <StyledLink className={style.iconHome} to="/statistics">
+                <HandySvg src={iconTraining} width="22px" height="17px" />
+              </StyledLink>
               <button
                 className={style.logout}
                 type="button"
@@ -123,17 +122,12 @@ const Header = () => {
                 {getFirstLetterOfName(userName)}
               </Avatar>
               <p className={style.userName}>{userName}</p>
-              <Link to="/" className={style.iconLibrary}>
-                <HandySvg
-                  src={iconLibrary}
-                  width="22"
-                  height="20px"
-                  fill="#A6ABB9"
-                />
-              </Link>
-              <Link to="/training" className={style.iconHome}>
-                <HandySvg src={iconTraining} width="22" height="17" />
-              </Link>
+              <StyledLink className={style.iconLibrary} to="/" end>
+                <HandySvg src={iconLibrary} width="22px" height="20px" />
+              </StyledLink>
+              <StyledLink className={style.iconHome} to="/statistics">
+                <HandySvg src={iconTraining} width="22px" height="17px" />
+              </StyledLink>
               <button
                 className={style.logout}
                 type="button"
@@ -148,7 +142,7 @@ const Header = () => {
         </div>
       </Desktop>
       {IsLogoutModal && <LogoutModal closeLogoutModal={closeLogoutModal} />}
-    </>
+    </div>
   );
 };
 

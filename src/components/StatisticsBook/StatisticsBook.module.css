@@ -1,13 +1,14 @@
 /* @import "ag-grid-community/styles//ag-theme-alpine.css"; */
 
 .section {
-  width: 320px;
+  width: 280px;
   /* padding: 20px; */
   background: var(--color-secondary-background);
   margin: 0 auto 32px;
 }
 .container {
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+  margin-top: 20px;
   padding: 20px;
 }
 
@@ -27,7 +28,7 @@
 }
 @media (min-width: 1280px) {
   .section {
-    width: 940px;
+    width: 928px;
     margin: 0 auto;
   }
 }

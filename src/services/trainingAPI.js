@@ -6,8 +6,6 @@ export const trainingAPI = createApi({
     baseUrl: "https://book-reading-08.herokuapp.com",
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
-      //   const token =
-      //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzg4MGY3NmQ3OWIzMDI4M2QyOTI0NyIsInNpZCI6IjYzM2FjYjNmOWI3YzYxMzM0MzlkZjAzMSIsImlhdCI6MTY2NDc5NzUwMywiZXhwIjoxNjY0ODA4MzAzfQ.U51QlAfflw4GUqv1yAWe1BHW_jgl_QU0hOFOTyHRzb8";
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
       }
@@ -18,6 +16,7 @@ export const trainingAPI = createApi({
   endpoints: (build) => ({
     getTrain: build.query({
       query: () => "/api/train/",
+      keepUnusedDataFor: 0,
       providesTags: ["train"],
     }),
     addTrain: build.mutation({
@@ -46,20 +45,6 @@ export const trainingAPI = createApi({
       }),
       invalidatesTags: ["train"],
     }),
-    // addBookInTrain: build.mutation({
-    //   query: ({ bookId }) => ({
-    //     url: `/api/train/${bookId}`,
-    //     method: "PATCH",
-    //   }),
-    //   invalidatesTags: ["train"],
-    // }),
-    // delBookFromTrain: build.mutation({
-    //   query: ({ bookId }) => ({
-    //     url: `/api/train/${bookId}`,
-    //     method: "DELET",
-    //   }),
-    //   invalidatesTags: ["train"],
-    // }),
     delTrain: build.mutation({
       query: () => ({
         url: "/api/train/",
@@ -79,10 +64,8 @@ export const trainingAPI = createApi({
 });
 
 export const {
-  // useAddBookInTrainMutation,
   useAddTrainMutation,
   useAddTrainStatisticMutation,
-  // useDelBookFromTrainMutation,
   useGetTrainQuery,
   useUpdateStatusBookMutation,
   useDelTrainMutation,

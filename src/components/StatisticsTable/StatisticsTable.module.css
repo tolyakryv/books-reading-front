@@ -3,10 +3,11 @@
 .container {
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
   padding: 20px;
+  margin-top: 32px;
 }
 .section {
-  width: 320px;
-  padding: 20px;
+  width: 280px;
+  /* margin-top: 32px; */
   background: var(--color-secondary-background);
   margin: 0 auto;
 }
@@ -51,6 +52,9 @@
 }
 
 @media (min-width: 768px) and (max-width: 1279px) {
+  /* .container {
+    margin-bottom: 0;
+  } */
   .form {
     display: flex;
     align-content: baseline;
@@ -88,6 +92,10 @@
 @media (min-width: 1280px) {
   .section {
     width: 288px;
+    margin: 0;
+  }
+  .container {
+    margin-top: 0;
   }
   .header:before {
     content: "";

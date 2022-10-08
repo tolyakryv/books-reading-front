@@ -1,7 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import * as booksAPI from "../../services/booksAPI";
-// import { useNavigate } from "react-router-dom";
 import { HandySvg } from "handy-svg";
 import s from "./FormAddBook.module.css";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
@@ -32,21 +31,21 @@ export const FormAddBook = ({ getFormAddBook }) => {
     title: Yup.string()
       .min(2, "Поле повинно містити більше 2 символів")
       .max(50, "не більше 50 символів")
-      .required("Необхідно заповнити поле Назва книги"),
+      .required("Обов'язкове поле"),
     author: Yup.string()
-      .max(50, "не більше 50 символів")
-      .required("Необхідно заповнити поле Автор"),
+      .max(50, "Не більше 50 символів")
+      .required("Обов'язкове поле"),
     publicDate: Yup.number()
-      .min(1900, "Рік більше 1900")
-      .max(2021, "Рік  менше 2021")
-      .integer("це ціле число")
-      .positive("число більше нуля"),
+      .integer("Це ціле число")
+      .positive("Число більше нуля")
+      .min(1900, "Рік видання мінімум 1900")
+      .max(2021, "Рік виддання максимум 2021"),
     amountPages: Yup.number()
-      .min(20)
-      .max(1500)
       .integer("кількість сторінок це ціле число")
       .positive("кількість сторінок це число більше нуля")
-      .required("кількість сторінок обов'язкове поле"),
+      .min(20, "Не менше 20 сторінок")
+      .max(700, "Не більше 700 сторінок")
+      .required("Обов'язкове поле"),
   });
 
   const [addBook] = booksAPI.useAddBookMutation();

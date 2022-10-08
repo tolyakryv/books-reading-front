@@ -18,6 +18,7 @@ import {
   LinkStyled,
   LoginSection,
   QuoteContainer,
+  QuoteSection,
 } from "./Login.styled.js";
 import { getRandomInt } from "../../helpers/getRandomInt.js";
 import { useEffect, useState } from "react";
@@ -99,11 +100,11 @@ const Login = () => {
           </Form>
         </Container>
       </LoginSection>
-      <section>
+      <QuoteSection>
         <QuoteContainer>
           <Quote text={quote?.text} author={quote?.author} />
         </QuoteContainer>
-      </section>
+      </QuoteSection>
     </PageContainer>
   );
 };

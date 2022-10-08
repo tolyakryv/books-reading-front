@@ -10,21 +10,18 @@ import { useGetAllBookQuery } from "../../services/booksAPI";
 import { LibraryModalAddRating } from "../SummaryModal/SummaryModal";
 import { useState } from "react";
 import { LibraryModalOnFirstUse } from "../LibraryModalOnFirstUse/LibraryModalOnFirstUse";
+import EllipsisText from "react-ellipsis-text";
 
 export const LibraryBooksList = ({ getFormAddBook }) => {
   const { data = [] } = useGetAllBookQuery();
   const navigate = useNavigate();
   const [isSummaryModal, setIsSummaryModal] = useState(false);
+  const [currentIdBooksSummary, setCurrentIdBooksSummary] = useState(null);
 
-  let currentIdBooksSummary = null;
-  
-   
-     const handleMyTraining = () => {
-      
+  const handleMyTraining = () => {
     const readingNow = data?.result.filter((e) => e.status === "readingNow");
     if (readingNow.length > 0) {
       navigate("/statistics");
-      
     }
     if (readingNow.length < 1) {
       navigate("/training");
@@ -34,8 +31,6 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
   const closeSummaryModal = () => {
     setIsSummaryModal(false);
   };
-
- 
 
   return (
     <>
@@ -57,7 +52,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                               height="17px"
                             />
                           </div>
-                          <div>
+                          <div className={style.box}>
                             <h2 className={style.bookName}>{book.title}</h2>
                             <dl className={style.description}>
                               <dt className={style.key}>Автор:</dt>
@@ -89,7 +84,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                               type="button"
                               className={style.buttonSummary}
                               onClick={() => {
-                                currentIdBooksSummary = book._id;
+                                setCurrentIdBooksSummary(book._id);
                                 setIsSummaryModal(true);
                               }}
                             >
@@ -118,7 +113,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                               height="17px"
                             />
                           </div>
-                          <div>
+                          <div className={style.box}>
                             <h2 className={style.bookName}>{book.title}</h2>
                             <dl className={style.description}>
                               <dt className={style.key}>Автор:</dt>
@@ -159,7 +154,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                               height="17px"
                             />
                           </div>
-                          <div>
+                          <div className={style.box}>
                             <h2 className={style.bookName}>{book.title}</h2>
                             <dl className={style.description}>
                               <dt className={style.key}>Автор:</dt>
@@ -227,9 +222,11 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                               height="17px"
                             />
                           </div>
-                          <p className={style.alreadyReadBookTitle}>
-                            {book.title}
-                          </p>
+                          <EllipsisText
+                            className={style.alreadyReadBookTitle}
+                            text={book.title}
+                            length={"32"}
+                          />
                           <p className={style.alreadyReadBookAuthor}>
                             {book.author}
                           </p>
@@ -249,7 +246,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                             type="button"
                             className={style.alreadyReadBookButtonSummary}
                             onClick={() => {
-                              currentIdBooksSummary = book._id;
+                              setCurrentIdBooksSummary(book._id);
                               setIsSummaryModal(true);
                             }}
                           >
@@ -367,9 +364,11 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                               height="17px"
                             />
                           </div>
-                          <p className={style.alreadyReadBookTitle}>
-                            {book.title}
-                          </p>
+                          <EllipsisText
+                            className={style.alreadyReadBookTitle}
+                            text={book.title}
+                            length={"32"}
+                          />
                           <p className={style.alreadyReadBookAuthor}>
                             {book.author}
                           </p>
@@ -389,7 +388,7 @@ export const LibraryBooksList = ({ getFormAddBook }) => {
                             type="button"
                             className={style.alreadyReadBookButtonSummary}
                             onClick={() => {
-                              currentIdBooksSummary = book._id;
+                              setCurrentIdBooksSummary(book._id);
                               setIsSummaryModal(true);
                             }}
                           >
