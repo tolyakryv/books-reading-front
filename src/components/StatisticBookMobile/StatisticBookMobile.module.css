@@ -48,13 +48,10 @@
     font-family: Montserrat;
     font-size: 12px;
     color:#242A37;
-    height: 25px
+    height: 30px
 }
 
 .cell{
     height: 25px;
 }
 
-.grey{
-    color: #898F9F;
-}
