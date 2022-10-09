@@ -7,7 +7,6 @@ const MyTarget = ({ className }) => {
   const [daysLeft, setDaysLeft] = useState(0);
   const [booksLeft, setBooksLeft] = useState(0);
   const { data } = useGetTrainQuery();
-  console.log("dataFromBack:", data);
 
   useEffect(() => {
     if (data) {
@@ -27,8 +26,6 @@ const MyTarget = ({ className }) => {
         (finishDate - startDate) / (1000 * 60 * 60 * 24)
       );
       setDaysLeft(daysLeft);
-      console.log("startDate:", data.startDate);
-      console.log("finishDate:", data.finishDate);
     }
   }, [data]);
 

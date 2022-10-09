@@ -1,30 +1,48 @@
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles//ag-theme-alpine.css";
 import "ag-grid-community/styles/ag-grid.css";
-// import { HandySvg } from "handy-svg";
 import StatisticBookMobile from "../StatisticBookMobile/StatisticBookMobile";
 import Media from "react-media";
-import { useGetAllBookQuery } from "../../services/booksAPI";
-import { useUpdateStatusBookMutation } from "../../services/trainingAPI";
+import {
+  useGetTrainQuery,
+  useUpdateStatusBookMutation,
+} from "../../services/trainingAPI";
 import s from "./StatisticsBook.module.css";
 
-const StatisticsBook = () => {
-  const { data } = useGetAllBookQuery();
+const StatisticsBook = ({ onReadBook, setModalWindow }) => {
+  const { data } = useGetTrainQuery();
   const [updateStatusBook] = useUpdateStatusBookMutation();
+
+  const checkBoxRenderer = (e) => {
+    return (
+      <div className={s.checkBoxCont}>
+        <input
+          type="checkbox"
+          id={e.data._id}
+          name="book"
+          checked={e.data.status === "alreadyRead"}
+          onChange={() => onCellClicked(e.data._id)}
+        ></input>
+        <label htmlFor={e.data._id}>
+          <span></span>
+        </label>
+      </div>
+    );
+  };
+
   const columnDefs = [
     {
       headerName: "Назва книги",
       field: "title",
       width: 250,
       height: 70,
-      checkboxSelection: true,
       cellStyle: {
         fontSize: "14px",
         fontWeight: 500,
         lineHeight: "17px",
         color: "#242A37",
       },
-      cellClicked: true,
+      cellRenderer: checkBoxRenderer,
     },
     {
       headerName: "Aвтор",
@@ -43,35 +61,29 @@ const StatisticsBook = () => {
     },
   ];
 
-  const onCellClicked = async (e) => {
-    console.log("Cell was clicked");
-    console.log(e.data);
-    try {
-      const bookId = e.data._id;
-      console.log(bookId);
-      const status = "alreadyRead";
-      await updateStatusBook({
-        bookId,
-        status,
-      });
-    } catch (err) {
-      console.error(err);
+  const onCellClicked = async (id) => {
+    const chbox = document.getElementById(id);
+    console.log(chbox.checked);
+    console.log(id);
+
+    if (chbox.checked) {
+      try {
+        const bookId = id;
+        const status = "alreadyRead";
+        await updateStatusBook({
+          bookId,
+          status,
+        });
+        await onReadBook(data.book.find((book) => book._id === id).amountPages);
+        // setModal(true);
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
-  function RowSelected(event) {
-    if (event.node.isSelected()) {
-      console.log("deselected");
-      event.node.setSelected(false, false);
-    } else {
-      event.node.setSelected(true);
-      console.log("selected, add");
-    }
-  }
-
   var gridOptions = {
     columnDefs: columnDefs,
-    onRowClicked: RowSelected,
     suppressRowClickSelection: true,
     enableRangeSelection: true,
     enableCellChangeFlash: true,
@@ -80,10 +92,12 @@ const StatisticsBook = () => {
   };
 
   const bookGoingToRead = () => {
-    // if (data.result.some((book) => book.status === "alreadyRead")) {
-    return data.result.filter((book) => book.status === "readingNow");
+    return data?.book.filter(
+      (book) => book.status === "readingNow" || book.status === "alreadyRead"
+    );
     // }
   };
+
   return (
     <section className={s.section}>
       <div className={s.container}>
@@ -91,14 +105,13 @@ const StatisticsBook = () => {
           query="(max-width: 767px)"
           render={() => (
             <StatisticBookMobile
+              onReadBook={onReadBook}
               data={bookGoingToRead()}
               cellItem={
                 <div>
-                  {/* {" "} */}
                   <input type="checkbox" id="book" name="book" />
                 </div>
               }
-              //   cellItem={<HandySvg src={Icon} className={s.svg_1} />}
             />
           )}
         />
@@ -116,10 +129,8 @@ const StatisticsBook = () => {
             render={() => (
               <AgGridReact
                 className={s.grid}
-                // headerHeight={headerHeight}
                 rowData={bookGoingToRead()}
                 columnDefs={columnDefs}
-                onCellClicked={onCellClicked}
                 gridOptions={gridOptions}
               />
             )}
