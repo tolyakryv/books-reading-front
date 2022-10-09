@@ -13,19 +13,19 @@ const now = Date.now();
 const endOfYear = getEndOfYear(new Date().getFullYear());
 
 const ShowTimer = ({ className }) => {
-  const [startTime, setStartTime] = useState(0);
-  const [endTime, setEndTime] = useState(0);
+  const [startTime, setStartTime] = useState();
+  const [endTime, setEndTime] = useState();
   const { data } = useGetTrainQuery();
 
   useEffect(() => {
     if (data) {
-      console.log(data);
-      const startTime = data.startDate;
+      const startTime = data.startDate; //1665273600000
       setStartTime(startTime);
-      console.log(startTime);
-      const endTime = data.finishDate;
+      const endTime = Date.now(data.finishDate);
       setEndTime(endTime);
-      console.log(endTime);
+      console.log("data:::", data);
+      console.log("startTime:::", startTime);
+      console.log("endTime:::", endTime);
     }
   }, [data]);
 
