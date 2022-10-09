@@ -1,12 +1,8 @@
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles//ag-theme-alpine.css";
 import "ag-grid-community/styles/ag-grid.css";
-import { useState } from "react";
-import { HandySvg } from "handy-svg";
-import Thumb from "../../img/thumb_up orange.svg";
 import StatisticBookMobile from "../StatisticBookMobile/StatisticBookMobile";
 import Media from "react-media";
-import Modal from "../../components/Modal/Modal";
 import {
   useGetTrainQuery,
   useUpdateStatusBookMutation,
@@ -16,11 +12,6 @@ import s from "./StatisticsBook.module.css";
 const StatisticsBook = ({ onReadBook }) => {
   const { data } = useGetTrainQuery();
   const [updateStatusBook] = useUpdateStatusBookMutation();
-  const [IsModal, setModal] = useState(false);
-
-  const closeModal = () => {
-    setModal(false);
-  };
 
   const checkBoxRenderer = (e) => {
     return (
@@ -83,8 +74,8 @@ const StatisticsBook = ({ onReadBook }) => {
           bookId,
           status,
         });
-        setModal(true);
         await onReadBook(data.book.find((book) => book._id === id).amountPages);
+        // setModal(true);
       } catch (err) {
         console.error(err);
       }
@@ -146,24 +137,6 @@ const StatisticsBook = ({ onReadBook }) => {
           />
         </div>
       </div>
-      {IsModal && (
-        <Modal>
-          <div>
-            <div className={s.svgContainer}>
-              <HandySvg src={Thumb} className={s.svgThumb} />
-            </div>
-            <p className={s.text}>Вітаю!</p>
-            <p className={s.text}>Ще одна книга прочитана.</p>
-            <button
-              type="button"
-              onClick={closeModal}
-              className={s.modalButton}
-            >
-              Готово
-            </button>
-          </div>
-        </Modal>
-      )}
     </section>
   );
 };
