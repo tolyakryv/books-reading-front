@@ -145,7 +145,7 @@ const StatisticsTable = () => {
           <div
             className={s.ag}
             style={{
-              height: "130px",
+              height: "120px",
               width: "100%",
               margin: "0",
               overFlow: "hidden",

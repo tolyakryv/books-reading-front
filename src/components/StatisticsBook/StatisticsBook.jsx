@@ -9,7 +9,7 @@ import {
 } from "../../services/trainingAPI";
 import s from "./StatisticsBook.module.css";
 
-const StatisticsBook = ({ onReadBook }) => {
+const StatisticsBook = ({ onReadBook, setModalWindow }) => {
   const { data } = useGetTrainQuery();
   const [updateStatusBook] = useUpdateStatusBookMutation();
 
@@ -106,6 +106,7 @@ const StatisticsBook = ({ onReadBook }) => {
           render={() => (
             <StatisticBookMobile
               onReadBook={onReadBook}
+              setModalWindow={setModalWindow}
               data={bookGoingToRead()}
               cellItem={
                 <div>
@@ -118,7 +119,7 @@ const StatisticsBook = ({ onReadBook }) => {
         <div
           className="ag-theme-alpine"
           style={{
-            height: "275px",
+            height: "175px",
             width: "100%",
             margin: "0",
             fontFamily: "Montserrat",

@@ -139,7 +139,10 @@ const StatisticsPage = () => {
         <div className={s.containerPage}>
           <ShowTimerStyled />
           <MyTargetStyled />
-          <StatisticsBookStyled onReadBook={onReadBook} />
+          <StatisticsBookStyled
+            onReadBook={onReadBook}
+            setModalWindow={setModalWindow}
+          />
           <Chart />
           <StatisticsTable />
         </div>
@@ -148,24 +151,32 @@ const StatisticsPage = () => {
         <div className={s.containerPage}>
           <ShowTimerStyled />
           <MyTargetStyled />
-          <StatisticsBookStyled onReadBook={onReadBook} />
+          <StatisticsBookStyled
+            onReadBook={onReadBook}
+            setModalWindow={setModalWindow}
+          />
           <Chart />
           <StatisticsTable />
         </div>
       </Tablet>
       <Desktop>
         <div className={s.containerPage}>
-          <div className={s.wrapperRow}>
-            <div className={s.wrapperCol}>
-              <ShowTimer />
-              <StatisticsBook onReadBook={onReadBook} />
+          <section className={s.section}>
+            <div className={s.wrapperRow}>
+              <div className={s.wrapperCol}>
+                <ShowTimer />
+                <StatisticsBook
+                  onReadBook={onReadBook}
+                  setModalWindow={setModalWindow}
+                />
+              </div>
+              <MyTarget />
             </div>
-            <MyTarget />
-          </div>
-          <div className={s.wrapperRow}>
-            <Chart />
-            <StatisticsTable />
-          </div>
+            <div className={s.wrapperRow}>
+              <Chart />
+              <StatisticsTable />
+            </div>
+          </section>
         </div>
       </Desktop>
       {newBookIsRead && (
