@@ -25,7 +25,7 @@ const StatisticsTable = () => {
   // const test = data?.statistic?.reverse();
   let dataRev = [];
 
-  if (data?.statistic?.length > 1) {
+  if (data?.statistic) {
     // console.log("reverse", [...data?.statistic].reverse());
     dataRev = [...data?.statistic].reverse();
     console.log(dataRev, "data reverse");
