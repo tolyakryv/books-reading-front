@@ -1,8 +1,12 @@
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles//ag-theme-alpine.css";
 import "ag-grid-community/styles/ag-grid.css";
+import { useState } from "react";
+import { HandySvg } from "handy-svg";
+import Thumb from "../../img/thumb_up orange.svg";
 import StatisticBookMobile from "../StatisticBookMobile/StatisticBookMobile";
 import Media from "react-media";
+import Modal from "../../components/Modal/Modal";
 import {
   useGetTrainQuery,
   useUpdateStatusBookMutation,
@@ -12,20 +16,42 @@ import s from "./StatisticsBook.module.css";
 const StatisticsBook = ({ onReadBook }) => {
   const { data } = useGetTrainQuery();
   const [updateStatusBook] = useUpdateStatusBookMutation();
+  const [IsModal, setModal] = useState(false);
+
+  const closeModal = () => {
+    setModal(false);
+  };
+
+  const checkBoxRenderer = (e) => {
+    return (
+      <div className={s.checkBoxCont}>
+        <input
+          type="checkbox"
+          id={e.data._id}
+          name="book"
+          checked={e.data.status === "alreadyRead"}
+          onChange={() => onCellClicked(e.data._id)}
+        ></input>
+        <label htmlFor={e.data._id}>
+          <span></span>
+        </label>
+      </div>
+    );
+  };
+
   const columnDefs = [
     {
       headerName: "Назва книги",
       field: "title",
       width: 250,
       height: 70,
-      checkboxSelection: true,
       cellStyle: {
         fontSize: "14px",
         fontWeight: 500,
         lineHeight: "17px",
         color: "#242A37",
       },
-      cellClicked: true,
+      cellRenderer: checkBoxRenderer,
     },
     {
       headerName: "Aвтор",
@@ -44,36 +70,29 @@ const StatisticsBook = ({ onReadBook }) => {
     },
   ];
 
-  const onCellClicked = async (e) => {
-    console.log("Cell was clicked");
-    console.log(e.data);
-    try {
-      const bookId = e.data._id;
-      console.log(bookId);
-      const status = "alreadyRead";
-      await updateStatusBook({
-        bookId,
-        status,
-      });
-      await onReadBook(e.data.amountPages);
-    } catch (err) {
-      console.error(err);
+  const onCellClicked = async (id) => {
+    const chbox = document.getElementById(id);
+    console.log(chbox.checked);
+    console.log(id);
+
+    if (chbox.checked) {
+      try {
+        const bookId = id;
+        const status = "alreadyRead";
+        await updateStatusBook({
+          bookId,
+          status,
+        });
+        setModal(true);
+        await onReadBook(data.book.find((book) => book._id === id).amountPages);
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
-  function RowSelected(event) {
-    if (event.node.isSelected()) {
-      console.log("deselected");
-      event.node.setSelected(false, false);
-    } else {
-      event.node.setSelected(true);
-      console.log("selected, add");
-    }
-  }
-
   var gridOptions = {
     columnDefs: columnDefs,
-    onRowClicked: RowSelected,
     suppressRowClickSelection: true,
     enableRangeSelection: true,
     enableCellChangeFlash: true,
@@ -82,12 +101,12 @@ const StatisticsBook = ({ onReadBook }) => {
   };
 
   const bookGoingToRead = () => {
-    // if (data.result.some((book) => book.status === "alreadyRead")) {
     return data?.book.filter(
       (book) => book.status === "readingNow" || book.status === "alreadyRead"
     );
     // }
   };
+
   return (
     <section className={s.section}>
       <div className={s.container}>
@@ -99,18 +118,16 @@ const StatisticsBook = ({ onReadBook }) => {
               data={bookGoingToRead()}
               cellItem={
                 <div>
-                  {/* {" "} */}
                   <input type="checkbox" id="book" name="book" />
                 </div>
               }
-              //   cellItem={<HandySvg src={Icon} className={s.svg_1} />}
             />
           )}
         />
         <div
           className="ag-theme-alpine"
           style={{
-            height: "175px",
+            height: "275px",
             width: "100%",
             margin: "0",
             fontFamily: "Montserrat",
@@ -121,16 +138,32 @@ const StatisticsBook = ({ onReadBook }) => {
             render={() => (
               <AgGridReact
                 className={s.grid}
-                // headerHeight={headerHeight}
                 rowData={bookGoingToRead()}
                 columnDefs={columnDefs}
-                onCellClicked={onCellClicked}
                 gridOptions={gridOptions}
               />
             )}
           />
         </div>
       </div>
+      {IsModal && (
+        <Modal>
+          <div>
+            <div className={s.svgContainer}>
+              <HandySvg src={Thumb} className={s.svgThumb} />
+            </div>
+            <p className={s.text}>Вітаю!</p>
+            <p className={s.text}>Ще одна книга прочитана.</p>
+            <button
+              type="button"
+              onClick={closeModal}
+              className={s.modalButton}
+            >
+              Готово
+            </button>
+          </div>
+        </Modal>
+      )}
     </section>
   );
 };

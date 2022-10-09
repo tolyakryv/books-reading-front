@@ -6,6 +6,7 @@ import MyTarget from "../../components/MyTarget/MyTarget";
 import s from "./StatisticsPage.module.css";
 import StatisticsTable from "../../components/StatisticsTable/StatisticsTable";
 import StatisticsBook from "../../components/StatisticsBook/StatisticsBook";
+
 import { Chart } from "../../components/Chart/Chart";
 import {
   useAddTrainStatisticMutation,

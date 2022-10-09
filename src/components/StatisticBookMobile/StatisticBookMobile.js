@@ -20,6 +20,7 @@ const StatisticBookMobile = ({ onReadBook }) => {
     if (chbox.checked) {
       try {
         const bookId = id;
+        console.log(bookId);
         const status = "alreadyRead";
         await updateStatusBook({
           bookId,
@@ -79,6 +80,7 @@ const StatisticBookMobile = ({ onReadBook }) => {
                 className={s.myinput}
                 id={e._id}
                 name="book"
+                checked={e.status === "alreadyRead"}
                 onChange={() => handleChange(e._id)}
               ></input>
               <label for={e._id}>

@@ -15,11 +15,21 @@ import {
 
 const StatisticsTable = () => {
   const [addTrainStatistics] = useAddTrainStatisticMutation();
-  const { data = [] } = useGetTrainQuery();
+  const { data } = useGetTrainQuery();
   const [date, setDate] = useState(new Date());
   const [pageNumber, setPageNumber] = useState("");
   const [createdAt, setCreatedAt] = useState("");
   const headerHeight = 0;
+  // const reverseData = data.reverse();
+  // console.log("reverse", [...data?.statistic].reverse());
+  // const test = data?.statistic?.reverse();
+  let dataRev = [];
+
+  if (data?.statistic?.length > 1) {
+    // console.log("reverse", [...data?.statistic].reverse());
+    dataRev = [...data?.statistic].reverse();
+    console.log(dataRev, "data reverse");
+  }
 
   const columnDefs = [
     {
@@ -135,15 +145,18 @@ const StatisticsTable = () => {
           <div
             className={s.ag}
             style={{
-              height: "138px",
+              height: "130px",
               width: "100%",
               margin: "0",
+              overFlow: "hidden",
+              whiteSpace: "nowrap",
             }}
           >
             {data && (
               <AgGridReact
+                numberOfLines={3}
                 headerHeight={headerHeight}
-                rowData={data.statistic}
+                rowData={dataRev}
                 columnDefs={columnDefs}
               />
             )}
