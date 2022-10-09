@@ -4,7 +4,7 @@ import {
   useUpdateStatusBookMutation,
 } from "../../services/trainingAPI";
 
-const StatisticBookMobile = ({ onReadBook }) => {
+const StatisticBookMobile = ({ onReadBook, setModalWindow }) => {
   const [updateStatusBook] = useUpdateStatusBookMutation();
   const { data } = useGetTrainQuery();
   let bookGoingToRead = [];
@@ -26,6 +26,7 @@ const StatisticBookMobile = ({ onReadBook }) => {
           bookId,
           status,
         });
+        setModalWindow(true);
         await onReadBook(data.book.find((book) => book._id === id).amountPages);
       } catch (err) {
         console.error(err);
