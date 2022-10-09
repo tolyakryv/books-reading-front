@@ -76,7 +76,7 @@ export const FormAddBook = ({ getFormAddBook, data }) => {
           <form onSubmit={formik.handleSubmit}>
             <div className={s.form}>
               <div className={s.icon}>
-                {data.result === undefined || data.result.length === 0 ? (
+                {data === undefined || data.length === 0 ? (
                   <></>
                 ) : (
                   <HandySvg

@@ -12,7 +12,6 @@ import { LibraryModalOnFirstUse } from "../LibraryModalOnFirstUse/LibraryModalOn
 import EllipsisText from "react-ellipsis-text";
 
 export const LibraryBooksList = ({ getFormAddBook, data }) => {
-
   const navigate = useNavigate();
   const [isSummaryModal, setIsSummaryModal] = useState(false);
   const [currentIdBooksSummary, setCurrentIdBooksSummary] = useState(null);
@@ -81,7 +80,11 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                             </dl>
                             <button
                               type="button"
-                              className={style.buttonSummary}
+                              className={
+                                book.rating
+                                  ? style.buttonSummaryActive
+                                  : style.buttonSummary
+                              }
                               onClick={() => {
                                 setCurrentIdBooksSummary(book._id);
                                 setIsSummaryModal(true);
@@ -243,7 +246,11 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                           />
                           <button
                             type="button"
-                            className={style.alreadyReadBookButtonSummary}
+                            className={
+                              book.rating
+                                ? style.buttonSummaryActive
+                                : style.buttonSummary
+                            }
                             onClick={() => {
                               setCurrentIdBooksSummary(book._id);
                               setIsSummaryModal(true);
@@ -385,7 +392,11 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                           />
                           <button
                             type="button"
-                            className={style.alreadyReadBookButtonSummary}
+                            className={
+                              book.rating
+                                ? style.buttonSummaryActive
+                                : style.buttonSummary
+                            }
                             onClick={() => {
                               setCurrentIdBooksSummary(book._id);
                               setIsSummaryModal(true);

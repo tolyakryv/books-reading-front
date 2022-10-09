@@ -4,7 +4,6 @@ import operation from "../operation/books-operation";
 const initialState = {
   books: [],
   addBook: false,
-  error: false,
 };
 
 const booksSlice = createSlice({
@@ -19,11 +18,7 @@ const booksSlice = createSlice({
       state.addBook = true;
     },
     [operation.addSummary.fulfilled](state, action) {
-      state.error = false;
       state.addBook = true;
-    },
-    [operation.addSummary.rejected](state, action) {
-      state.error = true;
     },
   },
 });
