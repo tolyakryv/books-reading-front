@@ -9,23 +9,40 @@ import {
 } from "../../services/trainingAPI";
 import s from "./StatisticsBook.module.css";
 
-const StatisticsBook = ({ onReadBook }) => {
+const StatisticsBook = ({ onReadBook, setModalWindow }) => {
   const { data } = useGetTrainQuery();
   const [updateStatusBook] = useUpdateStatusBookMutation();
+
+  const checkBoxRenderer = (e) => {
+    return (
+      <div className={s.checkBoxCont}>
+        <input
+          type="checkbox"
+          id={e.data._id}
+          name="book"
+          checked={e.data.status === "alreadyRead"}
+          onChange={() => onCellClicked(e.data._id)}
+        ></input>
+        <label htmlFor={e.data._id}>
+          <span></span>
+        </label>
+      </div>
+    );
+  };
+
   const columnDefs = [
     {
       headerName: "Назва книги",
       field: "title",
       width: 250,
       height: 70,
-      checkboxSelection: true,
       cellStyle: {
         fontSize: "14px",
         fontWeight: 500,
         lineHeight: "17px",
         color: "#242A37",
       },
-      cellClicked: true,
+      cellRenderer: checkBoxRenderer,
     },
     {
       headerName: "Aвтор",
@@ -44,36 +61,29 @@ const StatisticsBook = ({ onReadBook }) => {
     },
   ];
 
-  const onCellClicked = async (e) => {
-    console.log("Cell was clicked");
-    console.log(e.data);
-    try {
-      const bookId = e.data._id;
-      console.log(bookId);
-      const status = "alreadyRead";
-      await updateStatusBook({
-        bookId,
-        status,
-      });
-      await onReadBook(e.data.amountPages);
-    } catch (err) {
-      console.error(err);
+  const onCellClicked = async (id) => {
+    const chbox = document.getElementById(id);
+    console.log(chbox.checked);
+    console.log(id);
+
+    if (chbox.checked) {
+      try {
+        const bookId = id;
+        const status = "alreadyRead";
+        await updateStatusBook({
+          bookId,
+          status,
+        });
+        setModalWindow(true);
+        await onReadBook(data.book.find((book) => book._id === id).amountPages);
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
-  function RowSelected(event) {
-    if (event.node.isSelected()) {
-      console.log("deselected");
-      event.node.setSelected(false, false);
-    } else {
-      event.node.setSelected(true);
-      console.log("selected, add");
-    }
-  }
-
   var gridOptions = {
     columnDefs: columnDefs,
-    onRowClicked: RowSelected,
     suppressRowClickSelection: true,
     enableRangeSelection: true,
     enableCellChangeFlash: true,
@@ -82,12 +92,12 @@ const StatisticsBook = ({ onReadBook }) => {
   };
 
   const bookGoingToRead = () => {
-    // if (data.result.some((book) => book.status === "alreadyRead")) {
     return data?.book.filter(
       (book) => book.status === "readingNow" || book.status === "alreadyRead"
     );
     // }
   };
+
   return (
     <section className={s.section}>
       <div className={s.container}>
@@ -96,14 +106,13 @@ const StatisticsBook = ({ onReadBook }) => {
           render={() => (
             <StatisticBookMobile
               onReadBook={onReadBook}
+              setModalWindow={setModalWindow}
               data={bookGoingToRead()}
               cellItem={
                 <div>
-                  {/* {" "} */}
                   <input type="checkbox" id="book" name="book" />
                 </div>
               }
-              //   cellItem={<HandySvg src={Icon} className={s.svg_1} />}
             />
           )}
         />
@@ -121,10 +130,8 @@ const StatisticsBook = ({ onReadBook }) => {
             render={() => (
               <AgGridReact
                 className={s.grid}
-                // headerHeight={headerHeight}
                 rowData={bookGoingToRead()}
                 columnDefs={columnDefs}
-                onCellClicked={onCellClicked}
                 gridOptions={gridOptions}
               />
             )}

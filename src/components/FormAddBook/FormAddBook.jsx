@@ -1,6 +1,4 @@
 import { useFormik } from "formik";
-import * as Yup from "yup";
-import * as booksAPI from "../../services/booksAPI";
 import { HandySvg } from "handy-svg";
 import s from "./FormAddBook.module.css";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
@@ -8,11 +6,11 @@ import iconBack from "../../img/back.svg";
 import { toast } from "react-toastify";
 import { userSelector } from "../../redux/selector/user-selector";
 import { useEffect } from "react";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import operation from "../../redux/operation/books-operation";
-
+import { addBookSchema } from "../../schemas/addBookSchema";
 export const FormAddBook = ({ getFormAddBook, data }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const isLoading = useSelector(userSelector.getIsLoading);
   const error = useSelector(userSelector.getError);
 
@@ -23,43 +21,14 @@ export const FormAddBook = ({ getFormAddBook, data }) => {
   const newBookTemplate = {
     title: "",
     author: "",
-    publicDate: 1900,
+    publicDate: 0,
     amountPages: 0,
   };
 
-  const addBookSchema = Yup.object({
-    title: Yup.string()
-      .min(2, "Поле повинно містити більше 2 символів")
-      .max(50, "не більше 50 символів")
-      .required("Обов'язкове поле"),
-    author: Yup.string()
-      .max(50, "Не більше 50 символів")
-      .required("Обов'язкове поле"),
-    publicDate: Yup.number()
-      .integer("Це ціле число")
-      .positive("Число більше нуля")
-      .min(1900, "Рік видання мінімум 1900")
-      .max(2021, "Рік виддання максимум 2021"),
-    amountPages: Yup.number()
-      .integer("кількість сторінок це ціле число")
-      .positive("кількість сторінок це число більше нуля")
-      .min(20, "Не менше 20 сторінок")
-      .max(700, "Не більше 700 сторінок")
-      .required("Обов'язкове поле"),
-  });
-
-  const [addBook] = booksAPI.useAddBookMutation();
-
   const handleSubmit = (data, actions) => {
     if (data) {
-      dispatch(operation.addBook(data))
+      dispatch(operation.addBook(data));
       actions.resetForm();
-      // const bookLocal = JSON.parse(localStorage.getItem("newBook"));
-      // if (bookLocal) {
-      //   localStorage.setItem("newBook", JSON.stringify([...bookLocal, data]));
-      // } else {
-      //   localStorage.setItem("newBook", JSON.stringify([data]));
-      // }
     }
     getFormAddBook();
   };
@@ -74,7 +43,7 @@ export const FormAddBook = ({ getFormAddBook, data }) => {
     Boolean(
       formik.errors.title ||
         formik.errors.author ||
-        formik.errors.publicDate ||
+        // formik.errors.publicDate ||
         formik.errors.amountPages
     ) || isLoading;
 
@@ -85,7 +54,7 @@ export const FormAddBook = ({ getFormAddBook, data }) => {
           <form onSubmit={formik.handleSubmit}>
             <div className={s.form}>
               <div className={s.icon}>
-                {data.result === undefined || data.result.length === 0 ? (
+                {data === undefined || data.length === 0 ? (
                   <></>
                 ) : (
                   <HandySvg

@@ -1,8 +1,5 @@
-/* @import "ag-grid-community/styles//ag-theme-alpine.css"; */
-
 .section {
   width: 280px;
-  /* padding: 20px; */
   background: var(--color-secondary-background);
   margin: 0 auto 32px;
 }
@@ -21,7 +18,31 @@
   line-height: 17px;
 }
 
-@media (min-width: 768px) and (max-width: 1279px) {
+@media (min-width: 768px) {
+  .checkBoxCont {
+    margin-top: 10px;
+  }
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"] + label span {
+    border: 2px solid lightgrey;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+  }
+
+  input[type="checkbox"]:checked + label span::after {
+    content: "";
+    background: url("../../img/checkbox.svg") no-repeat left;
+    background-size: cover;
+    border: 0px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+  }
   .section {
     width: 704px;
   }

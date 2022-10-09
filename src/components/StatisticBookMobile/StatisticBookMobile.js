@@ -4,7 +4,7 @@ import {
   useUpdateStatusBookMutation,
 } from "../../services/trainingAPI";
 
-const StatisticBookMobile = ({ onReadBook }) => {
+const StatisticBookMobile = ({ onReadBook, setModalWindow }) => {
   const [updateStatusBook] = useUpdateStatusBookMutation();
   const { data } = useGetTrainQuery();
   let bookGoingToRead = [];
@@ -20,11 +20,13 @@ const StatisticBookMobile = ({ onReadBook }) => {
     if (chbox.checked) {
       try {
         const bookId = id;
+        console.log(bookId);
         const status = "alreadyRead";
         await updateStatusBook({
           bookId,
           status,
         });
+        setModalWindow(true);
         await onReadBook(data.book.find((book) => book._id === id).amountPages);
       } catch (err) {
         console.error(err);
@@ -79,6 +81,7 @@ const StatisticBookMobile = ({ onReadBook }) => {
                 className={s.myinput}
                 id={e._id}
                 name="book"
+                checked={e.status === "alreadyRead"}
                 onChange={() => handleChange(e._id)}
               ></input>
               <label for={e._id}>

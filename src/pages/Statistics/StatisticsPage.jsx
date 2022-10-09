@@ -6,6 +6,9 @@ import MyTarget from "../../components/MyTarget/MyTarget";
 import s from "./StatisticsPage.module.css";
 import StatisticsTable from "../../components/StatisticsTable/StatisticsTable";
 import StatisticsBook from "../../components/StatisticsBook/StatisticsBook";
+import Modal from "../../components/Modal/Modal";
+import { HandySvg } from "handy-svg";
+import Thumb from "../../img/thumb_up orange.svg";
 import { Chart } from "../../components/Chart/Chart";
 import {
   useAddTrainStatisticMutation,
@@ -34,6 +37,15 @@ const StatisticsPage = () => {
   const [addTrainStatistics] = useAddTrainStatisticMutation();
   const [deleteTrain] = useDelTrainMutation();
   const [recentlyReadPages, setRecentlyReadPages] = useState(0);
+  const [IsModal, setModal] = useState(false);
+
+  const closeModal = () => {
+    setModal(false);
+  };
+
+  const setModalWindow = () => {
+    setModal(true);
+  };
 
   const onReadBook = async (amountPages) => {
     try {
@@ -106,7 +118,10 @@ const StatisticsPage = () => {
         <div className={s.containerPage}>
           <ShowTimerStyled />
           <MyTargetStyled />
-          <StatisticsBookStyled onReadBook={onReadBook} />
+          <StatisticsBookStyled
+            onReadBook={onReadBook}
+            setModalWindow={setModalWindow}
+          />
           <Chart />
           <StatisticsTable />
         </div>
@@ -115,26 +130,52 @@ const StatisticsPage = () => {
         <div className={s.containerPage}>
           <ShowTimerStyled />
           <MyTargetStyled />
-          <StatisticsBookStyled onReadBook={onReadBook} />
+          <StatisticsBookStyled
+            onReadBook={onReadBook}
+            setModalWindow={setModalWindow}
+          />
           <Chart />
           <StatisticsTable />
         </div>
       </Tablet>
       <Desktop>
         <div className={s.containerPage}>
-          <div className={s.wrapperRow}>
-            <div className={s.wrapperCol}>
-              <ShowTimer />
-              <StatisticsBook onReadBook={onReadBook} />
+          <section className={s.section}>
+            <div className={s.wrapperRow}>
+              <div className={s.wrapperCol}>
+                <ShowTimer />
+                <StatisticsBook
+                  onReadBook={onReadBook}
+                  setModalWindow={setModalWindow}
+                />
+              </div>
+              <MyTarget />
             </div>
-            <MyTarget />
-          </div>
-          <div className={s.wrapperRow}>
-            <Chart />
-            <StatisticsTable />
-          </div>
+            <div className={s.wrapperRow}>
+              <Chart />
+              <StatisticsTable />
+            </div>
+          </section>
         </div>
       </Desktop>
+      {IsModal && (
+        <Modal>
+          <div>
+            <div className={s.svgContainer}>
+              <HandySvg src={Thumb} className={s.svgThumb} />
+            </div>
+            <p className={s.text}>Вітаю!</p>
+            <p className={s.text}>Ще одна книга прочитана.</p>
+            <button
+              type="button"
+              onClick={closeModal}
+              className={s.modalButton}
+            >
+              Готово
+            </button>
+          </div>
+        </Modal>
+      )}
     </>
   );
 };

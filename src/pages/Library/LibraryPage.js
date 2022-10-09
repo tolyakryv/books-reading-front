@@ -1,5 +1,4 @@
 import { LibraryModalOnFirstUse } from "../../components/LibraryModalOnFirstUse/LibraryModalOnFirstUse.jsx";
-import { useGetAllBookQuery } from "../../services/booksAPI";
 import { LibraryBooksList } from "../../components/LibraryBooksList/LibraryBooksList.jsx";
 import { FormAddBook } from "../../components/FormAddBook/FormAddBook.jsx";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents.js";
@@ -11,7 +10,7 @@ import { useEffect } from "react";
 const LibraryPage = () => {
   const addBook = useSelector((state) => state.books.addBook);
   const books = useSelector((state) => state.books.books);
-  console.log(books);
+
   const dispatch = useDispatch();
 
   const [formAddBook, setFormAddBook] = useState(false);
@@ -41,8 +40,11 @@ const LibraryPage = () => {
       </Mobile>
       <Tablet>
         <FormAddBook data={books} />
-
-        <LibraryBooksList data={books} />
+        {books === undefined || books.length === 0 ? (
+          <LibraryModalOnFirstUse />
+        ) : (
+          <LibraryBooksList data={books} />
+        )}
       </Tablet>
       <Desktop>
         <FormAddBook data={books} />

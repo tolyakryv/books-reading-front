@@ -1,13 +1,11 @@
 import s from "./SummaryModal.module.css";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
 import { useFormik } from "formik";
-// import * as booksAPI from "../../services/booksAPI";
 import { Rating } from "@mui/material";
 import { useDispatch } from "react-redux";
 import operation from "../../redux/operation/books-operation";
 
 export const LibraryModalAddRating = ({ closeSummaryModal, id }) => {
-  // const [updateBook] = booksAPI.useUpdateBookMutation();
   const dispatch = useDispatch();
 
   const handleSubmit = (data, actions) => {
@@ -33,7 +31,7 @@ export const LibraryModalAddRating = ({ closeSummaryModal, id }) => {
         <div className={s.backdrop}>
           <form onSubmit={formik.handleSubmit}>
             <div className={s.modal}>
-              <p className={s.text_rating}>Обрати рейтинг книги</p>
+              <h1 className={s.text_rating}>Обрати рейтинг книги</h1>
               <Rating
                 id="rating"
                 name="rating"
@@ -49,6 +47,8 @@ export const LibraryModalAddRating = ({ closeSummaryModal, id }) => {
                 name="resume"
                 type="text"
                 placeholder="..."
+                required={true}
+                minlength="1"
                 onChange={formik.handleChange}
               ></textarea>
               <div className={s.buttonsContainer}>
@@ -71,7 +71,7 @@ export const LibraryModalAddRating = ({ closeSummaryModal, id }) => {
         <div className={s.backdrop}>
           <form onSubmit={formik.handleSubmit}>
             <div className={s.modal}>
-              <p className={s.text_rating}>Обрати рейтинг книги</p>
+              <h1 className={s.text_rating}>Обрати рейтинг книги</h1>
               <Rating
                 id="rating"
                 name="rating"
@@ -87,6 +87,8 @@ export const LibraryModalAddRating = ({ closeSummaryModal, id }) => {
                 name="resume"
                 type="text"
                 placeholder="..."
+                required={true}
+                minlength="1"
                 onChange={formik.handleChange}
               ></textarea>
               <div className={s.buttonsContainer}>
@@ -109,7 +111,7 @@ export const LibraryModalAddRating = ({ closeSummaryModal, id }) => {
         <div className={s.backdrop}>
           <form onSubmit={formik.handleSubmit}>
             <div className={s.modal}>
-              <p className={s.text_rating}>Обрати рейтинг книги</p>
+              <h1 className={s.text_rating}>Обрати рейтинг книги</h1>
               <Rating
                 id="rating"
                 name="rating"
@@ -125,6 +127,8 @@ export const LibraryModalAddRating = ({ closeSummaryModal, id }) => {
                 name="resume"
                 type="text"
                 placeholder="..."
+                required={true}
+                minlength="1"
                 onChange={formik.handleChange}
               ></textarea>
               <div className={s.buttonsContainer}>
