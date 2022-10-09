@@ -19,7 +19,7 @@ const ShowTimer = ({ className }) => {
     if (data) {
       const startTime = data.startDate; //1665273600000
       setStartTime(startTime);
-      const endTime = Date.now(data.finishDate);
+      const endTime = data.finishDate;
       setEndTime(endTime);
       console.log("data:::", data);
       console.log("startTime:::", startTime);
