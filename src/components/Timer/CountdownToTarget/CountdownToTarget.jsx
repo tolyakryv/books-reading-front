@@ -12,18 +12,17 @@ const CountdownToTarget = ({ startTime, endTime }) => {
   const [amountBooks, setAmountBooks] = useState();
   const { data } = useGetTrainQuery();
   console.log("data->>>", data);
+  console.log("booksAlreadyRead::", booksAlreadyRead);
+  console.log("amountBooks::", amountBooks);
 
   useEffect(() => {
     if (!data) return;
-    const booksAlreadyRead = data.book.filter(
+    const alreadyRead = data.book.filter(
       (item) => item.status === "alreadyRead"
-    ).length;
-    setBooksAlreadyRead(booksAlreadyRead);
-    const amountBooks = data.book.length;
-    setAmountBooks(amountBooks);
-
-    console.log("booksAlreadyRead::", booksAlreadyRead);
-    console.log("amountBooks::", amountBooks);
+    );
+    setBooksAlreadyRead(alreadyRead.length);
+    const amount = data.book.length;
+    setAmountBooks(amount);
   }, [data]);
   if (booksAlreadyRead === amountBooks) {
     setIsCountingStatus(false);
