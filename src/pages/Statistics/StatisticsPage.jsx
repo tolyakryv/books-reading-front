@@ -1,22 +1,23 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
-import ShowTimer from "../../components/Timer/ShowTimer/ShowTimer";
-import MyTarget from "../../components/MyTarget/MyTarget";
-import s from "./StatisticsPage.module.css";
-import StatisticsTable from "../../components/StatisticsTable/StatisticsTable";
-import StatisticsBook from "../../components/StatisticsBook/StatisticsBook";
-import Modal from "../../components/Modal/Modal";
 import { HandySvg } from "handy-svg";
-import Thumb from "../../img/thumb_up orange.svg";
-import { Chart } from "../../components/Chart/Chart";
+import { format } from "date-fns";
 import {
   useAddTrainStatisticMutation,
   useDelTrainMutation,
   useGetTrainQuery,
   useUpdateStatusBookMutation,
 } from "../../services/trainingAPI";
-import { format } from "date-fns";
+import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
+import Modal from "../../components/Modal/Modal";
+import ShowTimer from "../../components/Timer/ShowTimer/ShowTimer";
+import MyTarget from "../../components/MyTarget/MyTarget";
+import StatisticsTable from "../../components/StatisticsTable/StatisticsTable";
+import StatisticsBook from "../../components/StatisticsBook/StatisticsBook";
+import { Chart } from "../../components/Chart/Chart";
+import s from "./StatisticsPage.module.css";
+import Thumb from "../../img/thumb_up orange.svg";
+import { useNavigate } from "react-router-dom";
 
 const ShowTimerStyled = styled(ShowTimer)`
   margin-bottom: 40px;
@@ -32,28 +33,42 @@ const StatisticsBookStyled = styled(StatisticsBook)`
 // `;
 
 const StatisticsPage = () => {
+  const navigate = useNavigate();
+
   const { data } = useGetTrainQuery();
   const [updateStatusBook] = useUpdateStatusBookMutation();
   const [addTrainStatistics] = useAddTrainStatisticMutation();
   const [deleteTrain] = useDelTrainMutation();
+
   const [recentlyReadPages, setRecentlyReadPages] = useState(0);
-  const [IsModal, setModal] = useState(false);
-
-  const closeModal = () => {
-    setModal(false);
-  };
-
-  const setModalWindow = () => {
-    setModal(true);
-  };
+  const [newBookIsRead, setNewBookIsRead] = useState(false);
+  const [trainIsFinished, setTrainIsFinished] = useState(false);
 
   const onReadBook = async (amountPages) => {
     try {
+      const countBooksLeft = data.book.filter(
+        (book) => book.status === "readingNow"
+      );
+
       await addTrainStatistics({
         formalizedDate: format(new Date(), "dd.MM.yyyy"),
         pageNumber: amountPages - recentlyReadPages,
         createdAt: new Date().toLocaleTimeString(),
       });
+
+      if (countBooksLeft !== 1) {
+        setNewBookIsRead(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onDeleteTrain = async () => {
+    try {
+      console.log("Delete Train");
+      await deleteTrain();
+      navigate("/", { replace: true });
     } catch (error) {
       console.log(error);
     }
@@ -83,6 +98,7 @@ const StatisticsPage = () => {
 
         setRecentlyReadPages(countRecentlyPages);
 
+        const countBooksLeft = readingNowBooks.length;
         const firstBook = ReadingNowBooks[0];
 
         if (countRecentlyPages < firstBook.amountPages) return;
@@ -93,6 +109,10 @@ const StatisticsPage = () => {
           bookId,
           status,
         });
+
+        console.log(countBooksLeft);
+
+        if (countBooksLeft !== 1) setNewBookIsRead(true);
       } catch (error) {
         console.log(error);
       }
@@ -104,8 +124,9 @@ const StatisticsPage = () => {
 
     const readingNowBooks = book.filter((book) => book.status === "readingNow");
     if (readingNowBooks.length === 0) {
-      console.log("Delete Train");
-      deleteTrain();
+      setTrainIsFinished(true);
+      // console.log("Delete Train");
+      // deleteTrain();
       return;
     }
 
@@ -118,10 +139,7 @@ const StatisticsPage = () => {
         <div className={s.containerPage}>
           <ShowTimerStyled />
           <MyTargetStyled />
-          <StatisticsBookStyled
-            onReadBook={onReadBook}
-            setModalWindow={setModalWindow}
-          />
+          <StatisticsBookStyled onReadBook={onReadBook} />
           <Chart />
           <StatisticsTable />
         </div>
@@ -130,10 +148,7 @@ const StatisticsPage = () => {
         <div className={s.containerPage}>
           <ShowTimerStyled />
           <MyTargetStyled />
-          <StatisticsBookStyled
-            onReadBook={onReadBook}
-            setModalWindow={setModalWindow}
-          />
+          <StatisticsBookStyled onReadBook={onReadBook} />
           <Chart />
           <StatisticsTable />
         </div>
@@ -144,10 +159,7 @@ const StatisticsPage = () => {
             <div className={s.wrapperRow}>
               <div className={s.wrapperCol}>
                 <ShowTimer />
-                <StatisticsBook
-                  onReadBook={onReadBook}
-                  setModalWindow={setModalWindow}
-                />
+                <StatisticsBook onReadBook={onReadBook} />
               </div>
               <MyTarget />
             </div>
@@ -158,7 +170,7 @@ const StatisticsPage = () => {
           </section>
         </div>
       </Desktop>
-      {IsModal && (
+      {newBookIsRead && (
         <Modal>
           <div>
             <div className={s.svgContainer}>
@@ -168,7 +180,29 @@ const StatisticsPage = () => {
             <p className={s.text}>Ще одна книга прочитана.</p>
             <button
               type="button"
-              onClick={closeModal}
+              onClick={() => setNewBookIsRead(false)}
+              className={s.modalButton}
+            >
+              Готово
+            </button>
+          </div>
+        </Modal>
+      )}
+      {trainIsFinished && (
+        <Modal>
+          <div>
+            <div className={s.svgContainer}>
+              <HandySvg src={Thumb} className={s.svgThumb} />
+            </div>
+            <p className={s.text}>ВІТАЄМО! YOU ARE THE BEST!</p>
+            <p className={s.text}>
+              Ціль досягнута. Все прочитано в визначений строк. Можна
+              розпочинати нове тренування.
+            </p>
+
+            <button
+              type="button"
+              onClick={onDeleteTrain}
               className={s.modalButton}
             >
               Готово
