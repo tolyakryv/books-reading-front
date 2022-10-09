@@ -8,13 +8,13 @@ import iconBack from "../../img/back.svg";
 import { toast } from "react-toastify";
 import { userSelector } from "../../redux/selector/user-selector";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useGetAllBookQuery } from "../../services/booksAPI";
+import { useSelector,useDispatch } from "react-redux";
+import operation from "../../redux/operation/books-operation";
 
-export const FormAddBook = ({ getFormAddBook }) => {
+export const FormAddBook = ({ getFormAddBook, data }) => {
+  const dispatch = useDispatch()
   const isLoading = useSelector(userSelector.getIsLoading);
   const error = useSelector(userSelector.getError);
-  const { data = [] } = useGetAllBookQuery();
 
   useEffect(() => {
     if (error) toast.error(error.message);
@@ -50,9 +50,9 @@ export const FormAddBook = ({ getFormAddBook }) => {
 
   const [addBook] = booksAPI.useAddBookMutation();
 
-  const handleSubmit = async (data, actions) => {
+  const handleSubmit = (data, actions) => {
     if (data) {
-      await addBook(data).unwrap();
+      dispatch(operation.addBook(data))
       actions.resetForm();
       // const bookLocal = JSON.parse(localStorage.getItem("newBook"));
       // if (bookLocal) {

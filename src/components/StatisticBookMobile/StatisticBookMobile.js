@@ -1,18 +1,18 @@
 import s from "../StatisticBookMobile/StatisticBookMobile.module.css";
-import { useUpdateStatusBookMutation } from "../../services/trainingAPI";
-import { useGetAllBookQuery } from "../../services/booksAPI";
+import {
+  useGetTrainQuery,
+  useUpdateStatusBookMutation,
+} from "../../services/trainingAPI";
 
-const StatisticBookMobile = () => {
+const StatisticBookMobile = ({ onReadBook }) => {
   const [updateStatusBook] = useUpdateStatusBookMutation();
-  const { data } = useGetAllBookQuery();
+  const { data } = useGetTrainQuery();
   let bookGoingToRead = [];
   if (data) {
-    bookGoingToRead = data.result.filter(
-      (book) => book.status === "readingNow"
+    bookGoingToRead = data.book.filter(
+      (book) => book.status === "readingNow" || book.status === "alreadyRead"
     );
   }
-
-  console.log(bookGoingToRead);
 
   const handleChange = async (id) => {
     const chbox = document.getElementById(id);
@@ -20,23 +20,30 @@ const StatisticBookMobile = () => {
     if (chbox.checked) {
       try {
         const bookId = id;
+        console.log(bookId);
         const status = "alreadyRead";
         await updateStatusBook({
           bookId,
           status,
         });
+        await onReadBook(data.book.find((book) => book._id === id).amountPages);
       } catch (err) {
         console.error(err);
       }
     }
   };
 
-  if (data.length === 0) {
+  if (data?.length === 0) {
     return (
       <div>
         <div className={s.wrapper}>
           <div>
-            <input type="checkbox" id="book" name="book" className={s.myinput}></input>
+            <input
+              type="checkbox"
+              id="book"
+              name="book"
+              className={s.myinput}
+            ></input>
           </div>
           <div className={s.bigColumn}>
             <div className={s.title}>...</div>
@@ -73,9 +80,12 @@ const StatisticBookMobile = () => {
                 className={s.myinput}
                 id={e._id}
                 name="book"
+                checked={e.status === "alreadyRead"}
                 onChange={() => handleChange(e._id)}
               ></input>
-               <label for={e._id}><span></span></label>
+              <label for={e._id}>
+                <span></span>
+              </label>
             </div>
             <div className={s.bigColumn}>
               <div className={s.title}>{e.title}</div>

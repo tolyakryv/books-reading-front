@@ -11,6 +11,7 @@ import {
 } from "redux-persist";
 import logger from "redux-logger";
 import storage from "redux-persist/lib/storage";
+import booksReducer from "./slice/books-slice";
 import authReducer from "./slice/auth-slice";
 import { bookAPI } from "../services/booksAPI";
 import { trainingAPI } from "../services/trainingAPI";
@@ -21,8 +22,14 @@ const authPersistConfig = {
   whitelist: ["token"],
 };
 
+const booksPersistConfig = {
+  key: "books",
+  storage,
+};
+
 export const store = configureStore({
   reducer: {
+    books: persistReducer(booksPersistConfig, booksReducer),
     auth: persistReducer(authPersistConfig, authReducer),
     [bookAPI.reducerPath]: bookAPI.reducer,
     [trainingAPI.reducerPath]: trainingAPI.reducer,
