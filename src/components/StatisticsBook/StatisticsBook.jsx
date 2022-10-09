@@ -55,7 +55,7 @@ const StatisticsBook = ({ onReadBook }) => {
         bookId,
         status,
       });
-      onReadBook(e.data.amountPages);
+      await onReadBook(e.data.amountPages);
     } catch (err) {
       console.error(err);
     }
@@ -95,6 +95,7 @@ const StatisticsBook = ({ onReadBook }) => {
           query="(max-width: 767px)"
           render={() => (
             <StatisticBookMobile
+              onReadBook={onReadBook}
               data={bookGoingToRead()}
               cellItem={
                 <div>
