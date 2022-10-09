@@ -1,6 +1,5 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import * as booksAPI from "../../services/booksAPI";
 import { HandySvg } from "handy-svg";
 import s from "./FormAddBook.module.css";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
@@ -48,18 +47,10 @@ export const FormAddBook = ({ getFormAddBook, data }) => {
       .required("Обов'язкове поле"),
   });
 
-  const [addBook] = booksAPI.useAddBookMutation();
-
   const handleSubmit = (data, actions) => {
     if (data) {
       dispatch(operation.addBook(data))
       actions.resetForm();
-      // const bookLocal = JSON.parse(localStorage.getItem("newBook"));
-      // if (bookLocal) {
-      //   localStorage.setItem("newBook", JSON.stringify([...bookLocal, data]));
-      // } else {
-      //   localStorage.setItem("newBook", JSON.stringify([data]));
-      // }
     }
     getFormAddBook();
   };
