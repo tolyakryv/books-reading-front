@@ -139,10 +139,7 @@ const StatisticsPage = () => {
         <div className={s.containerPage}>
           <ShowTimerStyled />
           <MyTargetStyled />
-          <StatisticsBookStyled
-            onReadBook={onReadBook}
-            setModalWindow={setModalWindow}
-          />
+          <StatisticsBookStyled onReadBook={onReadBook} />
           <Chart />
           <StatisticsTable />
         </div>
@@ -151,10 +148,7 @@ const StatisticsPage = () => {
         <div className={s.containerPage}>
           <ShowTimerStyled />
           <MyTargetStyled />
-          <StatisticsBookStyled
-            onReadBook={onReadBook}
-            setModalWindow={setModalWindow}
-          />
+          <StatisticsBookStyled onReadBook={onReadBook} />
           <Chart />
           <StatisticsTable />
         </div>
@@ -165,10 +159,7 @@ const StatisticsPage = () => {
             <div className={s.wrapperRow}>
               <div className={s.wrapperCol}>
                 <ShowTimer />
-                <StatisticsBook
-                  onReadBook={onReadBook}
-                  setModalWindow={setModalWindow}
-                />
+                <StatisticsBook onReadBook={onReadBook} />
               </div>
               <MyTarget />
             </div>
