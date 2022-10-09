@@ -8,26 +8,25 @@ import styles from "./CountdownToTarget.module.css";
 
 const CountdownToTarget = ({ startTime, endTime }) => {
   const [isCountingStatus, setIsCountingStatus] = useState(true);
-  const [booksAlreadyRead, setBooksAlreadyRead] = useState();
-  const [amountBooks, setAmountBooks] = useState();
-  const { data } = useGetTrainQuery();
+  const { data = {} } = useGetTrainQuery();
   console.log("data->>>", data);
-  console.log("booksAlreadyRead::", booksAlreadyRead);
-  console.log("amountBooks::", amountBooks);
+  console.log("isCountingStatus->>>", isCountingStatus);
 
   useEffect(() => {
-    if (!data) return;
-    const alreadyRead = data.book.filter(
-      (item) => item.status === "alreadyRead"
-    );
-    setBooksAlreadyRead(alreadyRead.length);
-    const amount = data.book.length;
-    setAmountBooks(amount);
+    if (data) {
+      const booksAlreadyRead = data.book.filter(
+        (item) => item.status === "alreadyRead"
+      ).length;
+      const amountBooks = data.book.length;
+      if (booksAlreadyRead === amountBooks) {
+        setIsCountingStatus(false);
+        console.log("compare");
+      }
+      console.log("booksAlreadyRead::", booksAlreadyRead);
+      console.log("amountBooks::", amountBooks);
+    }
   }, [data]);
-  if (booksAlreadyRead === amountBooks) {
-    setIsCountingStatus(false);
-    console.log("compare");
-  }
+
   const countdown = useCountdown(startTime, endTime, isCountingStatus);
   console.log("countdown->>>>", countdown);
   const [days, hours, minutes, seconds] = transformMSTime(countdown);
@@ -35,12 +34,14 @@ const CountdownToTarget = ({ startTime, endTime }) => {
     return (
       <div className={styles.countdownContainer}>
         <p className={styles.caption}>До досягнення мети залишилось</p>
-        <ShowCounter
-          days={days}
-          hours={hours}
-          minutes={minutes}
-          seconds={seconds}
-        />
+        {
+          <ShowCounter
+            days={days}
+            hours={hours}
+            minutes={minutes}
+            seconds={seconds}
+          />
+        }
       </div>
     );
   }
@@ -48,17 +49,6 @@ const CountdownToTarget = ({ startTime, endTime }) => {
     console.log("countdown is over");
     toast.info(
       "Ти молодчина, але потрібно швидше! Наступного разу тобі все вдасться)"
-    );
-    return (
-      <div className={styles.countdownContainer}>
-        <p className={styles.caption}>До досягнення мети залишилось</p>
-        <ShowCounter
-          days={days}
-          hours={hours}
-          minutes={minutes}
-          seconds={seconds}
-        />
-      </div>
     );
   }
 };

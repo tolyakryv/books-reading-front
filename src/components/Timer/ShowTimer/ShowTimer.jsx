@@ -21,9 +21,6 @@ const ShowTimer = ({ className }) => {
       setStartTime(startTime);
       const endTime = data.finishDate;
       setEndTime(endTime);
-      console.log("data:::", data);
-      console.log("startTime:::", startTime);
-      console.log("endTime:::", endTime);
     }
   }, [data, startTime, endTime]);
 
