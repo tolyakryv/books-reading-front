@@ -8,6 +8,8 @@ import styles from "./CountdownToTarget.module.css";
 
 const CountdownToTarget = ({ startTime, endTime }) => {
   const [isCountingStatus, setIsCountingStatus] = useState(true);
+  const [booksAlreadyRead, setBooksAlreadyRead] = useState();
+  const [amountBooks, setAmountBooks] = useState();
   const { data } = useGetTrainQuery();
   console.log("data->>>", data);
 
@@ -16,19 +18,21 @@ const CountdownToTarget = ({ startTime, endTime }) => {
     const booksAlreadyRead = data.book.filter(
       (item) => item.status === "alreadyRead"
     ).length;
+    setBooksAlreadyRead(booksAlreadyRead);
     const amountBooks = data.book.length;
-    if (booksAlreadyRead === amountBooks) {
-      setIsCountingStatus(false);
-      console.log("compare");
-    }
+    setAmountBooks(amountBooks);
+
     console.log("booksAlreadyRead::", booksAlreadyRead);
     console.log("amountBooks::", amountBooks);
   }, [data]);
-
+  if (booksAlreadyRead === amountBooks) {
+    setIsCountingStatus(false);
+    console.log("compare");
+  }
   const countdown = useCountdown(startTime, endTime, isCountingStatus);
   console.log("countdown->>>>", countdown);
   const [days, hours, minutes, seconds] = transformMSTime(countdown);
-  if (countdown > 0) {
+  if (countdown > 0 && { data }) {
     return (
       <div className={styles.countdownContainer}>
         <p className={styles.caption}>До досягнення мети залишилось</p>
