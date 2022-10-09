@@ -1,5 +1,4 @@
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { HandySvg } from "handy-svg";
 import s from "./FormAddBook.module.css";
 import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents";
@@ -9,9 +8,7 @@ import { userSelector } from "../../redux/selector/user-selector";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import operation from "../../redux/operation/books-operation";
-
-const AUTHOR_REGEXP = /^[a-zA-Zа-яА-ЯїЇіІєЄ].*$/;
-const TITLE_REGEXP = /^[a-zA-Zа-яА-ЯїЇіІєЄ0-9].*$/;
+import { addBookSchema } from "../../schemas/addBookSchema";
 export const FormAddBook = ({ getFormAddBook, data }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(userSelector.getIsLoading);
@@ -27,28 +24,6 @@ export const FormAddBook = ({ getFormAddBook, data }) => {
     publicDate: 0,
     amountPages: 0,
   };
-
-  const addBookSchema = Yup.object({
-    title: Yup.string()
-      .matches(TITLE_REGEXP, "поле не може розпочинатись з пробіла або дефіса")
-      .max(50, "не більше 50 символів")
-      .required("Обов'язкове поле"),
-    author: Yup.string()
-      .matches(AUTHOR_REGEXP, "REGEXP")
-      .max(50, "Не більше 50 символів")
-      .required("Обов'язкове поле"),
-    publicDate: Yup.number()
-      .integer("Це ціле число")
-      // .positive("Число більше нуля")
-      .min(0, "Рік видання більше 0")
-      .max(2021, "Рік виддання максимум 2021"),
-    amountPages: Yup.number()
-      .integer("кількість сторінок це ціле число")
-      .positive("кількість сторінок це число більше нуля")
-      .min(10, "Не менше 10 сторінок")
-      .max(9999, "Не більше 9999 сторінок")
-      .required("Обов'язкове поле"),
-  });
 
   const handleSubmit = (data, actions) => {
     if (data) {
