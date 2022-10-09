@@ -23,21 +23,24 @@ const CountdownToTarget = ({ startTime, endTime }) => {
     }
     // console.log("booksAlreadyRead::", booksAlreadyRead);
     // console.log("amountBooks::", amountBooks);
+
   }, [data]);
 
   const countdown = useCountdown(startTime, endTime, isCountingStatus);
   // console.log("countdown->>>>", countdown);
   const [days, hours, minutes, seconds] = transformMSTime(countdown);
-  if (countdown > 0) {
+  if (countdown > 0 && { data }) {
     return (
       <div className={styles.countdownContainer}>
         <p className={styles.caption}>До досягнення мети залишилось</p>
-        <ShowCounter
-          days={days}
-          hours={hours}
-          minutes={minutes}
-          seconds={seconds}
-        />
+        {
+          <ShowCounter
+            days={days}
+            hours={hours}
+            minutes={minutes}
+            seconds={seconds}
+          />
+        }
       </div>
     );
   }
@@ -45,17 +48,6 @@ const CountdownToTarget = ({ startTime, endTime }) => {
     // console.log("countdown is over");
     toast.info(
       "Ти молодчина, але потрібно швидше! Наступного разу тобі все вдасться)"
-    );
-    return (
-      <div className={styles.countdownContainer}>
-        <p className={styles.caption}>До досягнення мети залишилось</p>
-        <ShowCounter
-          days={days}
-          hours={hours}
-          minutes={minutes}
-          seconds={seconds}
-        />
-      </div>
     );
   }
 };
