@@ -106,7 +106,6 @@ const StatisticsBook = ({ onReadBook, setModalWindow }) => {
           render={() => (
             <StatisticBookMobile
               onReadBook={onReadBook}
-              setModalWindow={setModalWindow}
               data={bookGoingToRead()}
               cellItem={
                 <div>
