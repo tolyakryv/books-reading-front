@@ -3,6 +3,9 @@
   flex-direction: column;
   background-color: var(--color-secondary-background);
   padding: 20px;
+  width: 280px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .title {
