@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react";
-
-const ONE_SECOND = 1000;
+import { ONE_SECOND_IN_MS } from "../helpers/constants";
 
 const useCountdown = (startTime, endTime, isCountingStatus = true) => {
   const timeLeft = endTime - startTime;
   const [countdown, setCountdown] = useState(timeLeft);
-  const [isCounting] = useState(isCountingStatus);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCountdown((countdown) =>
-        isCounting && countdown >= 1 ? countdown - ONE_SECOND : countdown
-      );
-      console.log("isCountingStatus", isCountingStatus);
-      console.log("interval::", interval);
+      if (!isCountingStatus) {
+        clearInterval(interval);
+        return;
+      }
+      isCountingStatus &&
+        setCountdown((countdown) => countdown - ONE_SECOND_IN_MS);
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [countdown, isCounting, isCountingStatus]);
+  }, [countdown, isCountingStatus]);
   return countdown;
 };
 

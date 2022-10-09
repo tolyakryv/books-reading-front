@@ -7,7 +7,6 @@ const CountdownToEndYear = ({ startTime, endTime }) => {
   const countdown = useCountdown(startTime, endTime);
   const [days, hours, minutes, seconds] = transformMSTime(countdown);
   if (countdown <= 0) {
-    console.log("countdown is over");
     return (
       <div className={styles.countdownContainer}>
         <p className={styles.caption}>До закінчення року залишилось</p>
