@@ -5,6 +5,7 @@ import s from "../Training/Training.module.css";
 import DateInputEl from "../DateInputEl/DateInputEl";
 import { useState } from "react";
 import Icon from "../../img/icon library.svg";
+import iconBack from "../../img/back.svg";
 import { HandySvg } from "handy-svg";
 import Goals from "../Goals/Goals";
 import { Chart } from "../Chart/Chart";
@@ -13,6 +14,8 @@ import * as booksAPI from "../../services/booksAPI";
 import * as trainingAPI from "../../services/trainingAPI";
 import Media from "react-media";
 import { useNavigate } from "react-router-dom";
+import { Mobile, Tablet, Desktop } from "../../helpers/responsiveComponents.js";
+import iconButton from "../../img/more.svg";
 
 
 function Training() {
@@ -42,9 +45,15 @@ function Training() {
 
   const [status, setStatus] = useState(false)
 
+  const [formAddBook, setFormAddBook] = useState(true);
+
   const [addTrain] = trainingAPI.useAddTrainMutation();
   const navigate = useNavigate();
 
+
+  const getFormAddBook = () => {
+    setFormAddBook(!formAddBook);
+  };
   // Отримати масив книг
   let backResponce = [
     { id: "", title: "", author: "", publicDate: 0, amountPages: 0 },
@@ -129,6 +138,7 @@ function Training() {
       
       localStorage["books"] = JSON.stringify(books);
     }
+    getFormAddBook()
   };
 
   localStorage["books"] = JSON.stringify(books);
@@ -195,7 +205,183 @@ function Training() {
     { type: "days", value: `${days}`, text: "Кількість днів" },
   ];
 
-  return (
+  return (<>
+    <Mobile>
+    {formAddBook ? (
+          <>
+           
+          <div className={s.training}>
+          <HandySvg
+                    src={iconBack}
+                    className = {s.iconBack}
+                    width="24px"
+                    height="12px"
+                    onClick={getFormAddBook}
+                  />
+    <div className={s.reverse}>
+      <div className={s.bigwrapper}>
+        <div className={s.wrapper}>
+          <h3 className={s.text}> Моє тренування </h3>
+        </div>
+        {error && (
+          <p className={s.redText}>
+            Введіть коректно дати та оберіть книжки: термін тренування має
+            бути не менше одного дня та не більше 31 дня{" "}
+          </p>
+        )}
+        <div className={s.dateInput}>
+          <DateInputEl
+            placeholder={"Початок"}
+            minDate={new Date()}
+            value={startDate2}
+            onChange={handleChangeStart}
+          />
+          <DateInputEl
+            placeholder={"Завершення"}
+            minDate={new Date()}
+            value={finishDate2}
+            onChange={handleChangeEnd}
+          />
+        </div>
+        <BookSelector
+          onClickHandle={onClickHandle}
+          onChangeHandle={onChangeHandle}
+          book={sel2}
+          statusInput = {status}
+          getFormAddBook={getFormAddBook}
+        />
+        
+          
+      </div>
+    </div>
+   
+  </div>
+        </>
+        ) : (
+          <>
+            <div className={s.training}>
+      <div className={s.reverse}>
+        <Goals data={goalsData} />
+        <div className={s.bigwrapper}>
+          <div className={s.wrapper}>
+            <h3 className={s.text}> Моє тренування </h3>
+          </div>
+          
+          
+          <Media
+            query="(max-width: 767px)"
+            render={() => (
+              <TableMin
+                data={books}
+                handleDelete={handleDelete}
+                cellItem={<HandySvg src={Icon} className={s.svg_1} />}
+              />
+            )}
+          />
+          <Media
+            query="(min-width: 768px)"
+            render={() => (
+              <BookList
+                data={books}
+                handleDelete={handleDelete}
+                cellItem={<HandySvg src={Icon} className={s.svg_1} />}
+              />
+            )}
+          />
+        </div>
+      </div>
+      <div className={s.lower}>
+        {error2 && (
+          <p className={s.redText}> Завершіть попередні тренування </p>
+        )}
+        <button type="button" className={s.button} disabled={true}>
+          <span className={s.buttonText} onClick={handleSubmit}>
+            Почати тренування
+          </span>
+        </button>
+        <Chart getFormAddBook={getFormAddBook}/>
+        <HandySvg
+              className={s.buttonMore}
+              src={iconButton}
+              width="52px"
+              height="52px"
+              onClick={getFormAddBook}
+            />
+      </div>
+    </div>
+          </>
+        )}
+    </Mobile>
+    <Tablet>
+<div className={s.training}>
+      <div className={s.reverse}>
+        <Goals data={goalsData} />
+        <div className={s.bigwrapper}>
+          <div className={s.wrapper}>
+            <h3 className={s.text}> Моє тренування </h3>
+          </div>
+          {error && (
+            <p className={s.redText}>
+              Введіть коректно дати та оберіть книжки: термін тренування має
+              бути не менше одного дня та не більше 31 дня{" "}
+            </p>
+          )}
+          <div className={s.dateInput}>
+            <DateInputEl
+              placeholder={"Початок"}
+              minDate={new Date()}
+              value={startDate2}
+              onChange={handleChangeStart}
+            />
+            <DateInputEl
+              placeholder={"Завершення"}
+              minDate={new Date()}
+              value={finishDate2}
+              onChange={handleChangeEnd}
+            />
+          </div>
+          <BookSelector
+            onClickHandle={onClickHandle}
+            onChangeHandle={onChangeHandle}
+            book={sel2}
+            statusInput = {status}
+          />
+          <Media
+            query="(max-width: 767px)"
+            render={() => (
+              <TableMin
+                data={books}
+                handleDelete={handleDelete}
+                cellItem={<HandySvg src={Icon} className={s.svg_1} />}
+              />
+            )}
+          />
+          <Media
+            query="(min-width: 768px)"
+            render={() => (
+              <BookList
+                data={books}
+                handleDelete={handleDelete}
+                cellItem={<HandySvg src={Icon} className={s.svg_1} />}
+              />
+            )}
+          />
+        </div>
+      </div>
+      <div className={s.lower}>
+        {error2 && (
+          <p className={s.redText}> Завершіть попередні тренування </p>
+        )}
+        <button type="button" className={s.button} disabled={true}>
+          <span className={s.buttonText} onClick={handleSubmit}>
+            Почати тренування
+          </span>
+        </button>
+        <Chart />
+      </div>
+    </div>
+    </Tablet>
+    <Desktop>
     <div className={s.training}>
       <div className={s.reverse}>
         <Goals data={goalsData} />
@@ -263,6 +449,8 @@ function Training() {
         <Chart />
       </div>
     </div>
+     </Desktop>
+     </>
   );
 }
 

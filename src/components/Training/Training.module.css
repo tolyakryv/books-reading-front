@@ -137,3 +137,14 @@
     color: red;
     font-size: 14px;
   }
+
+  .iconBack {
+    margin-right: 250px;
+  }
+
+  .buttonMore {
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+    transform: translate(-50%) scale(1);
+  }
