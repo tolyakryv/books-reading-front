@@ -4,7 +4,6 @@ import { ToastContainer } from "react-toastify";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute.jsx";
 import { PublicRoute } from "./components/PublicRoute/PublicRoute.jsx";
 import { Layout } from "./components/Layout";
-import StatisticsPage from "./pages/Statistics/StatisticsPage.jsx";
 import { useSelector } from "react-redux";
 import { userSelector } from "./redux/selector/user-selector.js";
 import { useGetUser } from "./hooks/useGetUser.js";
@@ -14,7 +13,7 @@ const Register = lazy(() => import("./pages/Register"));
 const InfoMobile = lazy(() => import("./pages/InfoMobile"));
 const LibraryPage = lazy(() => import("./pages/Library"));
 const TrainingPage = lazy(() => import("./pages/Training"));
-// const StatisticsPage = lazy(() => import("./pages/StatisticsPage"));
+const StatisticsPage = lazy(() => import("./pages/Statistics"));
 
 function App() {
   useGetUser();
