@@ -5,11 +5,9 @@ import getEndOfYear from "../getEndOfYear";
 import s from "./ShowTimer.module.css";
 import { useGetTrainQuery } from "../../../services/trainingAPI";
 
-// const startTime = new Date("2022-09-28T19:39:30").getTime();
-// const endTime = new Date("2022-09-28T19:39:45").getTime();
+// const startTime = Date.now();
+// const endTime = 1665792000000;
 const now = Date.now();
-// const now = new Date("2022-12-31T23:59:50").getTime();
-// const endOfYear = new Date(2022, 11, 32);
 const endOfYear = getEndOfYear(new Date().getFullYear());
 
 const ShowTimer = ({ className }) => {
@@ -27,12 +25,14 @@ const ShowTimer = ({ className }) => {
       console.log("startTime:::", startTime);
       console.log("endTime:::", endTime);
     }
-  }, [data]);
+  }, [data, startTime, endTime]);
 
   return (
     <div className={`${s.timerContainer} ${className}`}>
       <CountdownToEndYear startTime={now} endTime={endOfYear} />
-      <CountdownToTarget startTime={startTime} endTime={endTime} />
+      {startTime && endTime && (
+        <CountdownToTarget startTime={startTime} endTime={endTime} />
+      )}
     </div>
   );
 };

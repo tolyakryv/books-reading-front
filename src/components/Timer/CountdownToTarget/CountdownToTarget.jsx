@@ -24,6 +24,7 @@ const CountdownToTarget = ({ startTime, endTime }) => {
     console.log("booksAlreadyRead::", booksAlreadyRead);
     console.log("amountBooks::", amountBooks);
   }, [data]);
+
   const countdown = useCountdown(startTime, endTime, isCountingStatus);
   console.log("countdown->>>>", countdown);
   const [days, hours, minutes, seconds] = transformMSTime(countdown);
