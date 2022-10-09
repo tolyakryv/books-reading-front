@@ -11,7 +11,7 @@ import { useEffect } from "react";
 const LibraryPage = () => {
   const addBook = useSelector((state) => state.books.addBook);
   const books = useSelector((state) => state.books.books);
-  console.log(books);
+ 
   const dispatch = useDispatch();
 
   const [formAddBook, setFormAddBook] = useState(false);

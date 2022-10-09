@@ -224,7 +224,7 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                           <EllipsisText
                             className={style.alreadyReadBookTitle}
                             text={book.title}
-                            length={"32"}
+                            length={32}
                           />
                           <p className={style.alreadyReadBookAuthor}>
                             {book.author}
@@ -366,7 +366,7 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                           <EllipsisText
                             className={style.alreadyReadBookTitle}
                             text={book.title}
-                            length={"32"}
+                            length={32}
                           />
                           <p className={style.alreadyReadBookAuthor}>
                             {book.author}
