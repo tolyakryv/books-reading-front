@@ -37,7 +37,7 @@ const TableMin = ({data, handleDelete, cellItem}) =>{
         <div className={s.wrapper}>
             <div>{cellItem}</div>
                     <div className={s.bigColumn}>
-                    <div className={s.title}>{e.title}</div>
+                    <div className={s.title}><span className={s.width}>{e.title}</span></div>
                     <div className={s.row}>
                     <div className={s.column}>
                         <div className={s.cell}><span className={s.grey}>Автор:</span></div>
