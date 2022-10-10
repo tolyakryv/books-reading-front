@@ -9,9 +9,10 @@ import {
 } from "../../services/trainingAPI";
 import s from "./StatisticsBook.module.css";
 
-const StatisticsBook = ({ onReadBook, setModalWindow }) => {
+const StatisticsBook = ({ onReadBook }) => {
   const { data } = useGetTrainQuery();
   const [updateStatusBook] = useUpdateStatusBookMutation();
+  console.log(data);
 
   const checkBoxRenderer = (e) => {
     return (
@@ -32,17 +33,15 @@ const StatisticsBook = ({ onReadBook, setModalWindow }) => {
 
   const columnDefs = [
     {
+      width: 100,
+      headerHeight: 0,
+      cellRenderer: checkBoxRenderer,
+    },
+
+    {
       headerName: "Назва книги",
       field: "title",
-      width: 250,
-      height: 70,
-      cellStyle: {
-        fontSize: "14px",
-        fontWeight: 500,
-        lineHeight: "17px",
-        color: "#242A37",
-      },
-      cellRenderer: checkBoxRenderer,
+      width: 200,
     },
     {
       headerName: "Aвтор",
@@ -97,6 +96,7 @@ const StatisticsBook = ({ onReadBook, setModalWindow }) => {
     );
     // }
   };
+  console.log(bookGoingToRead());
 
   return (
     <section className={s.section}>
