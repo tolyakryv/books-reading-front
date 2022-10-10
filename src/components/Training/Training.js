@@ -223,12 +223,7 @@ function Training() {
         <div className={s.wrapper}>
           <h3 className={s.text}> Моє тренування </h3>
         </div>
-        {error && (
-          <p className={s.redText}>
-            Введіть коректно дати та оберіть книжки: термін тренування має
-            бути не менше одного дня та не більше 31 дня{" "}
-          </p>
-        )}
+      
         <div className={s.dateInput}>
           <DateInputEl
             placeholder={"Початок"}
@@ -291,6 +286,12 @@ function Training() {
         </div>
       </div>
       <div className={s.lower}>
+      {error && (
+          <p className={s.redText}>
+            Введіть коректно дати та оберіть книжки: термін тренування має
+            бути не менше одного дня та не більше 31 дня{" "}
+          </p>
+        )}
         {error2 && (
           <p className={s.redText}> Завершіть попередні тренування </p>
         )}

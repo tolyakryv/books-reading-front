@@ -48,7 +48,13 @@
     font-family: Montserrat;
     font-size: 12px;
     color:#242A37;
-    height: 30px
+    height: 30px;
+    width: 200px;
+}
+
+.width{
+    width: 200px;
+    overflow-wrap: break-word;
 }
 
 .cell{

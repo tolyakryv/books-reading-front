@@ -1,90 +1,86 @@
 .button {
-  background-color: #f6f7fb;
-  border: none;
-  width: 14px;
-  height: 18px;
+    background-color: #F6F7FB;
+    ;
+    border: none;
+    width: 14px;
+    height: 18px;
+
 }
 
 .svg {
-  width: 14px;
-  height: 18px;
+    width: 14px;
+    height: 18px;
+
 }
 
 .wrapper {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: row;
-  font-family: Montserrat;
-  font-size: 12px;
-  color: #242a37;
-  width: 280px;
-  height: 100px;
-  border-bottom: #e0e5eb 1px solid;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    font-family: Montserrat;
+    font-size: 12px;
+    color: #242A37;
+    width: 280px;
+    height: 100px;
+    border-bottom: #E0E5EB 1px solid;
 }
 
 .column {
-  display: flex;
-  flex-direction: column;
-  width: 100px;
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+
 }
 
 .row {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .bigColumn {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  margin-right: 20px;
-  margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin-right: 20px;
+    margin-left: 20px
 }
 
 .title {
-  font-family: Montserrat;
-  font-size: 12px;
-  color: #242a37;
-  height: 30px;
+    font-family: Montserrat;
+    font-size: 12px;
+    color: #242A37;
+    height: 30px;
+    width: 200px;
+}
+
+.width{
+    width: 200px;
+    overflow-wrap: break-word;
 }
 
 .cell {
-  height: 25px;
+    height: 25px;
 }
-@media (max-width: 767px) {
-  input[type="checkbox"] {
-    display: none;
-  }
 
-  input[type="checkbox"] + label span {
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox]+label span {
     border: 1px solid lightgrey;
-    /* font-size: 24pt; */
     display: inline-block;
     width: 20px;
     height: 20px;
-    background-color: white;
-    /* line-height: 0.25em; */
+}
 
-    /* margin: 4px 8px 8px 8px; */
-    /* padding: 2px; */
-    /* text-align: center; */
-    /* vertical-align: middle; */
-  }
-  input[type="checkbox"]:checked + label span::after {
+input[type=checkbox]:checked+label span::after {
     content: "";
-    /* color:  #FF6B08; */
     background: url("../../img/checkbox.svg") no-repeat left;
     background-size: cover;
     border: 0px;
-    /* border: 1px solid  #FF6B08;; */
-    /* font-size: 24pt; */
     display: inline-block;
     width: 20px;
     height: 20px;
     background-color: white;
-    /* background-image: "./src/img/checkbox.svg";
-background-repeat: no-repeat; */
 
-    /* text-align: center; */
-  }
 }
