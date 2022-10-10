@@ -5,7 +5,12 @@ import { Rating } from "@mui/material";
 import { useDispatch } from "react-redux";
 import operation from "../../redux/operation/books-operation";
 
-export const LibraryModalAddRating = ({ closeSummaryModal, id, resume }) => {
+export const LibraryModalAddRating = ({
+  closeSummaryModal,
+  id,
+  resume,
+  rating,
+}) => {
   const dispatch = useDispatch();
   const handleSubmit = (data, actions) => {
     if (data) {
@@ -16,7 +21,7 @@ export const LibraryModalAddRating = ({ closeSummaryModal, id, resume }) => {
   const formik = useFormik({
     initialValues: {
       _id: id,
-      rating: 0,
+      rating: rating,
       resume: resume,
     },
 

@@ -17,6 +17,8 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
   const [currentIdBooksSummary, setCurrentIdBooksSummary] = useState(null);
   const [currentResumeBooksSummary, setCurrentResumeBooksSummary] =
     useState(null);
+  const [currentRatingBooksSummary, setCurrentRatingBooksSummary] =
+    useState(null);
   const handleMyTraining = () => {
     const readingNow = data.filter((e) => e.status === "readingNow");
     if (readingNow.length > 0) {
@@ -87,6 +89,7 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                                   : style.buttonSummary
                               }
                               onClick={() => {
+                                setCurrentRatingBooksSummary(book.rating);
                                 setCurrentResumeBooksSummary(book.resume);
                                 setCurrentIdBooksSummary(book._id);
                                 setIsSummaryModal(true);
@@ -254,6 +257,7 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                                 : style.buttonSummary
                             }
                             onClick={() => {
+                              setCurrentRatingBooksSummary(book.rating);
                               setCurrentResumeBooksSummary(book.resume);
                               setCurrentIdBooksSummary(book._id);
                               setIsSummaryModal(true);
@@ -401,6 +405,7 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                                 : style.buttonSummary
                             }
                             onClick={() => {
+                              setCurrentRatingBooksSummary(book.rating);
                               setCurrentResumeBooksSummary(book.resume);
                               setCurrentIdBooksSummary(book._id);
                               setIsSummaryModal(true);
@@ -500,6 +505,7 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
           id={currentIdBooksSummary}
           closeSummaryModal={closeSummaryModal}
           resume={currentResumeBooksSummary}
+          rating={currentRatingBooksSummary}
         />
       )}
     </>
