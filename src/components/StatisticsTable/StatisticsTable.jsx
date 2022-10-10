@@ -63,7 +63,7 @@ const StatisticsTable = () => {
     setCreatedAt(new Date().toLocaleTimeString());
     console.log(createdAt);
     if (name === "pageNumber") {
-      setPageNumber(Number(value));
+      setPageNumber(value);
     }
   };
 
@@ -123,7 +123,7 @@ const StatisticsTable = () => {
                   className={s.input}
                   label="Кількість сторінок"
                   type="text"
-                  pattern="\d*"
+                  pattern="\d{3}"
                   name="pageNumber"
                   value={pageNumber}
                   onChange={handleNameChange}
