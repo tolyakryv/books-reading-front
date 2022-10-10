@@ -5,21 +5,19 @@ import { Rating } from "@mui/material";
 import { useDispatch } from "react-redux";
 import operation from "../../redux/operation/books-operation";
 
-export const LibraryModalAddRating = ({ closeSummaryModal, id }) => {
+export const LibraryModalAddRating = ({ closeSummaryModal, id, resume }) => {
   const dispatch = useDispatch();
-
   const handleSubmit = (data, actions) => {
     if (data) {
       closeSummaryModal();
       dispatch(operation.addSummary(data));
     }
   };
-
   const formik = useFormik({
     initialValues: {
       _id: id,
       rating: 0,
-      resume: "",
+      resume: resume,
     },
 
     onSubmit: handleSubmit,
@@ -47,8 +45,9 @@ export const LibraryModalAddRating = ({ closeSummaryModal, id }) => {
                 name="resume"
                 type="text"
                 placeholder="..."
+                defaultValue={resume}
                 required={true}
-                minlength="1"
+                minLength="1"
                 onChange={formik.handleChange}
               ></textarea>
               <div className={s.buttonsContainer}>
@@ -86,9 +85,10 @@ export const LibraryModalAddRating = ({ closeSummaryModal, id }) => {
                 id="resume"
                 name="resume"
                 type="text"
+                defaultValue={resume}
                 placeholder="..."
                 required={true}
-                minlength="1"
+                minLength="1"
                 onChange={formik.handleChange}
               ></textarea>
               <div className={s.buttonsContainer}>
@@ -128,7 +128,8 @@ export const LibraryModalAddRating = ({ closeSummaryModal, id }) => {
                 type="text"
                 placeholder="..."
                 required={true}
-                minlength="1"
+                minLength="1"
+                defaultValue={resume}
                 onChange={formik.handleChange}
               ></textarea>
               <div className={s.buttonsContainer}>

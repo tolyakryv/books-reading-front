@@ -15,7 +15,8 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
   const navigate = useNavigate();
   const [isSummaryModal, setIsSummaryModal] = useState(false);
   const [currentIdBooksSummary, setCurrentIdBooksSummary] = useState(null);
-
+  const [currentResumeBooksSummary, setCurrentResumeBooksSummary] =
+    useState(null);
   const handleMyTraining = () => {
     const readingNow = data.filter((e) => e.status === "readingNow");
     if (readingNow.length > 0) {
@@ -86,6 +87,7 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                                   : style.buttonSummary
                               }
                               onClick={() => {
+                                setCurrentResumeBooksSummary(book.resume);
                                 setCurrentIdBooksSummary(book._id);
                                 setIsSummaryModal(true);
                               }}
@@ -252,6 +254,7 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                                 : style.buttonSummary
                             }
                             onClick={() => {
+                              setCurrentResumeBooksSummary(book.resume);
                               setCurrentIdBooksSummary(book._id);
                               setIsSummaryModal(true);
                             }}
@@ -398,6 +401,7 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                                 : style.buttonSummary
                             }
                             onClick={() => {
+                              setCurrentResumeBooksSummary(book.resume);
                               setCurrentIdBooksSummary(book._id);
                               setIsSummaryModal(true);
                             }}
@@ -495,6 +499,7 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
         <LibraryModalAddRating
           id={currentIdBooksSummary}
           closeSummaryModal={closeSummaryModal}
+          resume={currentResumeBooksSummary}
         />
       )}
     </>
