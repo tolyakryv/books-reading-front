@@ -6,7 +6,7 @@ import s from "./ShowTimer.module.css";
 import { useGetTrainQuery } from "../../../services/trainingAPI";
 
 // const startTime = Date.now();
-// const endTime = 1665792000000;
+// const endTime = Date.now() + 10000;
 const now = Date.now();
 const endOfYear = getEndOfYear(new Date().getFullYear());
 
@@ -21,9 +21,8 @@ const ShowTimer = ({ className }) => {
       setStartTime(startTime);
       const endTime = data.finishDate;
       setEndTime(endTime);
-
     }
-  }, [data, startTime, endTime]);
+  }, [data]);
 
   return (
     <div className={`${s.timerContainer} ${className}`}>

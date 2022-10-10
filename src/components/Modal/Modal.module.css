@@ -1,7 +1,7 @@
 .Overlay {
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--color-overlay);
   position: fixed;
   overflow-y: auto;
   top: 0;
@@ -9,7 +9,7 @@
 }
 
 .Modal {
-  background-color: white;
+  background-color: var(--color-secondary-background);
   box-sizing: border-box;
   position: absolute;
   overflow: auto;
