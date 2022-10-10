@@ -43,7 +43,7 @@ export const FormAddBook = ({ getFormAddBook, data }) => {
     Boolean(
       formik.errors.title ||
         formik.errors.author ||
-        // formik.errors.publicDate ||
+        formik.errors.publicDate ||
         formik.errors.amountPages
     ) || isLoading;
 
@@ -136,7 +136,7 @@ export const FormAddBook = ({ getFormAddBook, data }) => {
           <form onSubmit={formik.handleSubmit}>
             <div className={s.form}>
               <label className={s.label} htmlFor="title">
-                Назва книги
+                Назва книги*
               </label>
               <input
                 className={s.input}
@@ -152,7 +152,7 @@ export const FormAddBook = ({ getFormAddBook, data }) => {
               <div className={s.input_container}>
                 <div className={s.input_block_author}>
                   <label className={s.label} htmlFor="author">
-                    Автор
+                    Автор*
                   </label>
                   <input
                     className={s.input}
@@ -189,7 +189,7 @@ export const FormAddBook = ({ getFormAddBook, data }) => {
                 </div>
                 <div className={s.input_block_pages}>
                   <label className={s.label} htmlFor="amountPages">
-                    Кількість сторінок
+                    Кількість сторінок*
                   </label>
                   <input
                     className={s.input}
@@ -221,7 +221,7 @@ export const FormAddBook = ({ getFormAddBook, data }) => {
               <div className={s.input_container}>
                 <div className={s.input_block_title}>
                   <label className={s.label} htmlFor="title">
-                    Назва книги
+                    Назва книги*
                   </label>
                   <input
                     className={s.input}
@@ -237,7 +237,7 @@ export const FormAddBook = ({ getFormAddBook, data }) => {
                 </div>
                 <div className={s.input_block_author}>
                   <label className={s.label} htmlFor="author">
-                    Автор
+                    Автор*
                   </label>
                   <input
                     className={s.input}
@@ -274,7 +274,7 @@ export const FormAddBook = ({ getFormAddBook, data }) => {
                 </div>
                 <div className={s.input_block_pages}>
                   <label className={s.label} htmlFor="amountPages">
-                    Кількість сторінок
+                    Кількість сторінок*
                   </label>
                   <input
                     className={s.input}
