@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { Rating } from "@mui/material";
 import { useDispatch } from "react-redux";
 import operation from "../../redux/operation/books-operation";
-
+import { useEffect } from "react";
 export const LibraryModalAddRating = ({
   closeSummaryModal,
   id,
@@ -16,6 +16,21 @@ export const LibraryModalAddRating = ({
     if (data) {
       closeSummaryModal();
       dispatch(operation.addSummary(data));
+    }
+  };
+  useEffect(() => {
+    const close = (e) => {
+      if (e.keyCode === 27) {
+        closeSummaryModal();
+      }
+    };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, [closeSummaryModal]);
+
+  const clickBackdrop = (e) => {
+    if (e.target === e.currentTarget) {
+      closeSummaryModal();
     }
   };
   const formik = useFormik({
@@ -31,7 +46,7 @@ export const LibraryModalAddRating = ({
   return (
     <>
       <Mobile>
-        <div className={s.backdrop}>
+        <div className={s.backdrop} onClick={clickBackdrop}>
           <form onSubmit={formik.handleSubmit}>
             <div className={s.modal}>
               <h1 className={s.text_rating}>Обрати рейтинг книги</h1>
@@ -72,7 +87,7 @@ export const LibraryModalAddRating = ({
         </div>
       </Mobile>
       <Tablet>
-        <div className={s.backdrop}>
+        <div className={s.backdrop} onClick={clickBackdrop}>
           <form onSubmit={formik.handleSubmit}>
             <div className={s.modal}>
               <h1 className={s.text_rating}>Обрати рейтинг книги</h1>
@@ -113,7 +128,7 @@ export const LibraryModalAddRating = ({
         </div>
       </Tablet>
       <Desktop>
-        <div className={s.backdrop}>
+        <div className={s.backdrop} onClick={clickBackdrop}>
           <form onSubmit={formik.handleSubmit}>
             <div className={s.modal}>
               <h1 className={s.text_rating}>Обрати рейтинг книги</h1>
