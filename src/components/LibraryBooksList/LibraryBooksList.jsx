@@ -87,11 +87,13 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                                     e,
                                     newCurrentRatingBooksSummary
                                   ) => {
-                                    changeRating({
-                                      _id: book._id,
-                                      resume: book.resume,
-                                      rating: newCurrentRatingBooksSummary,
-                                    });
+                                    if (book.resume !== "") {
+                                      changeRating({
+                                        _id: book._id,
+                                        resume: book.resume,
+                                        rating: newCurrentRatingBooksSummary,
+                                      });
+                                    }
                                   }}
                                 />
                               </dd>
@@ -263,11 +265,13 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                             name="read-only"
                             value={book.rating}
                             onChange={(e, newCurrentRatingBooksSummary) => {
-                              changeRating({
-                                _id: book._id,
-                                resume: book.resume,
-                                rating: newCurrentRatingBooksSummary,
-                              });
+                              if (book.resume !== "") {
+                                changeRating({
+                                  _id: book._id,
+                                  resume: book.resume,
+                                  rating: newCurrentRatingBooksSummary,
+                                });
+                              }
                             }}
                           />
                           <button
@@ -417,11 +421,13 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                             name="read-only"
                             value={book.rating}
                             onChange={(e, newCurrentRatingBooksSummary) => {
-                              changeRating({
-                                _id: book._id,
-                                resume: book.resume,
-                                rating: newCurrentRatingBooksSummary,
-                              });
+                              if (book.resume !== "") {
+                                changeRating({
+                                  _id: book._id,
+                                  resume: book.resume,
+                                  rating: newCurrentRatingBooksSummary,
+                                });
+                              }
                             }}
                           />
                           <button
