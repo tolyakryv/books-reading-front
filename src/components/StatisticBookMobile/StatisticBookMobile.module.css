@@ -21,7 +21,7 @@
     font-size: 12px;
     color: #242A37;
     width: 280px;
-    height: 100px;
+    height: fit-content;
     border-bottom: #E0E5EB 1px solid;
 }
 
@@ -45,10 +45,14 @@
     margin-left: 20px
 }
 
-.title {
+.cell{
+    height: 25px;
+}
+
+.title{
     font-family: Montserrat;
     font-size: 12px;
-    color: #242A37;
+    color:#242A37;
     height: 30px;
     width: 200px;
 }
@@ -56,12 +60,53 @@
 .width{
     width: 200px;
     overflow-wrap: break-word;
+   
 }
 
-.cell {
-    height: 25px;
+.description {
+    display: flex;
+    margin: 0;
+    align-items: center;
+    overflow-wrap: break-word;
+  }
+  
+  .description:not(:last-child) {
+    margin-bottom: 14px;
+    max-width: 240px;
+  }
+  
+  .key {
+    width: 81px;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #898f9f;
+  }
+  
+  .property {
+    display: block;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #242A37;
+    margin: 0;
+    margin-left: 10px;
+    height: auto;
+    width: 150px;
+    overflow-wrap: break-word;
+  }
+.title{
+    color: #242A37;
 }
-
+  .box {
+    display: block;
+    width: 191px;
+    overflow-wrap: break-word;
+  }
 input[type=checkbox] {
     display: none;
 }
