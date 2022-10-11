@@ -68,6 +68,7 @@ export const LibraryModalAddRating = ({
                 defaultValue={resume}
                 required={true}
                 minLength="1"
+                maxLength="1000"
                 onChange={formik.handleChange}
               ></textarea>
               <div className={s.buttonsContainer}>
@@ -109,6 +110,7 @@ export const LibraryModalAddRating = ({
                 placeholder="..."
                 required={true}
                 minLength="1"
+                maxLength="1000"
                 onChange={formik.handleChange}
               ></textarea>
               <div className={s.buttonsContainer}>
@@ -149,6 +151,7 @@ export const LibraryModalAddRating = ({
                 placeholder="..."
                 required={true}
                 minLength="1"
+                maxLength="1000"
                 defaultValue={resume}
                 onChange={formik.handleChange}
               ></textarea>
