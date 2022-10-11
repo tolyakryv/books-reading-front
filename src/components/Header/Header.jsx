@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { userSelector } from "../../redux/selector/user-selector";
 import { Avatar } from "@mui/material";
-
+import { useGetTrainQuery } from "../../services/trainingAPI";
 const StyledLink = styled(NavLink)`
   fill: #a6abb9;
 
@@ -20,6 +20,7 @@ const StyledLink = styled(NavLink)`
 `;
 
 const Header = () => {
+  const { data } = useGetTrainQuery();
   const userName = useSelector(userSelector.getUserName);
   const isLogin = useSelector(userSelector.getIsLogin);
   const [IsLogoutModal, setIsLogoutModal] = useState(false);
@@ -42,9 +43,16 @@ const Header = () => {
               <StyledLink className={style.iconLibrary} to="/" end>
                 <HandySvg src={iconLibrary} width="22px" height="20px" />
               </StyledLink>
-              <StyledLink className={style.iconHome} to="/statistics">
-                <HandySvg src={iconTraining} width="22px" height="17px" />
-              </StyledLink>
+              {data && (
+                <StyledLink className={style.iconHome} to="/statistics">
+                  <HandySvg src={iconTraining} width="22px" height="17px" />
+                </StyledLink>
+              )}
+              {!data && (
+                <StyledLink className={style.iconHome} to="/training">
+                  <HandySvg src={iconTraining} width="22px" height="17px" />
+                </StyledLink>
+              )}
               <Avatar
                 className={style.avatar}
                 sx={{
@@ -89,9 +97,16 @@ const Header = () => {
               <StyledLink className={style.iconLibrary} to="/" end>
                 <HandySvg src={iconLibrary} width="22px" height="20px" />
               </StyledLink>
-              <StyledLink className={style.iconHome} to="/statistics">
-                <HandySvg src={iconTraining} width="22px" height="17px" />
-              </StyledLink>
+              {data && (
+                <StyledLink className={style.iconHome} to="/statistics">
+                  <HandySvg src={iconTraining} width="22px" height="17px" />
+                </StyledLink>
+              )}
+              {!data && (
+                <StyledLink className={style.iconHome} to="/training">
+                  <HandySvg src={iconTraining} width="22px" height="17px" />
+                </StyledLink>
+              )}
               <button
                 className={style.logout}
                 type="button"
@@ -125,9 +140,16 @@ const Header = () => {
               <StyledLink className={style.iconLibrary} to="/" end>
                 <HandySvg src={iconLibrary} width="22px" height="20px" />
               </StyledLink>
-              <StyledLink className={style.iconHome} to="/statistics">
-                <HandySvg src={iconTraining} width="22px" height="17px" />
-              </StyledLink>
+              {data && (
+                <StyledLink className={style.iconHome} to="/statistics">
+                  <HandySvg src={iconTraining} width="22px" height="17px" />
+                </StyledLink>
+              )}
+              {!data && (
+                <StyledLink className={style.iconHome} to="/training">
+                  <HandySvg src={iconTraining} width="22px" height="17px" />
+                </StyledLink>
+              )}
               <button
                 className={style.logout}
                 type="button"
