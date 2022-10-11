@@ -17,7 +17,7 @@ const ShowTimer = ({ className }) => {
 
   useEffect(() => {
     if (data) {
-      const startTime = data.startDate; //1665273600000
+      const startTime = now; //1665273600000
       setStartTime(startTime);
       const endTime = data.finishDate;
       setEndTime(endTime);

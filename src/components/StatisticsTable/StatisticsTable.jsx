@@ -120,10 +120,12 @@ const StatisticsTable = () => {
               <label className={s.label}>
                 Кількість сторінок
                 <input
+                  min="1"
+                  max="999"
                   className={s.input}
                   label="Кількість сторінок"
-                  type="text"
-                  pattern="\d{3}"
+                  type="number"
+                  // pattern="\d{3}"
                   name="pageNumber"
                   value={pageNumber}
                   onChange={handleNameChange}
