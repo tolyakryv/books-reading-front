@@ -45,7 +45,7 @@ function Training() {
 
   const [status, setStatus] = useState(false)
 
-  const [formAddBook, setFormAddBook] = useState(true);
+  const [formAddBook, setFormAddBook] = useState(false);
 
   const [addTrain] = trainingAPI.useAddTrainMutation();
   const navigate = useNavigate();
