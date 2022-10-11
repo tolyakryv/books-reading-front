@@ -10,9 +10,13 @@ import { LibraryModalAddRating } from "../SummaryModal/SummaryModal";
 import { useState } from "react";
 import { LibraryModalOnFirstUse } from "../LibraryModalOnFirstUse/LibraryModalOnFirstUse";
 import EllipsisText from "react-ellipsis-text";
+import { useDispatch } from "react-redux";
+import operation from "../../redux/operation/books-operation";
 
 export const LibraryBooksList = ({ getFormAddBook, data }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [isSummaryModal, setIsSummaryModal] = useState(false);
   const [currentIdBooksSummary, setCurrentIdBooksSummary] = useState(null);
   const [currentResumeBooksSummary, setCurrentResumeBooksSummary] =
@@ -32,7 +36,9 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
   const closeSummaryModal = () => {
     setIsSummaryModal(false);
   };
-
+  const changeRating = ({ _id, resume, rating }) => {
+    dispatch(operation.addSummary({ _id, resume, rating }));
+  };
   return (
     <>
       <Mobile>
@@ -77,7 +83,16 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                                 <Rating
                                   name="read-only"
                                   value={book.rating}
-                                  readOnly
+                                  onChange={(
+                                    e,
+                                    newCurrentRatingBooksSummary
+                                  ) => {
+                                    changeRating({
+                                      _id: book._id,
+                                      resume: book.resume,
+                                      rating: newCurrentRatingBooksSummary,
+                                    });
+                                  }}
                                 />
                               </dd>
                             </dl>
@@ -247,7 +262,13 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                             className={style.alreadyReadBookRating}
                             name="read-only"
                             value={book.rating}
-                            readOnly
+                            onChange={(e, newCurrentRatingBooksSummary) => {
+                              changeRating({
+                                _id: book._id,
+                                resume: book.resume,
+                                rating: newCurrentRatingBooksSummary,
+                              });
+                            }}
                           />
                           <button
                             type="button"
@@ -395,7 +416,13 @@ export const LibraryBooksList = ({ getFormAddBook, data }) => {
                             className={style.alreadyReadBookRating}
                             name="read-only"
                             value={book.rating}
-                            readOnly
+                            onChange={(e, newCurrentRatingBooksSummary) => {
+                              changeRating({
+                                _id: book._id,
+                                resume: book.resume,
+                                rating: newCurrentRatingBooksSummary,
+                              });
+                            }}
                           />
                           <button
                             type="button"
