@@ -5,7 +5,7 @@ const getIsLoading = (state) => state.auth.isLoading;
 const getIsFetchingUser = (state) => state.auth.isFetchingUser;
 const getError = (state) => state.auth.error;
 
-const getBook = (state) => state.book;
+const getBook = (state) => state.books.books;
 
 export const userSelector = {
   getUserName,
