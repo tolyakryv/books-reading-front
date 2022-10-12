@@ -97,7 +97,7 @@ const StatisticsTable = () => {
             <div className={s.labelWrapper}>
               <label className={s.label}>
                 Дата
-                <div>
+                <div className={s.libDateContainer}>
                   <DatePicker
                     className={s.input}
                     maxDate={new Date()}

@@ -39,6 +39,9 @@
   right: 10px;
   width: 65px;
 }
+.libDateContainer {
+  height: 42px;
+}
 @media (max-width: 767px) {
   .header:before {
     content: "";
