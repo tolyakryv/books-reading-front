@@ -2,7 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
-axios.defaults.baseURL = "https://book-reading-08.herokuapp.com";
+axios.defaults.baseURL = "https://books-reading-back.vercel.app";
 
 const getBooks = createAsyncThunk("books/getBooks", async (_, thunkAPI) => {
   try {
