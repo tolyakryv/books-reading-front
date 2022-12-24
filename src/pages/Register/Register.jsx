@@ -60,7 +60,7 @@ const Register = () => {
             <GoogleLink
               icon={<GoogleIcon />}
               text="Google"
-              link="https://book-reading-08.herokuapp.com/api/auth/google"
+              link="https://books-reading-back.vercel.app/api/auth/google"
             />
 
             <div>
