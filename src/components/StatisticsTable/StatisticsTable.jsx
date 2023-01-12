@@ -1,6 +1,5 @@
 import { AgGridReact } from "ag-grid-react";
 import { useState } from "react";
-// import EllipsisText from "react-ellipsis-text";
 import "ag-grid-community/styles//ag-grid.css";
 import s from "./StatisticsTable.module.css";
 import DatePicker from "react-date-picker";
@@ -20,15 +19,10 @@ const StatisticsTable = () => {
   const [pageNumber, setPageNumber] = useState("");
   const [createdAt, setCreatedAt] = useState("");
   const headerHeight = 0;
-  // const reverseData = data.reverse();
-  // console.log("reverse", [...data?.statistic].reverse());
-  // const test = data?.statistic?.reverse();
   let dataRev = [];
 
   if (data?.statistic) {
-    // console.log("reverse", [...data?.statistic].reverse());
     dataRev = [...data?.statistic].reverse();
-    console.log(dataRev, "data reverse");
   }
 
   const columnDefs = [
@@ -125,7 +119,6 @@ const StatisticsTable = () => {
                   className={s.input}
                   label="Кількість сторінок"
                   type="number"
-                  // pattern="\d{3}"
                   name="pageNumber"
                   value={pageNumber}
                   onChange={handleNameChange}

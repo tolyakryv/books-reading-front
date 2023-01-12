@@ -55,9 +55,6 @@
 }
 
 @media (min-width: 768px) and (max-width: 1279px) {
-  /* .container {
-    margin-bottom: 0;
-  } */
   .form {
     display: flex;
     align-content: baseline;
@@ -125,12 +122,18 @@
   --ag-grid-size: 3px;
   --ag-list-item-height: 20px;
 }
+
 .input {
   font-family: "Montserrat";
   display: block;
   width: 110px;
-  height: 42px;
+  height: 42px !important;
   font-size: 14px;
+}
+@media (min-width: 767px) and (max-width: 1279px) {
+  .input {
+    width: 100px;
+  }
 }
 
 .labelWrapper:first-child {
