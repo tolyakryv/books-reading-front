@@ -130,11 +130,6 @@
   height: 42px !important;
   font-size: 14px;
 }
-@media (min-width: 767px) and (max-width: 1279px) {
-  .input {
-    width: 100px;
-  }
-}
 
 .labelWrapper:first-child {
   margin-right: 20px;
