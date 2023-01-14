@@ -74,7 +74,6 @@ const StatisticsBook = ({ onReadBook }) => {
           status,
         });
         await onReadBook(data.book.find((book) => book._id === id).amountPages);
-        // setModal(true);
       } catch (err) {
         console.error(err);
       }
