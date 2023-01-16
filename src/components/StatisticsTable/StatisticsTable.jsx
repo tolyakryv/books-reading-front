@@ -1,9 +1,9 @@
 import { AgGridReact } from "ag-grid-react";
 import { useState } from "react";
 import "ag-grid-community/styles//ag-grid.css";
-import s from "./StatisticsTable.module.css";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
+import "react-calendar/dist/Calendar.css";
 import { format } from "date-fns";
 import "ag-grid-community/styles//ag-theme-alpine.css";
 import "ag-grid-community/styles/ag-grid.css";
@@ -11,6 +11,8 @@ import {
   useAddTrainStatisticMutation,
   useGetTrainQuery,
 } from "../../services/trainingAPI";
+import s from "./StatisticsTable.module.css";
+import "./Statistics-DatePicker.css";
 
 const StatisticsTable = () => {
   const [addTrainStatistics] = useAddTrainStatisticMutation();
@@ -91,14 +93,12 @@ const StatisticsTable = () => {
             <div className={s.labelWrapper}>
               <label className={s.label}>
                 Дата
-                <div className={s.libDateContainer}>
+                <div>
                   <DatePicker
-                    className={s.input}
                     maxDate={new Date()}
                     format={"d.MM.yy"}
                     onChange={setDate}
                     clearIcon={null}
-                    height={42}
                     value={date}
                     type="date"
                     name="date"
@@ -133,12 +133,10 @@ const StatisticsTable = () => {
               Додати результат
             </button>
           </div>
-          {/* </div> */}
         </form>
         <h4 className={s.header}>Статистика</h4>
         <div>
           <div
-            className={s.ag}
             style={{
               height: "120px",
               width: "100%",

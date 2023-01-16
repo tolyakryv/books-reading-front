@@ -1,0 +1,11 @@
+.react-date-picker__wrapper {
+  width: 110px;
+  height: 42px;
+}
+
+.react-date-picker__inputGroup__leadingZero {
+  color: var(--color-main);
+}
+.react-date-picker__inputGroup {
+  padding-left: 20px;
+}
